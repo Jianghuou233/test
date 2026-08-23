@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sion (シオン) ✦ eden* 纪念站 · s1on.wtf</title>
-    <meta name="description" content="They Were Only Two, On The Planet. 视觉小说《eden*》女主角 Sion (シオン) 专属纪念站。">
-    <meta name="keywords" content="eden*, Sion, シオン, 紫苑, minori, 视觉小说, 榛名亮, 菲利克斯, Felix">
+    <meta name="description" content="They Were Only Two, On The Planet. 视觉小说《eden*》女主角 Sion (シオン) 专属纪念站与原声音乐留声机。">
+    <meta name="keywords" content="eden*, Sion, シオン, 紫苑, minori, 视觉小说, 榛名亮, 菲利克斯, Felix, little explorer, two of us, 天门, 原声音乐">
     
     <!-- Google Fonts 导入 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Noto+Serif+SC:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Noto+Serif+SC:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
@@ -29,15 +29,16 @@
             
             <nav class="nav-links">
                 <a href="#profile" class="nav-item">少女档案</a>
+                <a href="#ost-player" class="nav-item highlight-nav">✦ 原声留声机</a>
                 <a href="#story" class="nav-item">物语回响</a>
-                <a href="#quotes" class="nav-item">星光名台词</a>
-                <a href="#messages" class="nav-item">星空寄语</a>
+                <a href="#quotes" class="nav-item">名台词</a>
+                <a href="#messages" class="nav-item">星空信箱</a>
             </nav>
 
             <div class="nav-actions">
-                <button id="audio-toggle-btn" class="audio-btn" title="开启/关闭八音盒氛围音乐">
-                    <span class="audio-icon">♫</span>
-                    <span class="audio-text">八音盒: 关</span>
+                <button id="quick-play-btn" class="audio-btn" title="播放/暂停音乐">
+                    <span class="audio-icon" id="quick-audio-icon">▶</span>
+                    <span class="audio-text" id="quick-audio-title">BGM 播放</span>
                     <div class="sound-wave" id="sound-wave">
                         <span></span><span></span><span></span><span></span>
                     </div>
@@ -72,12 +73,15 @@
                 </div>
 
                 <div class="hero-cta-group">
-                    <a href="#profile" class="btn btn-primary">
-                        <span>探索少女档案</span>
+                    <a href="#ost-player" class="btn btn-primary">
+                        <span>✦ 聆听《eden*》原声</span>
                         <svg class="btn-arrow" viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"/></svg>
                     </a>
+                    <a href="#profile" class="btn btn-glass">
+                        <span>少女档案</span>
+                    </a>
                     <a href="#messages" class="btn btn-glass">
-                        <span>寄送星空信件</span>
+                        <span>星空信箱</span>
                     </a>
                 </div>
             </div>
@@ -88,7 +92,101 @@
             </div>
         </section>
 
-        <!-- 2. 少女档案 · Profile -->
+        <!-- 2. 原声留声机 & 动态双语歌词 (OST Player & Lyrics) -->
+        <section id="ost-player" class="section">
+            <div class="section-header">
+                <span class="section-tag">ORIGINAL SOUNDTRACK & LYRICS</span>
+                <h2 class="section-title">✦ 原声留声机 · 天门与光之旋律</h2>
+                <div class="section-line"></div>
+                <p class="section-desc">收录《eden*》全曲目 OST 与经典 Vocal 主题曲，支持实时双语滚动歌词与音频可视化。</p>
+            </div>
+
+            <div class="player-container glass-panel">
+                <!-- 左侧：黑胶/唱片机与播放控制器 -->
+                <div class="player-left">
+                    <div class="vinyl-wrapper">
+                        <div class="vinyl-disc" id="vinyl-disc">
+                            <div class="vinyl-grooves"></div>
+                            <div class="vinyl-center">
+                                <span class="vinyl-logo">✦</span>
+                                <span class="vinyl-caption">eden*</span>
+                            </div>
+                        </div>
+                        <div class="tonearm" id="tonearm"></div>
+                    </div>
+
+                    <!-- 当前歌曲详情 -->
+                    <div class="track-meta">
+                        <h3 class="track-title" id="current-track-title">little explorer</h3>
+                        <p class="track-artist" id="current-track-artist">原田ひとみ · 作曲: 天门</p>
+                        <span class="track-tag" id="current-track-tag">OP 主题曲 · 完整双语歌词</span>
+                    </div>
+
+                    <!-- 进度条 -->
+                    <div class="playback-progress-box">
+                        <div class="progress-bar-container" id="progress-bar-container">
+                            <div class="progress-bar-fill" id="progress-bar-fill"></div>
+                            <div class="progress-handle" id="progress-handle"></div>
+                        </div>
+                        <div class="time-display">
+                            <span id="current-time">00:00</span>
+                            <span id="total-duration">04:36</span>
+                        </div>
+                    </div>
+
+                    <!-- 控制按键区 -->
+                    <div class="player-controls">
+                        <button class="ctrl-btn sub-btn" id="loop-btn" title="切换循环模式">
+                            <span id="loop-icon">🔁</span>
+                        </button>
+                        <button class="ctrl-btn" id="prev-btn" title="上一首">
+                            <span>⏮</span>
+                        </button>
+                        <button class="ctrl-btn play-main-btn" id="play-pause-btn" title="播放 / 暂停">
+                            <span id="play-icon">▶</span>
+                        </button>
+                        <button class="ctrl-btn" id="next-btn" title="下一首">
+                            <span>⏭</span>
+                        </button>
+                        <div class="volume-box">
+                            <button class="ctrl-btn sub-btn" id="mute-btn" title="静音切换">
+                                <span id="volume-icon">🔊</span>
+                            </button>
+                            <input type="range" class="volume-slider" id="volume-slider" min="0" max="1" step="0.01" value="0.8">
+                        </div>
+                    </div>
+
+                    <div class="audio-source-tip" id="audio-source-tip">
+                        <span>💡 支持放入本地 MP3 文件，无文件时自动平滑降级为 Web Audio 合成音</span>
+                    </div>
+                </div>
+
+                <!-- 中间：动态滚动歌词视窗 -->
+                <div class="player-center">
+                    <div class="lyrics-header">
+                        <span class="lyrics-label">✦ 实时双语歌词</span>
+                        <span class="lyrics-status" id="lyrics-status">点击任意行歌词可快速跳转</span>
+                    </div>
+                    <div class="lyrics-window" id="lyrics-window">
+                        <div class="lyrics-content" id="lyrics-content">
+                            <!-- 歌词由 JS 动态生成 -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右侧：OST 曲目列表 -->
+                <div class="player-right">
+                    <div class="playlist-header">
+                        <span class="playlist-title">✦ 原声曲目列表 (<span id="playlist-count">6</span>)</span>
+                    </div>
+                    <div class="playlist-items" id="playlist-items">
+                        <!-- 播放列表由 JS 动态渲染 -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. 少女档案 · Profile -->
         <section id="profile" class="section">
             <div class="section-header">
                 <span class="section-tag">CHARACTER DOSSIER</span>
@@ -159,7 +257,7 @@
             </div>
         </section>
 
-        <!-- 3. 物语篇章 · Story Timeline -->
+        <!-- 4. 物语篇章 · Story Timeline -->
         <section id="story" class="section">
             <div class="section-header">
                 <span class="section-tag">CHRONICLES OF EDEN</span>
@@ -214,7 +312,7 @@
             </div>
         </section>
 
-        <!-- 4. 名台词回廊 · Memorable Quotes -->
+        <!-- 5. 名台词回廊 · Memorable Quotes -->
         <section id="quotes" class="section">
             <div class="section-header">
                 <span class="section-tag">ECHOES IN STARLIGHT</span>
@@ -261,7 +359,7 @@
             </div>
         </section>
 
-        <!-- 5. 星空信箱 · Letters to Sion -->
+        <!-- 6. 星空信箱 · Letters to Sion -->
         <section id="messages" class="section">
             <div class="section-header">
                 <span class="section-tag">LETTERS TO THE END OF TIME</span>
@@ -318,7 +416,7 @@
             </div>
             
             <div class="footer-sub">
-                <span>Hosted on GitHub Pages &bull; Accelerated by Cloudflare</span>
+                <span>Music by <strong>Tenmon (天门)</strong> &bull; Hosted on GitHub Pages</span>
             </div>
         </div>
     </footer>
