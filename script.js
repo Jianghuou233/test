@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initFloatingOSTPlayer();
     initCGLightbox();
     initGalleryToggle();
-    initCialloClickEffect();
 });
 
 /* =========================================================
@@ -706,37 +705,4 @@ function escapeHtml(str) {
     return (str || '').replace(/[&<>"']/g, m => ({
         '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
     })[m]);
-}
-
-/* =========================================================
-   全局点击特效：Ciallo～(∠・ω< )⌒★
-   ========================================================= */
-function initCialloClickEffect() {
-    const colors = [
-        '#ff75a0', '#70d6ff', '#fde047', '#c084fc', 
-        '#4ade80', '#fb7299', '#38bdf8', '#ff9f43',
-        '#a855f7', '#00f2fe', '#f472b6', '#ffd166'
-    ];
-
-    window.addEventListener('click', (e) => {
-        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.closest('.audio-control-btn') || e.target.closest('.seek-slider') || e.target.closest('.volume-slider')) return;
-
-        const ciallo = document.createElement('span');
-        ciallo.className = 'ciallo-bubble';
-        ciallo.textContent = 'Ciallo～(∠・ω< )⌒★';
-
-        const randomColor = colors[Math.floor(Math.random() * colors.length)];
-        const randomRotation = (Math.random() - 0.5) * 24;
-
-        ciallo.style.setProperty('--ciallo-color', randomColor);
-        ciallo.style.setProperty('--ciallo-rot', `${randomRotation}deg`);
-        ciallo.style.left = `${e.clientX}px`;
-        ciallo.style.top = `${e.clientY}px`;
-
-        document.body.appendChild(ciallo);
-
-        setTimeout(() => {
-            ciallo.remove();
-        }, 1000);
-    });
 }
