@@ -106,7 +106,7 @@
                     <div class="profile-avatar-container">
                         <div class="avatar-glow"></div>
                         <div class="avatar-box">
-                            <img src="images/cg/cg_02.jpg" alt="Sion 诗音" class="avatar-img">
+                            <img src="images/cg/cg_02.webp" alt="Sion 诗音" class="avatar-img">
                         </div>
                         <div class="profile-status">
                             <span class="status-indicator"></span>
@@ -160,149 +160,137 @@
             </div>
         </section>
 
-        <!-- 3. 忆之画廊 · CG Gallery -->
+        <!-- 3. 忆之画廊 · CG Gallery (精巧布局 & 折叠切换) -->
         <section id="gallery" class="section">
             <div class="section-header">
                 <span class="section-tag">MEMORIES & ILLUSTRATIONS</span>
                 <h2 class="section-title">✦ 忆之画廊 · 终焉之星的光影记忆</h2>
                 <div class="section-line"></div>
-                <p class="section-desc">收录《eden*》全套 19 张高清官方原画 CG，点击任意画面可开启全屏沉浸式灯箱浏览。</p>
+                <p class="section-desc">收录《eden*》官方精选高清 CG，点击任意画面可开启全屏沉浸式灯箱浏览。</p>
             </div>
 
-            <div class="gallery-grid" id="gallery-grid">
-                <!-- 19 张 CG 图片由静态或脚本结构呈现 -->
-                <div class="gallery-item glass-panel" data-src="images/cg/cg_01.jpg" data-caption="温室中的相视 · 702研究所的初见">
-                    <img src="images/cg/cg_01.jpg" alt="eden* CG 01" loading="lazy">
-                    <div class="gallery-overlay">
-                        <span class="gallery-zoom-icon">🔍</span>
-                        <span class="gallery-caption">温室中的相视 · 初见</span>
+            <div class="gallery-wrapper">
+                <div class="gallery-grid" id="gallery-grid">
+                    <div class="gallery-item glass-panel" data-src="images/cg/cg_01.webp" data-caption="温室中的相视 · 702研究所的初见">
+                        <img src="images/cg/cg_01.webp" alt="eden* CG 01" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span class="gallery-caption">温室中的相视 · 初见</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item glass-panel" data-src="images/cg/cg_02.webp" data-caption="澄澈的双眸 · 诗音的凝望">
+                        <img src="images/cg/cg_02.webp" alt="eden* CG 02" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span class="gallery-caption">澄澈的双眸 · 诗音</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item glass-panel" data-src="images/cg/cg_03.webp" data-caption="白色温室的日常 · 数据的牢笼">
+                        <img src="images/cg/cg_03.webp" alt="eden* CG 03" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span class="gallery-caption">白色温室 · 牢笼</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item glass-panel" data-src="images/cg/cg_04.webp" data-caption="静谧时光 · 守望者的陪伴">
+                        <img src="images/cg/cg_04.webp" alt="eden* CG 04" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span class="gallery-caption">静谧时光 · 陪伴</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item glass-panel" data-src="images/cg/cg_05.webp" data-caption="守护的誓言 · 战友与姊妹">
+                        <img src="images/cg/cg_05.webp" alt="eden* CG 05" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span class="gallery-caption">守护的誓言</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item glass-panel" data-src="images/cg/cg_06.webp" data-caption="破晓出逃 · 冲出研究所">
+                        <img src="images/cg/cg_06.webp" alt="eden* CG 06" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span class="gallery-caption">破晓出逃 · 奔向自由</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item glass-panel" data-src="images/cg/cg_07.webp" data-caption="旷野之风 · 第一次感受大自然">
+                        <img src="images/cg/cg_07.webp" alt="eden* CG 07" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span class="gallery-caption">旷野之风 · 自由呼吸</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item glass-panel" data-src="images/cg/cg_08.webp" data-caption="红茶的甘醇 · 山丘小屋的午后">
+                        <img src="images/cg/cg_08.webp" alt="eden* CG 08" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span class="gallery-caption">红茶与微笑 · 温暖日常</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item glass-panel extra-cg hidden" data-src="images/cg/cg_09.webp" data-caption="黄昏暮光 · 执子之手">
+                        <img src="images/cg/cg_09.webp" alt="eden* CG 09" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span class="gallery-caption">黄昏暮光 · 执手</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item glass-panel extra-cg hidden" data-src="images/cg/cg_10.webp" data-caption="深情相拥 · 唯有彼此的世界">
+                        <img src="images/cg/cg_10.webp" alt="eden* CG 10" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span class="gallery-caption">深情相拥 · 羁绊</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item glass-panel extra-cg hidden" data-src="images/cg/cg_11.webp" data-caption="蒲公英盛开的山丘 · 纯白的浪漫">
+                        <img src="images/cg/cg_11.webp" alt="eden* CG 11" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span class="gallery-caption">蒲公英花海 · 山丘</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item glass-panel extra-cg hidden" data-src="images/cg/cg_12.webp" data-caption="睡颜如诗 · 最后的安宁">
+                        <img src="images/cg/cg_12.webp" alt="eden* CG 12" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span class="gallery-caption">睡颜如诗 · 安宁</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item glass-panel extra-cg hidden" data-src="images/cg/cg_13.webp" data-caption="星空低语 · 世界终焉的约定">
+                        <img src="images/cg/cg_13.webp" alt="eden* CG 13" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span class="gallery-caption">星空低语 · 约定</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item glass-panel extra-cg hidden" data-src="images/cg/cg_14.webp" data-caption="温柔以待 · 亮与诗音">
+                        <img src="images/cg/cg_14.webp" alt="eden* CG 14" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span class="gallery-caption">温柔以待 · 恋人</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item glass-panel extra-cg hidden" data-src="images/cg/cg_15.webp" data-caption="晨曦微光 · 新的清晨">
+                        <img src="images/cg/cg_15.webp" alt="eden* CG 15" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span class="gallery-caption">晨曦微光 · 清晨</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item glass-panel extra-cg hidden" data-src="images/cg/cg_16.webp" data-caption="星落之刻 · 直至世界的终焉">
+                        <img src="images/cg/cg_16.webp" alt="eden* CG 16" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span class="gallery-caption">星落之刻 · 永恒誓约</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item glass-panel extra-cg hidden" data-src="images/cg/cg_17.webp" data-caption="白羽之风 · 飞向永恒的苍穹">
+                        <img src="images/cg/cg_17.webp" alt="eden* CG 17" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span class="gallery-caption">白羽之风 · 归途</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item glass-panel extra-cg hidden" data-src="images/cg/cg_18.webp" data-caption="纯白婚纱与花环 · 属于两人的婚礼">
+                        <img src="images/cg/cg_18.webp" alt="eden* CG 18" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span class="gallery-caption">花环与誓约 · 婚礼</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item glass-panel extra-cg hidden" data-src="images/cg/cg_19.webp" data-caption="They Were Only Two, On The Planet.">
+                        <img src="images/cg/cg_19.webp" alt="eden* CG 19" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span class="gallery-caption">终幕 · 永恒守望</span>
+                        </div>
                     </div>
                 </div>
-                <div class="gallery-item glass-panel" data-src="images/cg/cg_02.jpg" data-caption="澄澈的双眸 · 诗音的凝望">
-                    <img src="images/cg/cg_02.jpg" alt="eden* CG 02" loading="lazy">
-                    <div class="gallery-overlay">
-                        <span class="gallery-zoom-icon">🔍</span>
-                        <span class="gallery-caption">澄澈的双眸 · 诗音</span>
-                    </div>
-                </div>
-                <div class="gallery-item glass-panel" data-src="images/cg/cg_03.jpg" data-caption="白色温室的日常 · 数据的牢笼">
-                    <img src="images/cg/cg_03.jpg" alt="eden* CG 03" loading="lazy">
-                    <div class="gallery-overlay">
-                        <span class="gallery-zoom-icon">🔍</span>
-                        <span class="gallery-caption">白色温室 · 数据的牢笼</span>
-                    </div>
-                </div>
-                <div class="gallery-item glass-panel" data-src="images/cg/cg_04.jpg" data-caption="静谧时光 · 守望者的陪伴">
-                    <img src="images/cg/cg_04.jpg" alt="eden* CG 04" loading="lazy">
-                    <div class="gallery-overlay">
-                        <span class="gallery-zoom-icon">🔍</span>
-                        <span class="gallery-caption">静谧时光 · 陪伴</span>
-                    </div>
-                </div>
-                <div class="gallery-item glass-panel" data-src="images/cg/cg_05.jpg" data-caption="守护的誓言 · 战友与姊妹">
-                    <img src="images/cg/cg_05.jpg" alt="eden* CG 05" loading="lazy">
-                    <div class="gallery-overlay">
-                        <span class="gallery-zoom-icon">🔍</span>
-                        <span class="gallery-caption">守护的誓言</span>
-                    </div>
-                </div>
-                <div class="gallery-item glass-panel" data-src="images/cg/cg_06.jpg" data-caption="破晓出逃 · 冲出研究所">
-                    <img src="images/cg/cg_06.jpg" alt="eden* CG 06" loading="lazy">
-                    <div class="gallery-overlay">
-                        <span class="gallery-zoom-icon">🔍</span>
-                        <span class="gallery-caption">破晓出逃 · 奔向自由</span>
-                    </div>
-                </div>
-                <div class="gallery-item glass-panel" data-src="images/cg/cg_07.jpg" data-caption="旷野之风 · 第一次感受大自然">
-                    <img src="images/cg/cg_07.jpg" alt="eden* CG 07" loading="lazy">
-                    <div class="gallery-overlay">
-                        <span class="gallery-zoom-icon">🔍</span>
-                        <span class="gallery-caption">旷野之风 · 自由的呼吸</span>
-                    </div>
-                </div>
-                <div class="gallery-item glass-panel" data-src="images/cg/cg_08.jpg" data-caption="红茶的甘醇 · 山丘小屋的午后">
-                    <img src="images/cg/cg_08.jpg" alt="eden* CG 08" loading="lazy">
-                    <div class="gallery-overlay">
-                        <span class="gallery-zoom-icon">🔍</span>
-                        <span class="gallery-caption">红茶与微笑 · 温暖日常</span>
-                    </div>
-                </div>
-                <div class="gallery-item glass-panel" data-src="images/cg/cg_09.jpg" data-caption="黄昏暮光 · 执子之手">
-                    <img src="images/cg/cg_09.jpg" alt="eden* CG 09" loading="lazy">
-                    <div class="gallery-overlay">
-                        <span class="gallery-zoom-icon">🔍</span>
-                        <span class="gallery-caption">黄昏暮光 · 执手</span>
-                    </div>
-                </div>
-                <div class="gallery-item glass-panel" data-src="images/cg/cg_10.jpg" data-caption="深情相拥 · 唯有彼此的世界">
-                    <img src="images/cg/cg_10.jpg" alt="eden* CG 10" loading="lazy">
-                    <div class="gallery-overlay">
-                        <span class="gallery-zoom-icon">🔍</span>
-                        <span class="gallery-caption">深情相拥 · 羁绊</span>
-                    </div>
-                </div>
-                <div class="gallery-item glass-panel" data-src="images/cg/cg_11.jpg" data-caption="蒲公英盛开的山丘 · 纯白的浪漫">
-                    <img src="images/cg/cg_11.jpg" alt="eden* CG 11" loading="lazy">
-                    <div class="gallery-overlay">
-                        <span class="gallery-zoom-icon">🔍</span>
-                        <span class="gallery-caption">蒲公英花海 · 山丘</span>
-                    </div>
-                </div>
-                <div class="gallery-item glass-panel" data-src="images/cg/cg_12.jpg" data-caption="睡颜如诗 · 最后的安宁">
-                    <img src="images/cg/cg_12.jpg" alt="eden* CG 12" loading="lazy">
-                    <div class="gallery-overlay">
-                        <span class="gallery-zoom-icon">🔍</span>
-                        <span class="gallery-caption">睡颜如诗 · 安宁</span>
-                    </div>
-                </div>
-                <div class="gallery-item glass-panel" data-src="images/cg/cg_13.jpg" data-caption="星空低语 · 世界终焉的约定">
-                    <img src="images/cg/cg_13.jpg" alt="eden* CG 13" loading="lazy">
-                    <div class="gallery-overlay">
-                        <span class="gallery-zoom-icon">🔍</span>
-                        <span class="gallery-caption">星空低语 · 约定</span>
-                    </div>
-                </div>
-                <div class="gallery-item glass-panel" data-src="images/cg/cg_14.jpg" data-caption="温柔以待 · 亮与诗音">
-                    <img src="images/cg/cg_14.jpg" alt="eden* CG 14" loading="lazy">
-                    <div class="gallery-overlay">
-                        <span class="gallery-zoom-icon">🔍</span>
-                        <span class="gallery-caption">温柔以待 · 恋人</span>
-                    </div>
-                </div>
-                <div class="gallery-item glass-panel" data-src="images/cg/cg_15.jpg" data-caption="晨曦微光 · 新的清晨">
-                    <img src="images/cg/cg_15.jpg" alt="eden* CG 15" loading="lazy">
-                    <div class="gallery-overlay">
-                        <span class="gallery-zoom-icon">🔍</span>
-                        <span class="gallery-caption">晨曦微光 · 清晨</span>
-                    </div>
-                </div>
-                <div class="gallery-item glass-panel" data-src="images/cg/cg_16.jpg" data-caption="星落之刻 · 直至世界的终焉">
-                    <img src="images/cg/cg_16.jpg" alt="eden* CG 16" loading="lazy">
-                    <div class="gallery-overlay">
-                        <span class="gallery-zoom-icon">🔍</span>
-                        <span class="gallery-caption">星落之刻 · 永恒誓约</span>
-                    </div>
-                </div>
-                <div class="gallery-item glass-panel" data-src="images/cg/cg_17.jpg" data-caption="白羽之风 · 飞向永恒的苍穹">
-                    <img src="images/cg/cg_17.jpg" alt="eden* CG 17" loading="lazy">
-                    <div class="gallery-overlay">
-                        <span class="gallery-zoom-icon">🔍</span>
-                        <span class="gallery-caption">白羽之风 · 归途</span>
-                    </div>
-                </div>
-                <div class="gallery-item glass-panel" data-src="images/cg/cg_18.jpg" data-caption="纯白婚纱与花环 · 属于两人的婚礼">
-                    <img src="images/cg/cg_18.jpg" alt="eden* CG 18" loading="lazy">
-                    <div class="gallery-overlay">
-                        <span class="gallery-zoom-icon">🔍</span>
-                        <span class="gallery-caption">花环与誓约 · 婚礼</span>
-                    </div>
-                </div>
-                <div class="gallery-item glass-panel" data-src="images/cg/cg_19.jpg" data-caption="They Were Only Two, On The Planet.">
-                    <img src="images/cg/cg_19.jpg" alt="eden* CG 19" loading="lazy">
-                    <div class="gallery-overlay">
-                        <span class="gallery-zoom-icon">🔍</span>
-                        <span class="gallery-caption">终幕 · 永恒守望</span>
-                    </div>
+
+                <div class="gallery-toggle-box">
+                    <button class="btn btn-glass gallery-toggle-btn" id="gallery-toggle-btn">
+                        <span id="toggle-btn-text">✦ 展开查看全部 19 张回忆 CG ✦</span>
+                    </button>
                 </div>
             </div>
         </section>
@@ -334,7 +322,7 @@
                     <div class="track-meta">
                         <h3 class="track-title" id="current-track-title">Sion</h3>
                         <p class="track-artist" id="current-track-artist">天門 · Asterisk OST</p>
-                        <span class="track-tag" id="current-track-tag">✦ Sion 少女主题曲 · 纯音乐</span>
+                        <span class="track-tag" id="current-track-tag">✦ Sion 诗音主题曲 · 纯音乐</span>
                     </div>
 
                     <!-- 进度条 -->
@@ -414,7 +402,7 @@
                     <div class="timeline-node">01</div>
                     <div class="timeline-content glass-panel">
                         <div class="timeline-img-box">
-                            <img src="images/cg/cg_01.jpg" alt="Chapter 1" class="timeline-cg" loading="lazy">
+                            <img src="images/cg/cg_01.webp" alt="Chapter 1" class="timeline-cg" loading="lazy">
                         </div>
                         <div class="timeline-text-box">
                             <span class="timeline-chapter">Chapter I</span>
@@ -430,7 +418,7 @@
                     <div class="timeline-node">02</div>
                     <div class="timeline-content glass-panel">
                         <div class="timeline-img-box">
-                            <img src="images/cg/cg_06.jpg" alt="Chapter 2" class="timeline-cg" loading="lazy">
+                            <img src="images/cg/cg_06.webp" alt="Chapter 2" class="timeline-cg" loading="lazy">
                         </div>
                         <div class="timeline-text-box">
                             <span class="timeline-chapter">Chapter II</span>
@@ -446,7 +434,7 @@
                     <div class="timeline-node">03</div>
                     <div class="timeline-content glass-panel">
                         <div class="timeline-img-box">
-                            <img src="images/cg/cg_11.jpg" alt="Chapter 3" class="timeline-cg" loading="lazy">
+                            <img src="images/cg/cg_11.webp" alt="Chapter 3" class="timeline-cg" loading="lazy">
                         </div>
                         <div class="timeline-text-box">
                             <span class="timeline-chapter">Chapter III</span>
@@ -462,7 +450,7 @@
                     <div class="timeline-node">04</div>
                     <div class="timeline-content glass-panel">
                         <div class="timeline-img-box">
-                            <img src="images/cg/cg_16.jpg" alt="Chapter 4" class="timeline-cg" loading="lazy">
+                            <img src="images/cg/cg_16.webp" alt="Chapter 4" class="timeline-cg" loading="lazy">
                         </div>
                         <div class="timeline-text-box">
                             <span class="timeline-chapter">Chapter IV</span>

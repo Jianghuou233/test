@@ -1,6 +1,6 @@
 /* =========================================================
    Sion (シオン / 诗音) ✦ eden* 主题纪念站样式表
-   包含：星空、19张高清CG画廊、OST留声机、全屏灯箱
+   包含：星空、精炼CG画廊、OST留声机、全屏灯箱
    ========================================================= */
 
 :root {
@@ -399,7 +399,7 @@ body {
    通用 Section 布局
    ========================================================= */
 .section {
-    padding: 90px 24px;
+    padding: 80px 24px;
     max-width: 1300px;
     margin: 0 auto;
     position: relative;
@@ -408,7 +408,7 @@ body {
 
 .section-header {
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
 }
 
 .section-tag {
@@ -466,7 +466,7 @@ body {
 
 .avatar-glow {
     position: absolute;
-    inset: -12px;
+    inset: -10px;
     background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
     border-radius: 50%;
     z-index: 0;
@@ -476,8 +476,8 @@ body {
 .avatar-box {
     position: relative;
     z-index: 1;
-    width: 140px;
-    height: 140px;
+    width: 130px;
+    height: 130px;
     border-radius: 50%;
     border: 2px solid rgba(112, 214, 255, 0.4);
     overflow: hidden;
@@ -488,12 +488,12 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center top;
+    object-position: center 25%;
     transition: transform 0.5s ease;
 }
 
 .avatar-box:hover .avatar-img {
-    transform: scale(1.1);
+    transform: scale(1.08);
 }
 
 .profile-status {
@@ -599,12 +599,20 @@ body {
 }
 
 /* =========================================================
-   3. 忆之画廊 · CG Gallery
+   3. 忆之画廊 · 精巧小网格 (CG Gallery)
    ========================================================= */
+.gallery-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+    width: 100%;
 }
 
 .gallery-item {
@@ -614,55 +622,59 @@ body {
     aspect-ratio: 16 / 9;
     cursor: pointer;
     border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: var(--transition);
+}
+
+.gallery-item.extra-cg.hidden {
+    display: none;
 }
 
 .gallery-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.gallery-item:hover {
+    border-color: var(--accent-cyan);
+    box-shadow: 0 4px 20px rgba(112, 214, 255, 0.2);
+    transform: translateY(-3px);
 }
 
 .gallery-item:hover img {
-    transform: scale(1.08);
+    transform: scale(1.06);
 }
 
 .gallery-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(5, 7, 17, 0.85) 0%, rgba(5, 7, 17, 0.2) 60%, transparent 100%);
+    background: linear-gradient(to top, rgba(5, 7, 17, 0.85) 0%, rgba(5, 7, 17, 0.1) 60%, transparent 100%);
     opacity: 0;
     transition: opacity 0.3s ease;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding: 16px;
+    padding: 10px 12px;
 }
 
 .gallery-item:hover .gallery-overlay {
     opacity: 1;
 }
 
-.gallery-zoom-icon {
-    font-size: 1.2rem;
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    background: rgba(0, 0, 0, 0.5);
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
 .gallery-caption {
     font-family: var(--font-cn-serif);
-    font-size: 0.9rem;
+    font-size: 0.78rem;
     color: #fff;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.gallery-toggle-btn {
+    padding: 10px 24px;
+    font-size: 0.88rem;
 }
 
 /* 全屏 CG 灯箱 (Lightbox) */
@@ -675,7 +687,7 @@ body {
     justify-content: center;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.35s ease;
+    transition: all 0.3s ease;
 }
 
 .lightbox-modal.active {
@@ -687,14 +699,12 @@ body {
     position: absolute;
     inset: 0;
     background: rgba(5, 7, 17, 0.92);
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(16px);
 }
 
 .lightbox-content {
     position: relative;
     z-index: 2001;
-    max-width: 90vw;
-    max-height: 90vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -707,19 +717,19 @@ body {
 }
 
 .lightbox-img-wrapper img {
-    max-width: 85vw;
-    max-height: 80vh;
+    max-width: 78vw;
+    max-height: 75vh;
     border-radius: var(--radius-sm);
-    box-shadow: 0 0 40px rgba(112, 214, 255, 0.25);
+    box-shadow: 0 0 35px rgba(112, 214, 255, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .lightbox-caption {
     margin-top: 14px;
     font-family: var(--font-cn-serif);
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     color: #fff;
-    text-shadow: 0 0 10px var(--accent-cyan);
+    text-shadow: 0 0 8px var(--accent-cyan);
 }
 
 .lightbox-close {
@@ -729,10 +739,10 @@ body {
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: #fff;
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     cursor: pointer;
     transition: var(--transition);
     display: flex;
@@ -744,7 +754,6 @@ body {
 .lightbox-close:hover {
     background: #ef4444;
     border-color: #ef4444;
-    transform: rotate(90deg);
 }
 
 .lightbox-nav-btn {
@@ -754,10 +763,10 @@ body {
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: #fff;
-    width: 50px;
-    height: 50px;
+    width: 46px;
+    height: 46px;
     border-radius: 50%;
-    font-size: 2rem;
+    font-size: 1.8rem;
     cursor: pointer;
     transition: var(--transition);
     display: flex;
@@ -773,7 +782,6 @@ body {
     background: var(--accent-cyan);
     color: var(--bg-deep);
     border-color: var(--accent-cyan);
-    box-shadow: 0 0 20px var(--accent-glow);
 }
 
 /* =========================================================
@@ -1217,11 +1225,11 @@ body {
 }
 
 /* =========================================================
-   5. 物语篇章 (Timeline With Embedded CGs)
+   5. 物语篇章 (Timeline With Compact Embedded CGs)
    ========================================================= */
 .timeline-container {
     position: relative;
-    max-width: 900px;
+    max-width: 860px;
     margin: 0 auto;
     padding: 20px 0;
 }
@@ -1239,7 +1247,7 @@ body {
 .timeline-item {
     position: relative;
     padding-left: 80px;
-    margin-bottom: 40px;
+    margin-bottom: 32px;
 }
 
 .timeline-item:last-child {
@@ -1267,10 +1275,10 @@ body {
 }
 
 .timeline-content {
-    padding: 24px;
+    padding: 20px 24px;
     display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 24px;
+    grid-template-columns: 160px 1fr;
+    gap: 20px;
     align-items: center;
 }
 
@@ -1298,20 +1306,20 @@ body {
     letter-spacing: 2px;
     color: var(--accent-purple);
     display: block;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
 }
 
 .timeline-title {
     font-family: var(--font-cn-serif);
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: #fff;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
 }
 
 .timeline-desc {
     color: var(--text-muted);
-    font-size: 0.95rem;
-    line-height: 1.75;
+    font-size: 0.92rem;
+    line-height: 1.7;
 }
 
 /* =========================================================
@@ -1708,5 +1716,9 @@ body {
     .message-sender-card,
     .message-feed {
         padding: 24px 18px;
+    }
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
     }
 }

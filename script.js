@@ -1,7 +1,7 @@
 /**
  * =========================================================
  * Sion (シオン / 诗音) ✦ eden* 纪念站交互系统
- * Canvas 星空 · 19张 CG 全屏灯箱 · 37首 OST 留声机 · 星空信箱
+ * Canvas 星空 · 19张 CG 全屏灯箱与折叠 · 37首 OST 留声机 · 星空信箱
  * =========================================================
  */
 
@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initLettersToSion();
     initOSTPlayer();
     initCGLightbox();
+    initGalleryToggle();
 });
 
 /* =========================================================
@@ -251,7 +252,35 @@ function initCGLightbox() {
 }
 
 /* =========================================================
-   3. 《eden*》全 37 首 OST 原声留声机系统
+   3. 画廊展开 / 收起控制 (Gallery Show More)
+   ========================================================= */
+function initGalleryToggle() {
+    const toggleBtn = document.getElementById('gallery-toggle-btn');
+    const toggleBtnText = document.getElementById('toggle-btn-text');
+    const extraItems = document.querySelectorAll('.extra-cg');
+
+    if (!toggleBtn || !extraItems.length) return;
+
+    let isExpanded = false;
+
+    toggleBtn.addEventListener('click', () => {
+        isExpanded = !isExpanded;
+        extraItems.forEach(item => {
+            if (isExpanded) {
+                item.classList.remove('hidden');
+            } else {
+                item.classList.add('hidden');
+            }
+        });
+
+        if (toggleBtnText) {
+            toggleBtnText.textContent = isExpanded ? "✦ 收起部分 CG ✦" : "✦ 展开查看全部 19 张回忆 CG ✦";
+        }
+    });
+}
+
+/* =========================================================
+   4. 《eden*》全 37 首 OST 原声留声机系统
    ========================================================= */
 const EDEN_TRACKS = [
     {
@@ -1009,7 +1038,7 @@ function initOSTPlayer() {
 }
 
 /* =========================================================
-   4. 名台词轮播控制
+   5. 名台词轮播控制
    ========================================================= */
 function initQuotesCarousel() {
     const slides = document.querySelectorAll('.quote-slide');
@@ -1065,7 +1094,7 @@ function initQuotesCarousel() {
 }
 
 /* =========================================================
-   5. 星空信箱 (Letters to Sion)
+   6. 星空信箱 (Letters to Sion)
    ========================================================= */
 function initLettersToSion() {
     const form = document.getElementById('message-form');
