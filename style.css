@@ -964,7 +964,180 @@ body {
 }
 
 /* =========================================================
-   6. 致敬终章 · 晚安诗音 晚安中二社 (Farewell Card)
+   6. 夕阳终幕 · 永恒的约定 (Final Moments Dialogue)
+   ========================================================= */
+.dialogue-theater {
+    display: grid;
+    grid-template-columns: 1.05fr 1.25fr;
+    gap: 28px;
+    padding: 32px;
+    max-width: 1120px;
+    margin: 0 auto;
+    align-items: start;
+}
+
+.dialogue-cg-box {
+    position: sticky;
+    top: 90px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7), 0 0 20px rgba(251, 191, 36, 0.2);
+    cursor: pointer;
+    background: #000;
+    transition: var(--transition);
+}
+
+.dialogue-cg-box:hover {
+    border-color: var(--accent-gold);
+    box-shadow: 0 16px 45px rgba(251, 191, 36, 0.35);
+    transform: translateY(-2px);
+}
+
+.dialogue-cg-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+.dialogue-cg-box:hover .dialogue-cg-img {
+    transform: scale(1.04);
+}
+
+.dialogue-cg-overlay {
+    position: absolute;
+    bottom: 0;
+    inset-inline: 0;
+    background: linear-gradient(to top, rgba(5, 7, 17, 0.95) 0%, rgba(5, 7, 17, 0.6) 70%, transparent 100%);
+    padding: 16px 18px;
+    pointer-events: none;
+}
+
+.dialogue-cg-tag {
+    color: var(--accent-gold);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.dialogue-cg-quote {
+    color: #fff;
+    font-family: var(--font-cn-serif);
+    font-size: 0.92rem;
+    font-style: italic;
+    margin-top: 4px;
+    line-height: 1.5;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+}
+
+.dialogue-stream-container {
+    display: flex;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 22px 20px 16px;
+    max-height: 560px;
+}
+
+.dialogue-stream-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    margin-bottom: 16px;
+}
+
+.stream-title {
+    font-family: var(--font-en-title);
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--accent-cyan);
+    letter-spacing: 1px;
+}
+
+.stream-hint {
+    font-size: 0.74rem;
+    color: var(--text-dim);
+}
+
+.dialogue-stream-body {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding-right: 8px;
+}
+
+.dialogue-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.dialogue-speaker {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.dialogue-row.ryo .dialogue-speaker {
+    color: var(--accent-cyan);
+}
+
+.dialogue-row.ryo .dialogue-bubble {
+    background: rgba(112, 214, 255, 0.05);
+    border-left: 3px solid var(--accent-cyan);
+    padding: 10px 14px;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    color: #e2e8f0;
+    font-size: 0.92rem;
+    line-height: 1.65;
+}
+
+.dialogue-row.sion .dialogue-speaker {
+    color: #f472b6;
+}
+
+.dialogue-row.sion .dialogue-bubble {
+    background: rgba(244, 114, 182, 0.06);
+    border-left: 3px solid #f472b6;
+    padding: 10px 14px;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    color: #fff;
+    font-size: 0.92rem;
+    line-height: 1.65;
+}
+
+.dialogue-row.narration {
+    padding: 4px 6px;
+    margin: 2px 0;
+}
+
+.dialogue-narration {
+    color: #94a3b8;
+    font-family: var(--font-cn-serif);
+    font-size: 0.86rem;
+    font-style: italic;
+    line-height: 1.7;
+    border-left: 2px dashed rgba(255, 255, 255, 0.18);
+    padding-left: 12px;
+}
+
+.dialogue-row.last-wish .dialogue-bubble {
+    background: linear-gradient(135deg, rgba(244, 114, 182, 0.14), rgba(192, 132, 252, 0.14));
+    border-left: 3px solid var(--accent-gold);
+    box-shadow: 0 0 15px rgba(253, 224, 71, 0.2);
+    font-weight: 600;
+    color: #fef08a;
+}
+
+/* =========================================================
+   7. 致敬终章 · 晚安诗音 晚安中二社 (Farewell Card)
    ========================================================= */
 .farewell-card {
     max-width: 860px;
@@ -1761,6 +1934,13 @@ body {
     .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+    .dialogue-theater {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+    .dialogue-cg-box {
+        position: static;
+    }
     .farewell-card {
         padding: 40px 20px 32px;
     }
@@ -1786,6 +1966,13 @@ body {
     .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 10px;
+    }
+    .dialogue-theater {
+        padding: 16px 12px;
+    }
+    .dialogue-stream-container {
+        padding: 16px 12px;
+        max-height: 480px;
     }
     .floating-player-root {
         bottom: 16px;
