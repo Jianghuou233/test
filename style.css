@@ -1,6 +1,6 @@
 /* =========================================================
    Sion (シオン / 诗音) ✦ eden* 主题纪念站样式表
-   包含：星空、4列CG画廊、右下角悬浮毛玻璃音乐播放器、全屏灯箱
+   包含：星空、4列CG画廊、右下角悬浮毛玻璃音乐播放器、全屏灯箱、致敬终章
    ========================================================= */
 
 :root {
@@ -154,7 +154,7 @@ body {
 
 .nav-links {
     display: flex;
-    gap: 24px;
+    gap: 22px;
     align-items: center;
 }
 
@@ -797,16 +797,23 @@ body {
    5. 名台词回廊 (Quotes Carousel)
    ========================================================= */
 .quotes-carousel-wrapper {
-    max-width: 900px;
+    max-width: 860px;
     margin: 0 auto;
-    padding: 60px 48px;
+    padding: 48px 36px 40px;
     position: relative;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .quotes-carousel {
     position: relative;
-    min-height: 200px;
+    width: 100%;
+    min-height: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .quote-slide {
@@ -814,12 +821,13 @@ body {
     inset: 0;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(15px);
-    transition: all 0.6s ease;
+    transform: translateY(12px);
+    transition: all 0.5s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
 
 .quote-slide.active {
@@ -831,34 +839,37 @@ body {
 
 .quote-symbol {
     font-family: var(--font-en-title);
-    font-size: 3.5rem;
+    font-size: 3rem;
     line-height: 1;
     color: var(--accent-cyan);
-    opacity: 0.4;
-    margin-bottom: -10px;
+    opacity: 0.45;
+    margin-bottom: 2px;
 }
 
 .quote-jp {
     font-family: var(--font-cn-serif);
-    font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+    font-size: clamp(1.05rem, 2vw, 1.35rem);
     color: #fff;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
     line-height: 1.6;
     letter-spacing: 1px;
+    text-align: center;
 }
 
 .quote-cn {
     font-family: var(--font-cn-serif);
-    font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+    font-size: clamp(0.92rem, 1.6vw, 1.08rem);
     color: var(--text-muted);
-    margin-bottom: 24px;
+    margin-bottom: 18px;
     line-height: 1.7;
+    text-align: center;
 }
 
 .quote-author {
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     color: var(--accent-cyan);
     letter-spacing: 1px;
+    text-align: center;
 }
 
 .quotes-controls {
@@ -866,17 +877,17 @@ body {
     justify-content: center;
     align-items: center;
     gap: 20px;
-    margin-top: 36px;
+    margin-top: 28px;
 }
 
 .quote-nav-btn {
-    width: 38px;
-    height: 38px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.15);
     color: var(--text-main);
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     line-height: 1;
     cursor: pointer;
     transition: var(--transition);
@@ -895,6 +906,7 @@ body {
 .quote-dots {
     display: flex;
     gap: 8px;
+    align-items: center;
 }
 
 .quote-dot {
@@ -914,95 +926,147 @@ body {
 }
 
 /* =========================================================
-   6. 致敬终章 · 晚安诗音 晚安中二社
+   6. 致敬终章 · 晚安诗音 晚安中二社 (Farewell Card)
    ========================================================= */
-.farewell-wrapper {
+.farewell-card {
     max-width: 860px;
     margin: 0 auto;
-    padding: 50px 40px;
+    padding: 56px 40px 48px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     position: relative;
     overflow: hidden;
 }
 
 .farewell-glow {
     position: absolute;
-    top: -50%;
+    top: -50px;
     left: 50%;
     transform: translateX(-50%);
-    width: 400px;
-    height: 250px;
+    width: 480px;
+    height: 200px;
     background: radial-gradient(circle, rgba(112, 214, 255, 0.15) 0%, transparent 70%);
     pointer-events: none;
     z-index: 0;
 }
 
-.farewell-symbol {
-    font-size: 2.2rem;
+.farewell-star {
+    font-size: 2rem;
     color: var(--accent-cyan);
     margin-bottom: 16px;
-    filter: drop-shadow(0 0 10px var(--accent-cyan));
+    filter: drop-shadow(0 0 12px var(--accent-cyan));
     animation: pulse-glow 3s infinite ease-in-out;
+    position: relative;
+    z-index: 1;
 }
 
 .farewell-title {
     font-family: var(--font-cn-serif);
-    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-size: clamp(1.8rem, 3.8vw, 2.7rem);
     font-weight: 700;
     color: #fff;
     letter-spacing: 2px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 8px;
-    margin-bottom: 12px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+    text-align: center;
 }
 
-.farewell-line.highlight {
-    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+.farewell-title-line {
+    display: block;
+    text-align: center;
+}
+
+.farewell-title-line.highlight {
+    background: linear-gradient(135deg, var(--accent-cyan) 20%, var(--accent-purple) 90%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.farewell-body {
-    max-width: 680px;
-    margin: 24px auto 28px;
+.farewell-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 240px;
+    margin: 0 auto 26px;
     position: relative;
     z-index: 1;
 }
 
-.farewell-jp {
+.divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--accent-cyan), transparent);
+}
+
+.divider-symbol {
+    color: var(--accent-cyan);
+    font-size: 0.9rem;
+    filter: drop-shadow(0 0 6px var(--accent-cyan));
+}
+
+.farewell-content {
+    max-width: 680px;
+    margin: 0 auto 32px;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+.farewell-jp-quote {
     font-family: var(--font-cn-serif);
-    font-size: 1.1rem;
+    font-size: clamp(1.02rem, 1.8vw, 1.2rem);
     color: #e2e8f0;
     font-style: italic;
-    margin-bottom: 14px;
-    letter-spacing: 1px;
+    margin-bottom: 16px;
+    letter-spacing: 1.5px;
+    text-align: center;
 }
 
-.farewell-desc {
+.farewell-cn-prose {
+    font-family: var(--font-ui);
     color: var(--text-muted);
-    font-size: 0.95rem;
-    line-height: 1.9;
+    font-size: clamp(0.92rem, 1.5vw, 1.02rem);
+    line-height: 2.0;
+    text-align: center;
 }
 
-.farewell-tags {
+.farewell-badge-list {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 12px;
     flex-wrap: wrap;
     position: relative;
     z-index: 1;
 }
 
-.farewell-tag {
+.farewell-badge {
     background: rgba(112, 214, 255, 0.06);
-    border: 1px solid rgba(112, 214, 255, 0.2);
+    border: 1px solid rgba(112, 214, 255, 0.25);
     color: var(--accent-cyan);
     font-family: var(--font-en-title);
-    font-size: 0.78rem;
+    font-size: 0.8rem;
     letter-spacing: 1px;
-    padding: 5px 14px;
+    padding: 6px 16px;
     border-radius: 20px;
+    backdrop-filter: blur(8px);
+    transition: var(--transition);
+}
+
+.farewell-badge:hover {
+    background: rgba(112, 214, 255, 0.15);
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 14px var(--accent-glow);
+    transform: translateY(-2px);
 }
 
 /* =========================================================
@@ -1031,7 +1095,7 @@ body {
     transform: translateY(20px) scale(0.95);
     transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(112, 214, 255, 0.25);
-    background: rgba(10, 14, 36, 0.85);
+    background: rgba(10, 14, 36, 0.88);
     border: 1px solid rgba(112, 214, 255, 0.3);
     position: absolute;
     bottom: 0;
@@ -1659,6 +1723,9 @@ body {
     .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+    .farewell-card {
+        padding: 40px 20px 32px;
+    }
     .floating-panel {
         width: calc(100vw - 32px);
         right: -8px;
@@ -1673,7 +1740,7 @@ body {
         padding: 60px 16px;
     }
     .quotes-carousel-wrapper {
-        padding: 40px 20px;
+        padding: 36px 16px 28px;
     }
     .profile-card {
         padding: 24px 18px;
