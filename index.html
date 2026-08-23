@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sion (シオン) ✦ eden* 纪念站 · s1on.wtf</title>
+    <meta name="description" content="They Were Only Two, On The Planet. 视觉小说《eden*》女主角 Sion (シオン) 专属纪念站。">
+    <meta name="keywords" content="eden*, Sion, シオン, 紫苑, minori, 视觉小说, 榛名亮, 菲利克斯, Felix">
+    
+    <!-- Google Fonts 导入 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Noto+Serif+SC:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+</head>
+<body>
+    <!-- 背景 Canvas 粒子与星空 -->
+    <canvas id="starfield-canvas"></canvas>
+
+    <!-- 顶部导航条 -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="brand">
+                <span class="brand-symbol">✦</span>
+                <span class="brand-text">SION<span class="brand-sub">.wtf</span></span>
+            </a>
+            
+            <nav class="nav-links">
+                <a href="#profile" class="nav-item">少女档案</a>
+                <a href="#story" class="nav-item">物语回响</a>
+                <a href="#quotes" class="nav-item">星光名台词</a>
+                <a href="#messages" class="nav-item">星空寄语</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button id="audio-toggle-btn" class="audio-btn" title="开启/关闭八音盒氛围音乐">
+                    <span class="audio-icon">♫</span>
+                    <span class="audio-text">八音盒: 关</span>
+                    <div class="sound-wave" id="sound-wave">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主体内容 -->
+    <main>
+        <!-- 1. Hero 序章 -->
+        <section id="hero" class="hero-section">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    <span>minori · eden* (2009) 纪念主页</span>
+                </div>
+                
+                <h1 class="hero-title">
+                    <span class="title-en">They Were Only Two,</span>
+                    <span class="title-en highlight">On The Planet.</span>
+                </h1>
+                
+                <p class="hero-subtitle">
+                    “地球上最后的恋爱故事 —— 献给背负救世宿命、却只向往自由的少女 Sion。”
+                </p>
+
+                <div class="hero-quote-box">
+                    <p class="typewriter-text" id="typewriter">
+                        「亮……外面的世界，原来是这么宽广、这么美丽的啊。」
+                    </p>
+                </div>
+
+                <div class="hero-cta-group">
+                    <a href="#profile" class="btn btn-primary">
+                        <span>探索少女档案</span>
+                        <svg class="btn-arrow" viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"/></svg>
+                    </a>
+                    <a href="#messages" class="btn btn-glass">
+                        <span>寄送星空信件</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-scroll-hint">
+                <span>SCROLL DOWN</span>
+                <div class="scroll-line"></div>
+            </div>
+        </section>
+
+        <!-- 2. 少女档案 · Profile -->
+        <section id="profile" class="section">
+            <div class="section-header">
+                <span class="section-tag">CHARACTER DOSSIER</span>
+                <h2 class="section-title">紫苑 · 少女档案</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="profile-grid">
+                <div class="profile-card glass-panel">
+                    <div class="profile-avatar-container">
+                        <div class="avatar-glow"></div>
+                        <div class="avatar-box">
+                            <div class="avatar-art">
+                                <span class="avatar-kanji">紫苑</span>
+                                <span class="avatar-romaji">SION</span>
+                                <div class="avatar-constellation">✧ ✦ ✧</div>
+                            </div>
+                        </div>
+                        <div class="profile-status">
+                            <span class="status-indicator"></span>
+                            <span>Felix No.01 · 最后的菲利克斯</span>
+                        </div>
+                    </div>
+
+                    <div class="profile-info-list">
+                        <div class="info-row">
+                            <span class="info-label">本名</span>
+                            <span class="info-val">Sion (シオン / 紫苑)</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">种族 / 属性</span>
+                            <span class="info-val">Felix（新人类 / 基因工程救世者）</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">外貌特征</span>
+                            <span class="info-val">银白如霜的长发、赤红清澈的眼眸</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">象征之花</span>
+                            <span class="info-val">蒲公英 (Dandelion) 与 紫苑花</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">愿望</span>
+                            <span class="info-val">「亲眼看看外面的天空、海洋与微风」</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-story glass-panel">
+                    <h3 class="card-title">背负宿命的白羽之鸟</h3>
+                    <p class="story-p">
+                        作为人类为了应对地球终焉天灾而诞生的基因改造新人类——<strong>“Felix（菲利克斯）”</strong>，Sion 拥有人类历史上最无与伦比的智慧。从诞生之初，她就肩负着推导宇宙方舟避难计划、拯救全人类残存文明的残酷使命。
+                    </p>
+                    <p class="story-p">
+                        近百年的时间里，她被幽禁在代号 <strong>702研究所</strong> 的封闭温室中，像一只金丝雀般被世人奉为神明又被军方层层囚禁。对于这个为人类设计了逃离地球所有蓝图的女孩而言，她自己却从未踩过真正的泥土，未曾吹过野外的清风。
+                    </p>
+                    <p class="story-p">
+                        直到青年准尉<strong>榛名亮</strong>接受了监视她的任务，两颗孤独的心在世界末日的倒计时中悄然靠近。为了实现她最后的微小愿望，一场脱离人类社会的“末日私奔”，在荒芜而美丽的星球上展开……
+                    </p>
+
+                    <div class="traits-container">
+                        <span class="trait-tag">高洁智慧</span>
+                        <span class="trait-tag">纯真善良</span>
+                        <span class="trait-tag">向往自由</span>
+                        <span class="trait-tag">星空守望者</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. 物语篇章 · Story Timeline -->
+        <section id="story" class="section">
+            <div class="section-header">
+                <span class="section-tag">CHRONICLES OF EDEN</span>
+                <h2 class="section-title">终焉与誓约的物语</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <div class="timeline-node">01</div>
+                    <div class="timeline-content glass-panel">
+                        <span class="timeline-chapter">Chapter I</span>
+                        <h3 class="timeline-title">玻璃牢笼里的救世主</h3>
+                        <p class="timeline-desc">
+                            在地球生命进入终结倒计时的时代，702地下设施中，白衣少女在数据之海里静默计算着整个人类的未来。孤独与无休止的研究构成了她的一生，直到一名不苟言笑的守卫走入这片白色的牢笼。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-node">02</div>
+                    <div class="timeline-content glass-panel">
+                        <span class="timeline-chapter">Chapter II</span>
+                        <h3 class="timeline-title">破晓时分的私奔</h3>
+                        <p class="timeline-desc">
+                            当方舟升空、全人类陆续撤离这颗注定灭亡的母星时，亮选择放弃逃生的权利，持枪击碎了研究所的重重封锁，牵起了 Sion 那只单薄冰凉的手：“走吧，我带你去看真正的世界。”
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-node">03</div>
+                    <div class="timeline-content glass-panel">
+                        <span class="timeline-chapter">Chapter III</span>
+                        <h3 class="timeline-title">山丘小屋与花之海</h3>
+                        <p class="timeline-desc">
+                            远离了纷争与喧嚣，两人来到了宁静无人的海边与山丘。生平第一次品尝红茶的甘醇、第一次在夕阳下感受蒲公英随风散落、第一次拥有属于两个人的平凡日常。这是全宇宙最宁静的世外桃源。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-node">04</div>
+                    <div class="timeline-content glass-panel">
+                        <span class="timeline-chapter">Chapter IV</span>
+                        <h3 class="timeline-title">直至繁星陨落的归途</h3>
+                        <p class="timeline-desc">
+                            作为加速消耗生命的 Felix，Sion 的寿命终于走到尽头。在被浩瀚星光笼罩的夜幕之下，没有遗憾，没有悲鸣，只有恋人温柔的怀抱与轻声的道别：“谢谢你……在这个星球上找到了我。”
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. 名台词回廊 · Memorable Quotes -->
+        <section id="quotes" class="section">
+            <div class="section-header">
+                <span class="section-tag">ECHOES IN STARLIGHT</span>
+                <h2 class="section-title">星光低语 · 名台词回廊</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="quotes-carousel-wrapper glass-panel">
+                <div class="quotes-carousel" id="quotes-container">
+                    <div class="quote-slide active">
+                        <div class="quote-symbol">“</div>
+                        <p class="quote-jp">世界は、終わろうとしていた。でも、私たちはここにいた。</p>
+                        <p class="quote-cn">世界即将走向终结。但是，我们曾在这里，不曾离开。</p>
+                        <span class="quote-author">——《eden*》题记</span>
+                    </div>
+
+                    <div class="quote-slide">
+                        <div class="quote-symbol">“</div>
+                        <p class="quote-jp">亮、外の世界は……こんなに広くて、綺麗だったんだね。</p>
+                        <p class="quote-cn">亮，外面的世界……原来是这么宽广、这么美丽啊。</p>
+                        <span class="quote-author">—— Sion (シオン)</span>
+                    </div>
+
+                    <div class="quote-slide">
+                        <div class="quote-symbol">“</div>
+                        <p class="quote-jp">ありがとう、亮。私を見つけてくれて、連れ出してくれて。</p>
+                        <p class="quote-cn">谢谢你，亮。谢谢你找到了我，把我带到了这个真实的世界。</p>
+                        <span class="quote-author">—— Sion (シオン)</span>
+                    </div>
+
+                    <div class="quote-slide">
+                        <div class="quote-symbol">“</div>
+                        <p class="quote-jp">私たちは、この星で二人きりだった。それだけで、十分だった。</p>
+                        <p class="quote-cn">在那颗即将沉睡的星球上，我们只有彼此。仅仅是这样，就已经足够了。</p>
+                        <span class="quote-author">—— 榛名亮 & Sion</span>
+                    </div>
+                </div>
+
+                <div class="quotes-controls">
+                    <button class="quote-nav-btn prev" id="quote-prev" aria-label="上一句">‹</button>
+                    <div class="quote-dots" id="quote-dots"></div>
+                    <button class="quote-nav-btn next" id="quote-next" aria-label="下一句">›</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. 星空信箱 · Letters to Sion -->
+        <section id="messages" class="section">
+            <div class="section-header">
+                <span class="section-tag">LETTERS TO THE END OF TIME</span>
+                <h2 class="section-title">寄往终焉之地的星空信箱</h2>
+                <div class="section-line"></div>
+                <p class="section-desc">写下一句你想对 Sion 说的话，或许下一个愿望。点击发送后，它会化作一颗蒲公英光尘升入繁星夜空。</p>
+            </div>
+
+            <div class="messages-layout">
+                <!-- 输入框卡片 -->
+                <div class="message-sender-card glass-panel">
+                    <form id="message-form">
+                        <div class="form-group">
+                            <label for="sender-name">你的名字 / 称谓</label>
+                            <input type="text" id="sender-name" placeholder="例如：旅人 / 守望者" maxlength="20" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="sender-content">寄语内容</label>
+                            <textarea id="sender-content" rows="4" placeholder="写下你的心情、回忆或对 Sion 的祝福……" maxlength="150" required></textarea>
+                            <div class="char-counter"><span id="char-count">0</span> / 150</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary submit-btn" id="send-letter-btn">
+                            <span>化作光子寄向星空 ✦</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- 历史信件展台 -->
+                <div class="message-feed glass-panel">
+                    <div class="feed-header">
+                        <span class="feed-title">✦ 星轨记忆流 (共 <span id="letter-count">0</span> 封)</span>
+                        <button class="clear-local-btn" id="clear-letters-btn" title="清空本地记录">清空</button>
+                    </div>
+                    <div class="feed-list" id="letter-list">
+                        <!-- 动态生成的寄语 -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <span class="footer-logo">✦ s1on.wtf</span>
+                <p class="footer-motto">“愿你在此，直至世界的终焉。”</p>
+            </div>
+
+            <div class="footer-links">
+                <span class="footer-text">Tribute to <strong>minori</strong> & 《eden*》 (2009)</span>
+                <span class="footer-divider">•</span>
+                <span class="footer-text">Created for <strong>Sion (シオン)</strong></span>
+            </div>
+            
+            <div class="footer-sub">
+                <span>Hosted on GitHub Pages &bull; Accelerated by Cloudflare</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
