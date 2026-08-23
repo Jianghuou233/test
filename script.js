@@ -311,7 +311,7 @@ const EDEN_TRACKS = [
         file: "audio/Sleeping_Beauty.mp3",
         duration: "01:49",
         isInstrumental: true,
-        motto: "702研究所白色牢笼中，静静沉睡的少女 诗音。"
+        motto: "703研究所白色牢笼中，静静沉睡的少女 诗音。"
     },
     {
         id: 4,

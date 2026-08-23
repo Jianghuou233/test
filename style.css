@@ -1,6 +1,6 @@
 /* =========================================================
    Sion (シオン / 诗音) ✦ eden* 主题纪念站样式表
-   包含：星空、精炼4列CG画廊、OST留声机、全屏灯箱
+   包含：星空、精致单卡档案、4列CG画廊、OST留声机、全屏灯箱
    ========================================================= */
 
 :root {
@@ -449,33 +449,32 @@ body {
 }
 
 /* =========================================================
-   2. 少女档案 (Profile)
+   2. 少女档案 · 单卡居中精致布局 (Profile)
    ========================================================= */
-.profile-grid {
-    display: grid;
-    grid-template-columns: 340px 1fr;
-    gap: 32px;
-    align-items: start;
+.profile-single-container {
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .profile-card {
-    padding: 32px 24px;
+    padding: 40px 36px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    border-radius: var(--radius-md);
 }
 
 .profile-avatar-container {
     position: relative;
     margin-bottom: 20px;
-    width: 120px;
-    height: 120px;
+    width: 130px;
+    height: 130px;
 }
 
 .avatar-glow {
     position: absolute;
-    inset: -8px;
+    inset: -10px;
     background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
     border-radius: 50%;
     z-index: 0;
@@ -485,39 +484,54 @@ body {
 .avatar-box {
     position: relative;
     z-index: 1;
-    width: 120px;
-    height: 120px;
-    min-width: 120px;
-    max-width: 120px;
-    min-height: 120px;
-    max-height: 120px;
+    width: 130px;
+    height: 130px;
+    min-width: 130px;
+    max-width: 130px;
+    min-height: 130px;
+    max-height: 130px;
     border-radius: 50%;
     border: 2px solid rgba(112, 214, 255, 0.5);
     overflow: hidden;
-    box-shadow: 0 0 20px rgba(112, 214, 255, 0.3);
+    box-shadow: 0 0 25px rgba(112, 214, 255, 0.3);
 }
 
 .avatar-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 25% 15%;
+    object-position: center 20%;
     transition: transform 0.5s ease;
 }
 
 .avatar-box:hover .avatar-img {
-    transform: scale(1.1);
+    transform: scale(1.08);
+}
+
+.profile-name {
+    font-family: var(--font-en-title);
+    font-size: 1.8rem;
+    color: #fff;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+}
+
+.profile-subname {
+    font-family: var(--font-cn-serif);
+    font-size: 1.1rem;
+    color: var(--accent-cyan);
+    font-weight: normal;
 }
 
 .profile-status {
-    margin-top: 14px;
+    margin-bottom: 28px;
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    font-size: 0.78rem;
+    font-size: 0.82rem;
     color: var(--accent-cyan);
     background: rgba(112, 214, 255, 0.08);
-    padding: 4px 12px;
+    padding: 5px 16px;
     border-radius: 20px;
     border: 1px solid rgba(112, 214, 255, 0.2);
 }
@@ -530,84 +544,61 @@ body {
     box-shadow: 0 0 6px #10b981;
 }
 
-.profile-info-list {
+.profile-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+    margin-bottom: 24px;
     text-align: left;
-    margin-top: 8px;
 }
 
-.info-row {
+.info-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-sm);
+    padding: 14px 18px;
     display: flex;
-    justify-content: space-between;
-    padding-bottom: 8px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    font-size: 0.88rem;
+    flex-direction: column;
+    gap: 4px;
+    transition: var(--transition);
+}
+
+.info-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(112, 214, 255, 0.2);
+}
+
+.info-card-full {
+    grid-column: span 2;
 }
 
 .info-label {
+    font-size: 0.76rem;
     color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .info-val {
     color: #e2e8f0;
+    font-size: 0.92rem;
     font-weight: 500;
-    text-align: right;
-}
-
-.profile-story {
-    padding: 36px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.card-title {
-    font-family: var(--font-cn-serif);
-    font-size: 1.45rem;
-    color: #fff;
-    margin-bottom: 18px;
-    position: relative;
-    padding-left: 16px;
-}
-
-.card-title::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 15%;
-    height: 70%;
-    width: 4px;
-    background: var(--accent-cyan);
-    border-radius: 2px;
-    box-shadow: 0 0 8px var(--accent-cyan);
-}
-
-.story-p {
-    color: var(--text-muted);
-    font-size: 0.96rem;
-    line-height: 1.85;
-    margin-bottom: 16px;
-}
-
-.story-p strong {
-    color: #e2e8f0;
 }
 
 .traits-container {
     display: flex;
-    gap: 10px;
+    gap: 12px;
     flex-wrap: wrap;
-    margin-top: 16px;
+    justify-content: center;
+    margin-top: 8px;
 }
 
 .trait-tag {
     background: rgba(192, 132, 252, 0.1);
     color: var(--accent-purple);
     border: 1px solid rgba(192, 132, 252, 0.25);
-    padding: 6px 14px;
+    padding: 6px 16px;
     border-radius: 20px;
     font-size: 0.85rem;
 }
@@ -1703,9 +1694,12 @@ body {
     .player-right {
         grid-column: span 1;
     }
-    .profile-grid,
+    .profile-info-grid,
     .messages-layout {
         grid-template-columns: 1fr;
+    }
+    .info-card-full {
+        grid-column: span 1;
     }
     .timeline-content {
         grid-template-columns: 1fr;
@@ -1740,7 +1734,7 @@ body {
     .quotes-carousel-wrapper {
         padding: 40px 20px;
     }
-    .profile-story,
+    .profile-card,
     .message-sender-card,
     .message-feed {
         padding: 24px 18px;
