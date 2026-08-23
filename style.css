@@ -914,7 +914,99 @@ body {
 }
 
 /* =========================================================
-   ✦ 6. 右下角悬浮毛玻璃原声播放器 (Floating Player) ✦
+   6. 致敬终章 · 晚安诗音 晚安中二社
+   ========================================================= */
+.farewell-wrapper {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 50px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.farewell-glow {
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(112, 214, 255, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.farewell-symbol {
+    font-size: 2.2rem;
+    color: var(--accent-cyan);
+    margin-bottom: 16px;
+    filter: drop-shadow(0 0 10px var(--accent-cyan));
+    animation: pulse-glow 3s infinite ease-in-out;
+}
+
+.farewell-title {
+    font-family: var(--font-cn-serif);
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 2px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.farewell-line.highlight {
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.farewell-body {
+    max-width: 680px;
+    margin: 24px auto 28px;
+    position: relative;
+    z-index: 1;
+}
+
+.farewell-jp {
+    font-family: var(--font-cn-serif);
+    font-size: 1.1rem;
+    color: #e2e8f0;
+    font-style: italic;
+    margin-bottom: 14px;
+    letter-spacing: 1px;
+}
+
+.farewell-desc {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.9;
+}
+
+.farewell-tags {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+}
+
+.farewell-tag {
+    background: rgba(112, 214, 255, 0.06);
+    border: 1px solid rgba(112, 214, 255, 0.2);
+    color: var(--accent-cyan);
+    font-family: var(--font-en-title);
+    font-size: 0.78rem;
+    letter-spacing: 1px;
+    padding: 5px 14px;
+    border-radius: 20px;
+}
+
+/* =========================================================
+   ✦ 7. 右下角悬浮毛玻璃原声播放器 (Floating Player) ✦
    ========================================================= */
 .floating-player-root {
     position: fixed;
