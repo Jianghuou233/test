@@ -7,6 +7,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     initCanvasStarfield();
+    initHeroTypewriter();
     initQuotesCarousel();
     initFloatingOSTPlayer();
     initCGLightbox();
@@ -585,6 +586,109 @@ function initQuotesCarousel() {
     }
 
     resetAutoPlay();
+}
+
+/* =========================================================
+   6. 首屏双行打字机交互系统 (Hero Typewriter)
+   ========================================================= */
+function initHeroTypewriter() {
+    const line1El = document.getElementById('hero-line-1');
+    const line2El = document.getElementById('hero-line-2');
+    const titleEl = document.getElementById('hero-title');
+    const cursorEl = document.getElementById('hero-cursor');
+
+    if (!line1El || !line2El || !titleEl) return;
+
+    const phrases = [
+        {
+            isChinese: false,
+            line1: "eden* —",
+            line2: "They Were Only Two, On The Planet."
+        },
+        {
+            isChinese: true,
+            line1: "“ 晚安，诗音。 ”",
+            line2: "“ 晚安，中二社。 ”"
+        }
+    ];
+
+    let currentPhraseIdx = 0;
+    let isDeleting = false;
+    let activeLine = 1;
+    let charIdx = 0;
+
+    const TYPE_SPEED = 70;
+    const DELETE_SPEED = 35;
+    const PAUSE_TIME = 3500;
+    const BLANK_PAUSE = 400;
+
+    function tick() {
+        const phrase = phrases[currentPhraseIdx];
+        if (phrase.isChinese) {
+            titleEl.classList.add('is-chinese');
+        } else {
+            titleEl.classList.remove('is-chinese');
+        }
+
+        if (!isDeleting) {
+            // Typing mode
+            if (activeLine === 1) {
+                if (charIdx < phrase.line1.length) {
+                    charIdx++;
+                    line1El.textContent = phrase.line1.substring(0, charIdx);
+                    if (cursorEl) line1El.appendChild(cursorEl);
+                    setTimeout(tick, TYPE_SPEED);
+                } else {
+                    activeLine = 2;
+                    charIdx = 0;
+                    setTimeout(tick, 120);
+                }
+            } else {
+                if (charIdx < phrase.line2.length) {
+                    charIdx++;
+                    line2El.textContent = phrase.line2.substring(0, charIdx);
+                    if (cursorEl) line2El.appendChild(cursorEl);
+                    setTimeout(tick, TYPE_SPEED);
+                } else {
+                    setTimeout(() => {
+                        isDeleting = true;
+                        setTimeout(tick, DELETE_SPEED);
+                    }, PAUSE_TIME);
+                }
+            }
+        } else {
+            // Deleting mode
+            if (activeLine === 2) {
+                if (charIdx > 0) {
+                    charIdx--;
+                    line2El.textContent = phrase.line2.substring(0, charIdx);
+                    if (cursorEl) line2El.appendChild(cursorEl);
+                    setTimeout(tick, DELETE_SPEED);
+                } else {
+                    activeLine = 1;
+                    charIdx = phrase.line1.length;
+                    setTimeout(tick, DELETE_SPEED);
+                }
+            } else {
+                if (charIdx > 0) {
+                    charIdx--;
+                    line1El.textContent = phrase.line1.substring(0, charIdx);
+                    if (cursorEl) line1El.appendChild(cursorEl);
+                    setTimeout(tick, DELETE_SPEED);
+                } else {
+                    isDeleting = false;
+                    currentPhraseIdx = (currentPhraseIdx + 1) % phrases.length;
+                    activeLine = 1;
+                    charIdx = 0;
+                    setTimeout(tick, BLANK_PAUSE);
+                }
+            }
+        }
+    }
+
+    line1El.textContent = "";
+    line2El.textContent = "";
+    tick();
 }
 
 /* =========================================================
