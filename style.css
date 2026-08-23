@@ -43,6 +43,9 @@ img {
 html {
     scroll-behavior: smooth;
     color-scheme: dark;
+    overflow-x: hidden;
+    max-width: 100vw;
+    width: 100%;
 }
 
 body {
@@ -53,6 +56,8 @@ body {
     overflow-x: hidden;
     position: relative;
     min-height: 100vh;
+    max-width: 100vw;
+    width: 100%;
 }
 
 /* 自定义滚动条 */
@@ -1954,6 +1959,27 @@ body {
     .nav-links {
         display: none;
     }
+    .hero-section {
+        padding: 100px 16px 50px;
+    }
+    .hero-title {
+        font-size: clamp(1.05rem, 5.2vw, 1.65rem);
+        letter-spacing: 0.5px;
+        height: 2.9em;
+        min-height: 2.9em;
+    }
+    .hero-title.is-chinese {
+        font-size: clamp(1.2rem, 5.8vw, 1.9rem);
+        letter-spacing: 2px;
+    }
+    .hero-subtitle {
+        font-size: 0.9rem;
+        padding: 0 8px;
+    }
+    .hero-quote-box {
+        padding: 14px 16px;
+        width: 100%;
+    }
     .section {
         padding: 60px 16px;
     }
@@ -1977,5 +2003,16 @@ body {
     .floating-player-root {
         bottom: 16px;
         right: 16px;
+    }
+}
+
+@media (max-width: 390px) {
+    .hero-title {
+        font-size: clamp(0.92rem, 4.8vw, 1.15rem);
+        letter-spacing: 0px;
+    }
+    .hero-title.is-chinese {
+        font-size: clamp(1.05rem, 5.2vw, 1.35rem);
+        letter-spacing: 1px;
     }
 }
