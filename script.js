@@ -8,7 +8,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     initCanvasStarfield();
     initQuotesCarousel();
-    initLettersToSion();
     initOSTPlayer();
     initCGLightbox();
     initGalleryToggle();
@@ -1091,114 +1090,6 @@ function initQuotesCarousel() {
     }
 
     resetAutoPlay();
-}
-
-/* =========================================================
-   6. 星空信箱 (Letters to Sion)
-   ========================================================= */
-function initLettersToSion() {
-    const form = document.getElementById('message-form');
-    const nameInput = document.getElementById('sender-name');
-    const contentInput = document.getElementById('sender-content');
-    const charCounter = document.getElementById('char-count');
-    const letterList = document.getElementById('letter-list');
-    const letterCountSpan = document.getElementById('letter-count');
-    const clearBtn = document.getElementById('clear-letters-btn');
-
-    const defaultLetters = [
-        {
-            name: "榛名亮",
-            content: "外面的世界很大，也很安静。蒲公英都盛开了，我会一直陪着你。",
-            time: "2009-09-18"
-        },
-        {
-            name: "观星者",
-            content: "致敬 minori 留给这个世界的绝美物语。诗音，愿你在繁星之海永远自由。",
-            time: "2024-05-20"
-        },
-        {
-            name: "旅人",
-            content: "《eden*》是我心中的白月光。愿每个渴望自由的灵魂都能找到属于自己的山丘与花海。",
-            time: "2025-01-01"
-        }
-    ];
-
-    let letters = JSON.parse(localStorage.getItem('sion_letters') || 'null');
-    if (!letters || letters.length === 0) {
-        letters = defaultLetters;
-        localStorage.setItem('sion_letters', JSON.stringify(letters));
-    }
-
-    if (contentInput && charCounter) {
-        contentInput.addEventListener('input', () => {
-            charCounter.textContent = contentInput.value.length;
-        });
-    }
-
-    function renderLetters() {
-        if (!letterList) return;
-        letterList.innerHTML = '';
-        if (letterCountSpan) letterCountSpan.textContent = letters.length;
-
-        letters.slice().reverse().forEach(item => {
-            const itemEl = document.createElement('div');
-            itemEl.className = 'feed-item';
-            itemEl.innerHTML = `
-                <div class="feed-item-header">
-                    <span class="feed-item-name">✦ ${escapeHtml(item.name)}</span>
-                    <span class="feed-item-time">${escapeHtml(item.time)}</span>
-                </div>
-                <div class="feed-item-body">${escapeHtml(item.content)}</div>
-            `;
-            letterList.appendChild(itemEl);
-        });
-    }
-
-    if (form) {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = (nameInput.value || '').trim();
-            const content = (contentInput.value || '').trim();
-
-            if (!name || !content) return;
-
-            const now = new Date();
-            const timeStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
-
-            const newLetter = { name, content, time: timeStr };
-            letters.push(newLetter);
-            localStorage.setItem('sion_letters', JSON.stringify(letters));
-
-            renderLetters();
-            form.reset();
-            if (charCounter) charCounter.textContent = '0';
-
-            if (typeof launchSpecialStar === 'function') {
-                launchSpecialStar();
-            }
-
-            const submitBtn = document.getElementById('send-letter-btn');
-            if (submitBtn) {
-                const originalText = submitBtn.innerHTML;
-                submitBtn.innerHTML = `<span>已化作星光升空 ✨</span>`;
-                setTimeout(() => {
-                    submitBtn.innerHTML = originalText;
-                }, 2500);
-            }
-        });
-    }
-
-    if (clearBtn) {
-        clearBtn.addEventListener('click', () => {
-            if (confirm("确定要重置星空信箱吗？")) {
-                letters = defaultLetters;
-                localStorage.setItem('sion_letters', JSON.stringify(letters));
-                renderLetters();
-            }
-        });
-    }
-
-    renderLetters();
 }
 
 /* =========================================================

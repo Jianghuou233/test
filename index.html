@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Noto+Serif+SC:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="style.css?v=20260823_1715">
+    <link rel="stylesheet" href="style.css?v=20260823_1800">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
 </head>
 <body>
@@ -33,7 +33,6 @@
                 <a href="#ost-player" class="nav-item highlight-nav">✦ 原声留声机</a>
                 <a href="#story" class="nav-item">物语回响</a>
                 <a href="#quotes" class="nav-item">名台词</a>
-                <a href="#messages" class="nav-item">星空信箱</a>
             </nav>
 
             <div class="nav-actions">
@@ -501,46 +500,6 @@
             </div>
         </section>
 
-        <!-- 7. 星空信箱 · Letters to Sion -->
-        <section id="messages" class="section">
-            <div class="section-header">
-                <span class="section-tag">LETTERS TO THE END OF TIME</span>
-                <h2 class="section-title">寄往终焉之地的星空信箱</h2>
-                <div class="section-line"></div>
-                <p class="section-desc">写下一句你想对 诗音 说的话，或许下一个愿望。点击发送后，它会化作一颗蒲公英光尘升入繁星夜空。</p>
-            </div>
-
-            <div class="messages-layout">
-                <!-- 输入框卡片 -->
-                <div class="message-sender-card glass-panel">
-                    <form id="message-form">
-                        <div class="form-group">
-                            <label for="sender-name">你的名字 / 称谓</label>
-                            <input type="text" id="sender-name" placeholder="例如：旅人 / 守望者" maxlength="20" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="sender-content">寄语内容</label>
-                            <textarea id="sender-content" rows="4" placeholder="写下你的心情、回忆或对 诗音 的祝福……" maxlength="150" required></textarea>
-                            <div class="char-counter"><span id="char-count">0</span> / 150</div>
-                        </div>
-                        <button type="submit" class="btn btn-primary submit-btn" id="send-letter-btn">
-                            <span>化作光子寄向星空 ✦</span>
-                        </button>
-                    </form>
-                </div>
-
-                <!-- 历史信件展台 -->
-                <div class="message-feed glass-panel">
-                    <div class="feed-header">
-                        <span class="feed-title">✦ 星轨记忆流 (共 <span id="letter-count">0</span> 封)</span>
-                        <button class="clear-local-btn" id="clear-letters-btn" title="清空本地记录">清空</button>
-                    </div>
-                    <div class="feed-list" id="letter-list">
-                        <!-- 动态生成的寄语 -->
-                    </div>
-                </div>
-            </div>
-        </section>
     </main>
 
     <!-- 全屏 CG 灯箱 Modal (Lightbox) -->
@@ -577,6 +536,6 @@
         </div>
     </footer>
 
-    <script src="script.js?v=20260823_1715"></script>
+    <script src="script.js?v=20260823_1800"></script>
 </body>
 </html>
