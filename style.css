@@ -1898,6 +1898,25 @@ body {
     font-size: 0.75rem;
     color: var(--text-dim);
     margin-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.creator-link {
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: var(--transition);
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+    padding-bottom: 1px;
+}
+
+.creator-link:hover {
+    color: var(--accent-cyan);
+    border-bottom-color: var(--accent-cyan);
+    text-shadow: 0 0 8px var(--accent-glow);
 }
 
 /* =========================================================
