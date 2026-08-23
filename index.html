@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Noto+Serif+SC:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="style.css?v=20260823_1800">
+    <link rel="stylesheet" href="style.css?v=20260823_1810">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
 </head>
 <body>
@@ -30,15 +30,15 @@
             <nav class="nav-links">
                 <a href="#profile" class="nav-item">少女档案</a>
                 <a href="#gallery" class="nav-item">忆之画廊</a>
-                <a href="#ost-player" class="nav-item highlight-nav">✦ 原声留声机</a>
                 <a href="#story" class="nav-item">物语回响</a>
                 <a href="#quotes" class="nav-item">名台词</a>
+                <button class="nav-item highlight-nav nav-player-btn" id="nav-toggle-player-btn">✦ 原声音乐 (37首)</button>
             </nav>
 
             <div class="nav-actions">
-                <button id="quick-play-btn" class="audio-btn" title="播放/暂停音乐">
+                <button id="quick-play-btn" class="audio-btn" title="展开音乐浮窗">
                     <span class="audio-icon" id="quick-audio-icon">▶</span>
-                    <span class="audio-text" id="quick-audio-title">BGM 播放</span>
+                    <span class="audio-text" id="quick-audio-title">Sion</span>
                     <div class="sound-wave" id="sound-wave">
                         <span></span><span></span><span></span><span></span>
                     </div>
@@ -73,10 +73,10 @@
                 </div>
 
                 <div class="hero-cta-group">
-                    <a href="#ost-player" class="btn btn-primary">
+                    <button class="btn btn-primary" id="hero-listen-btn">
                         <span>✦ 聆听《eden*》原声</span>
                         <svg class="btn-arrow" viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"/></svg>
-                    </a>
+                    </button>
                     <a href="#gallery" class="btn btn-glass">
                         <span>忆之画廊 (19 CG)</span>
                     </a>
@@ -92,7 +92,7 @@
             </div>
         </section>
 
-        <!-- 2. 少女档案 · Profile (干净优雅居中布局) -->
+        <!-- 2. 少女档案 · Profile -->
         <section id="profile" class="section">
             <div class="section-header">
                 <span class="section-tag">CHARACTER DOSSIER</span>
@@ -149,7 +149,7 @@
             </div>
         </section>
 
-        <!-- 3. 忆之画廊 · CG Gallery (精巧4列布局 & 折叠切换) -->
+        <!-- 3. 忆之画廊 · CG Gallery -->
         <section id="gallery" class="section">
             <div class="section-header">
                 <span class="section-tag">MEMORIES & ILLUSTRATIONS</span>
@@ -284,101 +284,7 @@
             </div>
         </section>
 
-        <!-- 4. 原声留声机 (OST Player) -->
-        <section id="ost-player" class="section">
-            <div class="section-header">
-                <span class="section-tag">ORIGINAL SOUNDTRACK</span>
-                <h2 class="section-title">✦ 原声留声机 · 天门与光之旋律</h2>
-                <div class="section-line"></div>
-                <p class="section-desc">收录《eden*》官方全套 37 首 OST 原声配乐，支持纯音乐光效展台与原声秒播。</p>
-            </div>
-
-            <div class="player-container glass-panel">
-                <!-- 左侧：黑胶/唱片机与播放控制器 -->
-                <div class="player-left">
-                    <div class="vinyl-wrapper">
-                        <div class="vinyl-disc" id="vinyl-disc">
-                            <div class="vinyl-grooves"></div>
-                            <div class="vinyl-center">
-                                <span class="vinyl-logo">✦</span>
-                                <span class="vinyl-caption">eden*</span>
-                            </div>
-                        </div>
-                        <div class="tonearm" id="tonearm"></div>
-                    </div>
-
-                    <!-- 当前歌曲详情 -->
-                    <div class="track-meta">
-                        <h3 class="track-title" id="current-track-title">Sion</h3>
-                        <p class="track-artist" id="current-track-artist">天門 · Asterisk OST</p>
-                        <span class="track-tag" id="current-track-tag">✦ Sion 诗音主题曲 · 纯音乐</span>
-                    </div>
-
-                    <!-- 进度条 -->
-                    <div class="playback-progress-box">
-                        <div class="progress-bar-container" id="progress-bar-container">
-                            <div class="progress-bar-fill" id="progress-bar-fill"></div>
-                            <div class="progress-handle" id="progress-handle"></div>
-                        </div>
-                        <div class="time-display">
-                            <span id="current-time">00:00</span>
-                            <span id="total-duration">02:43</span>
-                        </div>
-                    </div>
-
-                    <!-- 控制按键区 -->
-                    <div class="player-controls">
-                        <button class="ctrl-btn sub-btn" id="loop-btn" title="切换循环模式">
-                            <span id="loop-icon">🔁</span>
-                        </button>
-                        <button class="ctrl-btn" id="prev-btn" title="上一首">
-                            <span>⏮</span>
-                        </button>
-                        <button class="ctrl-btn play-main-btn" id="play-pause-btn" title="播放 / 暂停">
-                            <span id="play-icon">▶</span>
-                        </button>
-                        <button class="ctrl-btn" id="next-btn" title="下一首">
-                            <span>⏭</span>
-                        </button>
-                        <div class="volume-box">
-                            <button class="ctrl-btn sub-btn" id="mute-btn" title="静音切换">
-                                <span id="volume-icon">🔊</span>
-                            </button>
-                            <input type="range" class="volume-slider" id="volume-slider" min="0" max="1" step="0.01" value="0.8">
-                        </div>
-                    </div>
-
-                    <div class="audio-source-tip" id="audio-source-tip">
-                        <span>🎵 正在播放高保真原声: audio/Sion.mp3</span>
-                    </div>
-                </div>
-
-                <!-- 中间：纯音乐/歌词视窗 -->
-                <div class="player-center">
-                    <div class="lyrics-header">
-                        <span class="lyrics-label">✦ 原声旋律</span>
-                        <span class="lyrics-status" id="lyrics-status">✦ 原声配乐 · 静心聆听 ✦</span>
-                    </div>
-                    <div class="lyrics-window" id="lyrics-window">
-                        <div class="lyrics-content" id="lyrics-content">
-                            <!-- 纯音乐展台由 JS 渲染 -->
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 右侧：OST 曲目列表 -->
-                <div class="player-right">
-                    <div class="playlist-header">
-                        <span class="playlist-title">✦ 原声曲目列表 (<span id="playlist-count">37</span>)</span>
-                    </div>
-                    <div class="playlist-items" id="playlist-items">
-                        <!-- 播放列表由 JS 动态渲染 -->
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. 物语篇章 · Story Timeline (修正为 703 研究所) -->
+        <!-- 4. 物语篇章 · Story Timeline -->
         <section id="story" class="section">
             <div class="section-header">
                 <span class="section-tag">CHRONICLES OF EDEN</span>
@@ -453,7 +359,7 @@
             </div>
         </section>
 
-        <!-- 6. 名台词回廊 · Memorable Quotes -->
+        <!-- 5. 名台词回廊 · Memorable Quotes -->
         <section id="quotes" class="section">
             <div class="section-header">
                 <span class="section-tag">ECHOES IN STARLIGHT</span>
@@ -499,8 +405,86 @@
                 </div>
             </div>
         </section>
-
     </main>
+
+    <!-- ✦ 右下角悬浮毛玻璃原声播放器 (Floating Frosted Player) ✦ -->
+    <aside class="floating-player-root" id="floating-player">
+        <!-- 展开态：完整的毛玻璃音乐浮窗 -->
+        <div class="floating-panel glass-panel" id="floating-panel">
+            <div class="panel-topbar">
+                <div class="panel-title-box">
+                    <span class="brand-symbol">✦</span>
+                    <span class="panel-heading">Asterisk OST (37)</span>
+                </div>
+                <div class="panel-actions">
+                    <button class="panel-icon-btn" id="floating-minimize-btn" title="收起浮窗">✕</button>
+                </div>
+            </div>
+
+            <!-- 唱片机与曲目信息 -->
+            <div class="panel-main-info">
+                <div class="floating-vinyl-wrapper">
+                    <div class="floating-vinyl" id="floating-vinyl">
+                        <div class="floating-grooves"></div>
+                        <div class="floating-center">✦</div>
+                    </div>
+                </div>
+                <div class="floating-meta">
+                    <h4 class="floating-title" id="floating-title">Sion</h4>
+                    <p class="floating-artist" id="floating-artist">天門 · Asterisk OST</p>
+                    <span class="floating-tag" id="floating-tag">✦ 诗音主题曲 · 纯音乐</span>
+                </div>
+            </div>
+
+            <!-- 进度条 -->
+            <div class="floating-progress-container">
+                <div class="floating-progress-bar" id="floating-progress-bar">
+                    <div class="floating-progress-fill" id="floating-progress-fill"></div>
+                </div>
+                <div class="floating-time-row">
+                    <span id="floating-current-time">00:00</span>
+                    <span id="floating-total-duration">02:43</span>
+                </div>
+            </div>
+
+            <!-- 播放控制按键 -->
+            <div class="floating-controls">
+                <button class="ctrl-icon-btn" id="floating-loop-btn" title="切换循环模式">
+                    <span id="floating-loop-icon">🔁</span>
+                </button>
+                <button class="ctrl-icon-btn" id="floating-prev-btn" title="上一首">⏮</button>
+                <button class="ctrl-icon-btn play-circle-btn" id="floating-play-btn" title="播放 / 暂停">
+                    <span id="floating-play-icon">▶</span>
+                </button>
+                <button class="ctrl-icon-btn" id="floating-next-btn" title="下一首">⏭</button>
+                <div class="floating-volume-box">
+                    <span id="floating-volume-icon">🔊</span>
+                    <input type="range" class="mini-volume-slider" id="floating-volume-slider" min="0" max="1" step="0.01" value="0.8">
+                </div>
+            </div>
+
+            <!-- 曲目抽屉列表 -->
+            <div class="floating-playlist-header">
+                <span>✦ 原声曲目目录</span>
+            </div>
+            <div class="floating-playlist" id="floating-playlist">
+                <!-- 由 JS 动态注入 37 首曲目 -->
+            </div>
+        </div>
+
+        <!-- 收起态：右下角极简毛玻璃音乐胶囊 (Mini Capsule) -->
+        <div class="floating-capsule glass-panel" id="floating-capsule" title="点击展开音乐播放器">
+            <div class="capsule-vinyl" id="capsule-vinyl">
+                <span>✦</span>
+            </div>
+            <div class="capsule-info">
+                <span class="capsule-title" id="capsule-title">Sion</span>
+                <span class="capsule-sub" id="capsule-sub">天門 · 37 OST</span>
+            </div>
+            <button class="capsule-action-btn play-btn" id="capsule-play-btn" title="播放/暂停">▶</button>
+            <button class="capsule-action-btn expand-btn" id="capsule-expand-btn" title="展开面板">⛶</button>
+        </div>
+    </aside>
 
     <!-- 全屏 CG 灯箱 Modal (Lightbox) -->
     <div class="lightbox-modal" id="lightbox-modal">
@@ -536,6 +520,6 @@
         </div>
     </footer>
 
-    <script src="script.js?v=20260823_1800"></script>
+    <script src="script.js?v=20260823_1810"></script>
 </body>
 </html>
