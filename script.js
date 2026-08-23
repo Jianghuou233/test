@@ -1,7 +1,7 @@
 /**
  * =========================================================
  * Sion (シオン) ✦ eden* 纪念站交互系统
- * Canvas 星空 · 原声音乐播放器 (OST & 实时双语歌词) · 名言轮播 · 星空信箱
+ * Canvas 星空 · Asterisk "eden*" 全 37 首 OST 留声机 · 双语歌词 · 星空信箱
  * =========================================================
  */
 
@@ -184,107 +184,375 @@ function initCanvasStarfield() {
 }
 
 /* =========================================================
-   2. 《eden*》OST 原声留声机与实时双语歌词系统
+   2. 《eden*》全 37 首 OST 原声留声机与实时双语歌词系统
    ========================================================= */
 const EDEN_TRACKS = [
     {
         id: 1,
-        title: "little explorer",
-        artist: "原田ひとみ · 作曲: 天门",
-        tag: "OP 主题曲 · 双语歌词",
-        file: "audio/little_explorer.mp3",
-        duration: "04:36",
+        title: "Sion",
+        artist: "天門 · Asterisk OST",
+        tag: "✦ Sion 少女主题曲",
+        file: "audio/Sion.mp3",
+        duration: "02:43",
         lyrics: [
-            { time: 0, jp: "little explorer (Game Size / Full)", cn: "作词: 酒井伸和 / 作曲·编曲: 天门" },
-            { time: 14, jp: "見上げた空 遠く光る星", cn: "仰望夜空 遥远闪烁的繁星" },
-            { time: 21, jp: "誰かが呼ぶ 微かな声", cn: "那是谁在呼唤 微弱的低语" },
-            { time: 28, jp: "閉ざされた世界を抜け出して", cn: "挣脱这片被封闭的世界" },
-            { time: 35, jp: "風の吹く場所へと向かう", cn: "奔向微风吹拂的自由远方" },
-            { time: 42, jp: "震える手を重ね合えば", cn: "当我们颤抖的双手紧紧相握" },
-            { time: 49, jp: "恐れさえも消えていく", cn: "连内心的恐惧也化作了勇气" },
-            { time: 56, jp: "どこまでも続くこの星の果てへ", cn: "前往这颗星球无尽绵延的尽头" },
-            { time: 65, jp: "二人だけの旅が始まる", cn: "属于我们两个人的旅程 正式启程" },
-            { time: 76, jp: "忘れないで 君と交わした約束", cn: "请不要忘记 那曾与你许下的誓约" },
-            { time: 84, jp: "世界が終わるその時まで", cn: "直至这个世界走向终结的时刻" },
-            { time: 92, jp: "君の笑顔を守り続けるから", cn: "我都会永远守护你温柔的笑容" },
-            { time: 104, jp: "広がる青空 眩しい光の中へ", cn: "融入那片辽阔碧空与璀璨光芒之中" },
-            { time: 118, jp: "ありがとう、私を見つけてくれて", cn: "谢谢你，在这颗星球上找到了我……" }
+            { time: 0, jp: "✦ Sion (シオン / 紫苑) ✦", cn: "《eden*》女主角专属主题曲 · 作曲: 天門" },
+            { time: 10, jp: "白銀の髪と、紅い瞳の少女", cn: "银白色的长发，与清澈澄净的赤红双眸" },
+            { time: 24, jp: "702研究所の静寂の中で", cn: "在 702 研究所永无止境的静寂之中" },
+            { time: 42, jp: "「亮……外の世界を見てみたい」", cn: "「亮……我好想亲眼看看外面的世界啊」" },
+            { time: 65, jp: "温室のガラスを越えて、広がる青空へ", cn: "跨越玻璃温室的牢笼，奔向辽阔自由的蔚蓝天空" },
+            { time: 95, jp: "この星でただ二人きりの、最後の恋物語", cn: "在这颗星球上唯有彼此两人的、最后的恋爱物语" },
+            { time: 130, jp: "「私を見つけてくれて、ありがとう」", cn: "「谢谢你，找到了我……」" }
         ]
     },
     {
         id: 2,
-        title: "two of us",
-        artist: "岡田真澄 · 作曲: 天门",
-        tag: "ED 片尾曲 · 双语歌词",
-        file: "audio/two_of_us.mp3",
-        duration: "05:12",
+        title: "Felix",
+        artist: "天門 · Asterisk OST",
+        tag: "菲利克斯 · 救世之宿命",
+        file: "audio/Felix.mp3",
+        duration: "02:37",
         lyrics: [
-            { time: 0, jp: "two of us - 岡田真澄", cn: "《eden*》片尾主题曲 · 作曲: 天门" },
-            { time: 18, jp: "静かな夜に 包まれて", cn: "被这片静谧祥和的夜色所环抱" },
-            { time: 26, jp: "寄り添う影 二つだけ", cn: "相依相偎的身影 唯有彼此两人" },
-            { time: 34, jp: "世界が終わりに近づいても", cn: "纵然世界正不可逆转地走向终焉" },
-            { time: 42, jp: "あなたの笑顔があればいい", cn: "只要能看见你的微笑 就已经足够" },
-            { time: 50, jp: "過ぎ去った日々は宝物", cn: "一同走过的岁月 是无价的珍宝" },
-            { time: 58, jp: "瞳を閉じれば蘇る", cn: "每当轻闭双眸 回忆便再次鲜活苏醒" },
-            { time: 66, jp: "ありがとう そばにいてくれて", cn: "谢谢你，一直温柔地陪伴在我的身旁" },
-            { time: 75, jp: "この星で巡り会えた奇跡", cn: "能在这颗孤独星球上与你相遇的奇迹" },
-            { time: 88, jp: "二人きりの世界で、永遠に眠る", cn: "在只有我们两个人的世界里，归于永恒的安宁" }
+            { time: 0, jp: "✦ Felix (フィリックス) ✦", cn: "救世新人类 · 背负全人类文明的宿命" },
+            { time: 20, jp: "数式と宇宙の方舟を導く、孤独な叡智", cn: "推导无数算式与方舟蓝图的孤高智慧" },
+            { time: 55, jp: "神と崇められ、鳥籠に閉じ込められた少女", cn: "被世人奉若神明，却被囚禁在鸟笼之中的少女" }
         ]
     },
     {
         id: 3,
-        title: "eden (Main Theme)",
-        artist: "天门 (Tenmon)",
-        tag: "主旋律 · 钢琴与弦乐",
-        file: "audio/eden.mp3",
-        duration: "03:24",
+        title: "Sleeping Beauty",
+        artist: "天門 · Asterisk OST",
+        tag: "睡美人 · 纯白温室",
+        file: "audio/Sleeping_Beauty.mp3",
+        duration: "01:49",
         lyrics: [
-            { time: 0, jp: "✦ 《eden*》主旋律 ✦", cn: "「世界即将走向终结。但是，我们曾在这里。」" },
-            { time: 15, jp: "【钢琴独奏】静谧的 702 研究所", cn: "白发少女坐在玻璃牢笼前，静默仰望天空" },
-            { time: 45, jp: "【弦乐升起】破晓时分的奔逃", cn: "牵起她的手，击碎所有阻碍" },
-            { time: 80, jp: "【交响高潮】山丘与蒲公英花海", cn: "微风吹过两人的发梢，这是地球最后的浪漫" },
-            { time: 130, jp: "【余音】愿你在此，直至世界的终焉", cn: "琴键缓缓沉寂，唯有繁星在夜空中永恒闪烁" }
+            { time: 0, jp: "✦ Sleeping Beauty (睡美人) ✦", cn: "在研究所温室中静静沉睡的白衣少女" },
+            { time: 25, jp: "守衛の足音が、静寂の扉を開く", cn: "年轻守卫的脚步声，悄然叩响了命运的门扉" }
         ]
     },
     {
         id: 4,
-        title: "the morning dew",
-        artist: "天门 (Tenmon)",
-        tag: "晨光与红茶 · 日常 BGM",
-        file: "audio/the_morning_dew.mp3",
-        duration: "02:48",
+        title: "Bird cage",
+        artist: "天門 · Asterisk OST",
+        tag: "鸟笼 · 孤寂与渴望",
+        file: "audio/Bird_cage.mp3",
+        duration: "02:20",
         lyrics: [
-            { time: 0, jp: "✦ the morning dew ✦", cn: "清晨山丘小屋里弥漫的红茶香气" },
-            { time: 20, jp: "「亮，红茶好香啊。」", cn: "第一次品尝世俗的甘甜与温度" },
-            { time: 50, jp: "简单的早餐、平静的对话", cn: "没有研究所的数据，只有属于两人的早晨" }
+            { time: 0, jp: "✦ Bird cage (鸟笼) ✦", cn: "即使拥有全知全能的智慧，却无法踏足真正的泥土" },
+            { time: 30, jp: "想要触碰窗外拂过的微风", cn: "想要感受阳光洒落在手心的温度" }
         ]
     },
     {
         id: 5,
-        title: "feelings...",
-        artist: "天门 (Tenmon)",
-        tag: "心之羁绊 · 抒情 BGM",
-        file: "audio/feelings.mp3",
-        duration: "03:15",
+        title: "To the new world",
+        artist: "天門 · Asterisk OST",
+        tag: "迈向新世界 · 破晓启程",
+        file: "audio/To_the_new_world.mp3",
+        duration: "02:34",
         lyrics: [
-            { time: 0, jp: "✦ feelings... ✦", cn: "两颗孤独灵魂在末日倒计时中的依偎" },
-            { time: 25, jp: "「我是为了拯救人类而生的 Felix。」", cn: "「但对我来说，你只是 Sion。」" },
-            { time: 60, jp: "微光流淌的夜幕之下", cn: "心跳与呼吸逐渐重合" }
+            { time: 0, jp: "✦ To the new world ✦", cn: "击碎防卫线，牵起少女的手冲向外面的世界" },
+            { time: 35, jp: "全人类撤离后的无人星球，属于两个人的世界", cn: "清晨的第一缕阳光洒在山丘与旷野" }
         ]
     },
     {
         id: 6,
-        title: "until the stars fall",
-        artist: "天门 (Tenmon)",
-        tag: "星落之夜 · 终曲 BGM",
-        file: "audio/until_the_stars_fall.mp3",
-        duration: "04:02",
+        title: "Silent night",
+        artist: "天門 · Asterisk OST",
+        tag: "静谧之夜 · 星空下的陪伴",
+        file: "audio/Silent_night.mp3",
+        duration: "02:14",
         lyrics: [
-            { time: 0, jp: "✦ until the stars fall ✦", cn: "直至繁星陨落的归途" },
-            { time: 30, jp: "「亮……外面的世界，真的好美啊。」", cn: "最后的呼吸化作微风中的蒲公英" },
-            { time: 70, jp: "怀抱中的安眠", cn: "在这个星球上，我们曾二人独存" },
-            { time: 120, jp: "✦ They Were Only Two, On The Planet. ✦", cn: "—— 终幕" }
+            { time: 0, jp: "✦ Silent night (静谧之夜) ✦", cn: "海边山丘的小木屋，漫天璀璨的繁星" },
+            { time: 30, jp: "壁炉前的红茶香气，平静而幸福的日常", cn: "两颗孤独的心灵在此刻紧紧依偎" }
         ]
+    },
+    {
+        id: 7,
+        title: "Last wish",
+        artist: "天門 · Asterisk OST",
+        tag: "最后的愿望 · 誓约",
+        file: "audio/Last_wish.mp3",
+        duration: "04:24",
+        lyrics: [
+            { time: 0, jp: "✦ Last wish (最后的愿望) ✦", cn: "「不需要拯救世界，我只想和你在一起」" },
+            { time: 40, jp: "即使生命即将走向倒计时，依然充满感激", cn: "因为在这个星球上，我们曾二人独存" }
+        ]
+    },
+    {
+        id: 8,
+        title: "Separation",
+        artist: "天門 · Asterisk OST",
+        tag: "诀别 · 繁星落幕",
+        file: "audio/Separation.mp3",
+        duration: "05:01",
+        lyrics: [
+            { time: 0, jp: "✦ Separation (诀别) ✦", cn: "在铺满蒲公英的山丘上，迎向终焉之刻" },
+            { time: 60, jp: "「亮……谢谢你，让我看到了如此美丽的世界」", cn: "少女安详地合上双眼，化作守望这颗星球的风" }
+        ]
+    },
+    {
+        id: 9,
+        title: "Time left",
+        artist: "天門 · Asterisk OST",
+        tag: "余下的时光",
+        file: "audio/Time_left.mp3",
+        duration: "03:05",
+        lyrics: [
+            { time: 0, jp: "✦ Time left ✦", cn: "末日倒计时中的每一分每一秒，都是不可替代的珍宝" }
+        ]
+    },
+    {
+        id: 10,
+        title: "Yearning to the sky",
+        artist: "天門 · Asterisk OST",
+        tag: "向往苍穹",
+        file: "audio/Yearning_to_the_sky.mp3",
+        duration: "02:15",
+        lyrics: [
+            { time: 0, jp: "✦ Yearning to the sky ✦", cn: "仰望星空，方舟远去，留在母星上的执着爱意" }
+        ]
+    },
+    {
+        id: 11,
+        title: "Elica",
+        artist: "天門 · Asterisk OST",
+        tag: "艾丽卡角色曲",
+        file: "audio/Elica.mp3",
+        duration: "02:32",
+        lyrics: [{ time: 0, jp: "✦ Elica (エリカ) ✦", cn: "温柔守护着 Sion 的姊妹与战友" }]
+    },
+    {
+        id: 12,
+        title: "Lavinia",
+        artist: "天門 · Asterisk OST",
+        tag: "拉薇妮亚角色曲",
+        file: "audio/Lavinia.mp3",
+        duration: "01:35",
+        lyrics: [{ time: 0, jp: "✦ Lavinia (ラヴィニア) ✦", cn: "军方守卫与职责的交织" }]
+    },
+    {
+        id: 13,
+        title: "Maya",
+        artist: "天門 · Asterisk OST",
+        tag: "玛雅角色曲",
+        file: "audio/Maya.mp3",
+        duration: "03:19",
+        lyrics: [{ time: 0, jp: "✦ Maya (真夜) ✦", cn: "冷静干练的军官，亦有内心的动摇与悲悯" }]
+    },
+    {
+        id: 14,
+        title: "Lively girl",
+        artist: "天門 · Asterisk OST",
+        tag: "活泼的少女",
+        file: "audio/Lively_girl.mp3",
+        duration: "02:45",
+        lyrics: [{ time: 0, jp: "✦ Lively girl ✦", cn: "充满欢笑与生机的瞬间" }]
+    },
+    {
+        id: 15,
+        title: "Miracle",
+        artist: "天門 · Asterisk OST",
+        tag: "奇迹",
+        file: "audio/Miracle.mp3",
+        duration: "03:39",
+        lyrics: [{ time: 0, jp: "✦ Miracle ✦", cn: "在这颗即将毁灭的星球上，我们相遇即是最大的奇迹" }]
+    },
+    {
+        id: 16,
+        title: "Eternal sleep",
+        artist: "天門 · Asterisk OST",
+        tag: "永眠",
+        file: "audio/Eternal_sleep.mp3",
+        duration: "02:30",
+        lyrics: [{ time: 0, jp: "✦ Eternal sleep ✦", cn: "永恒的安眠，化作星辰守望着无垠的夜空" }]
+    },
+    {
+        id: 17,
+        title: "Solitude",
+        artist: "天門 · Asterisk OST",
+        tag: "孤独",
+        file: "audio/Solitude.mp3",
+        duration: "02:26",
+        lyrics: [{ time: 0, jp: "✦ Solitude ✦", cn: "在冰冷世界里的沉思与回响" }]
+    },
+    {
+        id: 18,
+        title: "lear earth",
+        artist: "天門 · Asterisk OST",
+        tag: "澄澈大地",
+        file: "audio/lear_earth.mp3",
+        duration: "05:04",
+        lyrics: [{ time: 0, jp: "✦ Clear Earth ✦", cn: "洗尽铅华的地球，唯美壮阔的自然原野" }]
+    },
+    {
+        id: 19,
+        title: "Bonds of knife and gun",
+        artist: "天門 · Asterisk OST",
+        tag: "刀枪的羁绊",
+        file: "audio/Bonds_of_knife_and_gun.mp3",
+        duration: "03:39",
+        lyrics: [{ time: 0, jp: "✦ Bonds of knife and gun ✦", cn: "军人意志与守护挚爱的誓言" }]
+    },
+    {
+        id: 20,
+        title: "Burial man",
+        artist: "天門 · Asterisk OST",
+        tag: "送葬之人",
+        file: "audio/Burial_man.mp3",
+        duration: "02:37",
+        lyrics: [{ time: 0, jp: "✦ Burial man ✦", cn: "为旧时代文明送葬的孤独守墓者" }]
+    },
+    {
+        id: 21,
+        title: "Calm talking",
+        artist: "天門 · Asterisk OST",
+        tag: "平静的交谈",
+        file: "audio/Calm_talking.mp3",
+        duration: "02:15",
+        lyrics: [{ time: 0, jp: "✦ Calm talking ✦", cn: "午后阳光下的温柔对话" }]
+    },
+    {
+        id: 22,
+        title: "Can't leave you alone",
+        artist: "天門 · Asterisk OST",
+        tag: "无法丢下你一人",
+        file: "audio/Cant_leave_you_alone.mp3",
+        duration: "03:50",
+        lyrics: [{ time: 0, jp: "✦ Can't leave you alone ✦", cn: "「我不会丢下你一人的，Sion」" }]
+    },
+    {
+        id: 23,
+        title: "Desire",
+        artist: "天門 · Asterisk OST",
+        tag: "渴望",
+        file: "audio/Desire.mp3",
+        duration: "02:32",
+        lyrics: [{ time: 0, jp: "✦ Desire ✦", cn: "对自由与真实的炽热渴望" }]
+    },
+    {
+        id: 24,
+        title: "Estranged",
+        artist: "天門 · Asterisk OST",
+        tag: "隔阂",
+        file: "audio/Estranged.mp3",
+        duration: "01:52",
+        lyrics: [{ time: 0, jp: "✦ Estranged ✦", cn: "人与人之间的距离与误解" }]
+    },
+    {
+        id: 25,
+        title: "For you now",
+        artist: "天門 · Asterisk OST",
+        tag: "献给此刻的你",
+        file: "audio/For_you_now.mp3",
+        duration: "01:59",
+        lyrics: [{ time: 0, jp: "✦ For you now ✦", cn: "愿将一切温柔献给此时此刻的你" }]
+    },
+    {
+        id: 26,
+        title: "Geniality",
+        artist: "天門 · Asterisk OST",
+        tag: "温情",
+        file: "audio/Geniality.mp3",
+        duration: "02:37",
+        lyrics: [{ time: 0, jp: "✦ Geniality ✦", cn: "如春风般抚慰心灵的温情" }]
+    },
+    {
+        id: 27,
+        title: "Instruction",
+        artist: "天門 · Asterisk OST",
+        tag: "指示",
+        file: "audio/Instruction.mp3",
+        duration: "01:40",
+        lyrics: [{ time: 0, jp: "✦ Instruction ✦", cn: "军令如山与内心良知的博弈" }]
+    },
+    {
+        id: 28,
+        title: "Liberating",
+        artist: "天門 · Asterisk OST",
+        tag: "解放",
+        file: "audio/Liberating.mp3",
+        duration: "02:41",
+        lyrics: [{ time: 0, jp: "✦ Liberating ✦", cn: "打破桎梏，迈出追求自由的第一步" }]
+    },
+    {
+        id: 29,
+        title: "Nostalgia feeling",
+        artist: "天門 · Asterisk OST",
+        tag: "乡愁与怀念",
+        file: "audio/Nostalgia_feeling.mp3",
+        duration: "02:42",
+        lyrics: [{ time: 0, jp: "✦ Nostalgia feeling ✦", cn: "记忆深处泛起的淡淡怀念" }]
+    },
+    {
+        id: 30,
+        title: "Other side of sadness",
+        artist: "天門 · Asterisk OST",
+        tag: "悲伤的彼岸",
+        file: "audio/Other_side_of_sadness.mp3",
+        duration: "02:07",
+        lyrics: [{ time: 0, jp: "✦ Other side of sadness ✦", cn: "穿越悲伤之后所见到的希望之光" }]
+    },
+    {
+        id: 31,
+        title: "Past desire",
+        artist: "天門 · Asterisk OST",
+        tag: "往昔之愿",
+        file: "audio/Past_desire.mp3",
+        duration: "01:26",
+        lyrics: [{ time: 0, jp: "✦ Past desire ✦", cn: "童年与过往记忆里的微小愿景" }]
+    },
+    {
+        id: 32,
+        title: "Presentiment",
+        artist: "天門 · Asterisk OST",
+        tag: "预感",
+        file: "audio/Presentiment.mp3",
+        duration: "02:25",
+        lyrics: [{ time: 0, jp: "✦ Presentiment ✦", cn: "命运齿轮悄然转动的预感" }]
+    },
+    {
+        id: 33,
+        title: "Rule",
+        artist: "天門 · Asterisk OST",
+        tag: "规则",
+        file: "audio/Rule.mp3",
+        duration: "02:08",
+        lyrics: [{ time: 0, jp: "✦ Rule ✦", cn: "军规与秩序的压迫感" }]
+    },
+    {
+        id: 34,
+        title: "Simply",
+        artist: "天門 · Asterisk OST",
+        tag: "纯粹",
+        file: "audio/Simply.mp3",
+        duration: "02:42",
+        lyrics: [{ time: 0, jp: "✦ Simply ✦", cn: "最纯粹的心愿，往往最难能可贵" }]
+    },
+    {
+        id: 35,
+        title: "Unstable",
+        artist: "天門 · Asterisk OST",
+        tag: "动摇",
+        file: "audio/Unstable.mp3",
+        duration: "01:55",
+        lyrics: [{ time: 0, jp: "✦ Unstable ✦", cn: "末日崩塌前夕的动荡与抉择" }]
+    },
+    {
+        id: 36,
+        title: "You laugh under emptiness",
+        artist: "天門 · Asterisk OST",
+        tag: "空虚下的笑颜",
+        file: "audio/You_laugh_under_emptiness.mp3",
+        duration: "03:52",
+        lyrics: [{ time: 0, jp: "✦ You laugh under emptiness ✦", cn: "荒芜世界的苍穹下，你那令人心碎的纯真笑容" }]
+    },
+    {
+        id: 37,
+        title: "Android",
+        artist: "天門 · Asterisk OST",
+        tag: "仿生人",
+        file: "audio/Android.mp3",
+        duration: "01:51",
+        lyrics: [{ time: 0, jp: "✦ Android ✦", cn: "科技造物与人类情感的边界" }]
     }
 ];
 
@@ -295,13 +563,11 @@ function initOSTPlayer() {
     let audio = new Audio();
     audio.preload = "metadata";
 
-    // Web Audio 合成器后备
     let audioCtx = null;
     let synthInterval = null;
     let isSynthMode = false;
     let synthStep = 0;
 
-    // DOM 元素
     const vinylDisc = document.getElementById('vinyl-disc');
     const playPauseBtn = document.getElementById('play-pause-btn');
     const playIcon = document.getElementById('play-icon');
@@ -320,16 +586,19 @@ function initOSTPlayer() {
     const trackArtistEl = document.getElementById('current-track-artist');
     const trackTagEl = document.getElementById('current-track-tag');
     const playlistItemsContainer = document.getElementById('playlist-items');
+    const playlistCountEl = document.getElementById('playlist-count');
     const lyricsContent = document.getElementById('lyrics-content');
     const lyricsWindow = document.getElementById('lyrics-window');
     const audioSourceTip = document.getElementById('audio-source-tip');
 
-    // 导航栏快捷按钮
     const quickPlayBtn = document.getElementById('quick-play-btn');
     const quickAudioTitle = document.getElementById('quick-audio-title');
     const quickAudioIcon = document.getElementById('quick-audio-icon');
 
-    // 渲染曲目列表
+    if (playlistCountEl) {
+        playlistCountEl.textContent = EDEN_TRACKS.length;
+    }
+
     function renderPlaylist() {
         if (!playlistItemsContainer) return;
         playlistItemsContainer.innerHTML = '';
@@ -357,7 +626,6 @@ function initOSTPlayer() {
         });
     }
 
-    // 渲染当前歌词
     function renderLyrics() {
         if (!lyricsContent) return;
         lyricsContent.innerHTML = '';
@@ -380,7 +648,6 @@ function initOSTPlayer() {
         if (lyricsWindow) lyricsWindow.scrollTop = 0;
     }
 
-    // 选择指定歌曲
     function selectTrack(index) {
         currentTrackIndex = (index + EDEN_TRACKS.length) % EDEN_TRACKS.length;
         const track = EDEN_TRACKS[currentTrackIndex];
@@ -391,7 +658,6 @@ function initOSTPlayer() {
         if (totalDurationSpan) totalDurationSpan.textContent = track.duration;
         if (quickAudioTitle) quickAudioTitle.textContent = track.title;
 
-        // 设置音频源
         audio.src = track.file;
         audio.currentTime = 0;
         progressBarFill.style.width = '0%';
@@ -401,7 +667,6 @@ function initOSTPlayer() {
         renderLyrics();
     }
 
-    // 播放音乐
     async function playTrack() {
         isPlaying = true;
         updateUIState(true);
@@ -410,19 +675,17 @@ function initOSTPlayer() {
             await audio.play();
             isSynthMode = false;
             if (audioSourceTip) {
-                audioSourceTip.innerHTML = `<span>🎵 正在播放本地音频: ${EDEN_TRACKS[currentTrackIndex].file}</span>`;
+                audioSourceTip.innerHTML = `<span>🎵 正在播放高品质音频: ${EDEN_TRACKS[currentTrackIndex].file}</span>`;
             }
         } catch (err) {
-            // 本地未放置 MP3 文件时，自动启用 Web Audio 空灵合成器
             isSynthMode = true;
             if (audioSourceTip) {
-                audioSourceTip.innerHTML = `<span>✨ 未检测到 MP3 文件，已智能启动 <strong>Web Audio 八音盒发生器</strong>（若要听原曲，将 mp3 放入 <code>audio/</code> 目录即可）</span>`;
+                audioSourceTip.innerHTML = `<span>✨ 智能启动 <strong>Web Audio 八音盒发生器</strong>（若要听原曲，将 mp3 放入 <code>audio/</code> 目录即可）</span>`;
             }
             startSynthPlayback();
         }
     }
 
-    // 暂停音乐
     function pauseTrack() {
         isPlaying = false;
         audio.pause();
@@ -451,7 +714,6 @@ function initOSTPlayer() {
         if (quickAudioIcon) quickAudioIcon.textContent = playing ? '⏸' : '▶';
     }
 
-    // 歌词滚动同步
     function updateLyrics(time) {
         const lines = lyricsContent.querySelectorAll('.lyric-line');
         if (!lines.length) return;
@@ -471,7 +733,6 @@ function initOSTPlayer() {
             if (idx === activeIdx) {
                 if (!line.classList.contains('active')) {
                     line.classList.add('active');
-                    // 平滑滚动居中
                     const containerHeight = lyricsWindow.clientHeight;
                     const lineTop = line.offsetTop;
                     const lineHeight = line.clientHeight;
@@ -486,7 +747,6 @@ function initOSTPlayer() {
         });
     }
 
-    // 跳转进度
     function seekTo(seconds) {
         if (!isSynthMode && audio.duration) {
             audio.currentTime = seconds;
@@ -496,7 +756,6 @@ function initOSTPlayer() {
         updateLyrics(seconds);
     }
 
-    // 时间进度更新
     let synthTimeSec = 0;
     audio.addEventListener('timeupdate', () => {
         if (!isSynthMode && audio.duration) {
@@ -520,7 +779,6 @@ function initOSTPlayer() {
         }
     });
 
-    // 进度条点击拖动
     if (progressBarContainer) {
         progressBarContainer.addEventListener('click', (e) => {
             const rect = progressBarContainer.getBoundingClientRect();
@@ -536,7 +794,6 @@ function initOSTPlayer() {
         });
     }
 
-    // 控制按钮监听
     if (playPauseBtn) playPauseBtn.addEventListener('click', togglePlay);
     if (quickPlayBtn) quickPlayBtn.addEventListener('click', togglePlay);
     if (prevBtn) prevBtn.addEventListener('click', () => { selectTrack(currentTrackIndex - 1); playTrack(); });
@@ -551,7 +808,6 @@ function initOSTPlayer() {
         });
     }
 
-    // 音量调节
     if (volumeSlider) {
         volumeSlider.addEventListener('input', (e) => {
             const val = parseFloat(e.target.value);
@@ -577,9 +833,7 @@ function initOSTPlayer() {
         });
     }
 
-    /* =========================================================
-       Web Audio 八音盒实时音符发生器 (Fallback Engine)
-       ========================================================= */
+    /* Web Audio 八音盒发生器 */
     let audioGainNode = null;
     const synthMelody = [
         440.00, 523.25, 659.25, 880.00, 587.33, 659.25, 523.25, 440.00,
@@ -624,7 +878,6 @@ function initOSTPlayer() {
             currentTimeSpan.textContent = formatTime(synthTimeSec);
             updateLyrics(synthTimeSec);
 
-            // 发生一个音符
             const freq = synthMelody[synthStep % synthMelody.length];
             playChimeNote(freq);
             if (synthStep % 4 === 0) playChimeNote(freq * 0.5);
@@ -664,7 +917,6 @@ function initOSTPlayer() {
         osc.stop(now + 2.5);
     }
 
-    // 初始化渲染
     selectTrack(0);
 }
 
