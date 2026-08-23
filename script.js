@@ -1,7 +1,7 @@
 /**
  * =========================================================
- * Sion (シオン) ✦ eden* 纪念站交互系统
- * Canvas 星空 · Asterisk "eden*" 全 37 首 OST 留声机 · 智能纯音乐/歌词识别 · 星空信箱
+ * Sion (シオン / 诗音) ✦ eden* 纪念站交互系统
+ * Canvas 星空 · 19张 CG 全屏灯箱 · 37首 OST 留声机 · 星空信箱
  * =========================================================
  */
 
@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initQuotesCarousel();
     initLettersToSion();
     initOSTPlayer();
+    initCGLightbox();
 });
 
 /* =========================================================
@@ -184,14 +185,80 @@ function initCanvasStarfield() {
 }
 
 /* =========================================================
-   2. 《eden*》全 37 首 OST 原声留声机系统
+   2. 全屏 CG 灯箱浏览系统 (Lightbox)
+   ========================================================= */
+function initCGLightbox() {
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const modal = document.getElementById('lightbox-modal');
+    const modalImg = document.getElementById('lightbox-img');
+    const modalCaption = document.getElementById('lightbox-caption');
+    const closeBtn = document.getElementById('lightbox-close');
+    const prevBtn = document.getElementById('lightbox-prev');
+    const nextBtn = document.getElementById('lightbox-next');
+    const backdrop = document.getElementById('lightbox-backdrop');
+
+    if (!galleryItems.length || !modal) return;
+
+    let currentIndex = 0;
+    const cgList = Array.from(galleryItems).map(item => ({
+        src: item.dataset.src || item.querySelector('img').src,
+        caption: item.dataset.caption || item.querySelector('.gallery-caption').textContent
+    }));
+
+    function openLightbox(index) {
+        currentIndex = index;
+        updateLightboxContent();
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function updateLightboxContent() {
+        const item = cgList[currentIndex];
+        if (modalImg) modalImg.src = item.src;
+        if (modalCaption) modalCaption.textContent = item.caption;
+    }
+
+    function showPrev() {
+        currentIndex = (currentIndex - 1 + cgList.length) % cgList.length;
+        updateLightboxContent();
+    }
+
+    function showNext() {
+        currentIndex = (currentIndex + 1) % cgList.length;
+        updateLightboxContent();
+    }
+
+    galleryItems.forEach((item, idx) => {
+        item.addEventListener('click', () => openLightbox(idx));
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+    if (backdrop) backdrop.addEventListener('click', closeLightbox);
+    if (prevBtn) prevBtn.addEventListener('click', showPrev);
+    if (nextBtn) nextBtn.addEventListener('click', showNext);
+
+    document.addEventListener('keydown', (e) => {
+        if (!modal.classList.contains('active')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') showPrev();
+        if (e.key === 'ArrowRight') showNext();
+    });
+}
+
+/* =========================================================
+   3. 《eden*》全 37 首 OST 原声留声机系统
    ========================================================= */
 const EDEN_TRACKS = [
     {
         id: 1,
         title: "Sion",
         artist: "天門 · Asterisk OST",
-        tag: "✦ Sion 少女主题曲 · 纯音乐",
+        tag: "✦ Sion 诗音主题曲 · 纯音乐",
         file: "audio/Sion.mp3",
         duration: "02:43",
         isInstrumental: true,
@@ -215,7 +282,7 @@ const EDEN_TRACKS = [
         file: "audio/Sleeping_Beauty.mp3",
         duration: "01:49",
         isInstrumental: true,
-        motto: "702研究所白色牢笼中，静静沉睡的少女。"
+        motto: "702研究所白色牢笼中，静静沉睡的少女 诗音。"
     },
     {
         id: 4,
@@ -295,7 +362,7 @@ const EDEN_TRACKS = [
         file: "audio/Elica.mp3",
         duration: "02:32",
         isInstrumental: true,
-        motto: "温柔守护着 Sion 的姊妹与战友。"
+        motto: "温柔守护着 诗音 的姊妹与战友。"
     },
     {
         id: 12,
@@ -636,7 +703,6 @@ function initOSTPlayer() {
         const track = EDEN_TRACKS[currentTrackIndex];
 
         if (track.isInstrumental || !track.lyrics || track.lyrics.length === 0) {
-            // 纯音乐展台模式
             if (lyricsStatus) lyricsStatus.textContent = "✦ 原声配乐 · 静心聆听 ✦";
             lyricsContent.innerHTML = `
                 <div class="pure-music-view">
@@ -648,7 +714,6 @@ function initOSTPlayer() {
                 </div>
             `;
         } else {
-            // 有歌词歌曲模式 (Vocal)
             if (lyricsStatus) lyricsStatus.textContent = "点击任意行歌词可快速跳转";
             track.lyrics.forEach((line, idx) => {
                 const lineEl = document.createElement('div');
@@ -944,7 +1009,7 @@ function initOSTPlayer() {
 }
 
 /* =========================================================
-   3. 名台词轮播控制
+   4. 名台词轮播控制
    ========================================================= */
 function initQuotesCarousel() {
     const slides = document.querySelectorAll('.quote-slide');
@@ -1000,7 +1065,7 @@ function initQuotesCarousel() {
 }
 
 /* =========================================================
-   4. 星空信箱 (Letters to Sion)
+   5. 星空信箱 (Letters to Sion)
    ========================================================= */
 function initLettersToSion() {
     const form = document.getElementById('message-form');
@@ -1019,7 +1084,7 @@ function initLettersToSion() {
         },
         {
             name: "观星者",
-            content: "致敬 minori 留给这个世界的绝美物语。Sion，愿你在繁星之海永远自由。",
+            content: "致敬 minori 留给这个世界的绝美物语。诗音，愿你在繁星之海永远自由。",
             time: "2024-05-20"
         },
         {

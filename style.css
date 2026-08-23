@@ -1,6 +1,6 @@
 /* =========================================================
-   Sion (シオン) ✦ eden* 主题纪念站样式表
-   包含：星空、OST 原声留声机、动态双语歌词、物语与信箱
+   Sion (シオン / 诗音) ✦ eden* 主题纪念站样式表
+   包含：星空、19张高清CG画廊、OST留声机、全屏灯箱
    ========================================================= */
 
 :root {
@@ -443,7 +443,341 @@ body {
 }
 
 /* =========================================================
-   2. 原声留声机 & 动态双语歌词 (OST Player)
+   2. 少女档案 (Profile)
+   ========================================================= */
+.profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 32px;
+}
+
+.profile-card {
+    padding: 36px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.profile-avatar-container {
+    position: relative;
+    margin-bottom: 24px;
+}
+
+.avatar-glow {
+    position: absolute;
+    inset: -12px;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+    animation: pulse-glow 4s infinite ease-in-out;
+}
+
+.avatar-box {
+    position: relative;
+    z-index: 1;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 2px solid rgba(112, 214, 255, 0.4);
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(112, 214, 255, 0.3);
+}
+
+.avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    transition: transform 0.5s ease;
+}
+
+.avatar-box:hover .avatar-img {
+    transform: scale(1.1);
+}
+
+.profile-status {
+    margin-top: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    color: var(--accent-cyan);
+    background: rgba(112, 214, 255, 0.08);
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(112, 214, 255, 0.2);
+}
+
+.status-indicator {
+    width: 6px;
+    height: 6px;
+    background: #10b981;
+    border-radius: 50%;
+    box-shadow: 0 0 6px #10b981;
+}
+
+.profile-info-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    text-align: left;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    font-size: 0.9rem;
+}
+
+.info-label {
+    color: var(--text-dim);
+}
+
+.info-val {
+    color: #e2e8f0;
+    font-weight: 500;
+    text-align: right;
+}
+
+.profile-story {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-title {
+    font-family: var(--font-cn-serif);
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 20px;
+    position: relative;
+    padding-left: 16px;
+}
+
+.card-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 15%;
+    height: 70%;
+    width: 4px;
+    background: var(--accent-cyan);
+    border-radius: 2px;
+    box-shadow: 0 0 8px var(--accent-cyan);
+}
+
+.story-p {
+    color: var(--text-muted);
+    font-size: 0.98rem;
+    line-height: 1.85;
+    margin-bottom: 18px;
+}
+
+.story-p strong {
+    color: #e2e8f0;
+}
+
+.traits-container {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+}
+
+.trait-tag {
+    background: rgba(192, 132, 252, 0.1);
+    color: var(--accent-purple);
+    border: 1px solid rgba(192, 132, 252, 0.25);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+}
+
+/* =========================================================
+   3. 忆之画廊 · CG Gallery
+   ========================================================= */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.08);
+}
+
+.gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(5, 7, 17, 0.85) 0%, rgba(5, 7, 17, 0.2) 60%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 16px;
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-zoom-icon {
+    font-size: 1.2rem;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(0, 0, 0, 0.5);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.gallery-caption {
+    font-family: var(--font-cn-serif);
+    font-size: 0.9rem;
+    color: #fff;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* 全屏 CG 灯箱 (Lightbox) */
+.lightbox-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.35s ease;
+}
+
+.lightbox-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 7, 17, 0.92);
+    backdrop-filter: blur(20px);
+}
+
+.lightbox-content {
+    position: relative;
+    z-index: 2001;
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-img-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lightbox-img-wrapper img {
+    max-width: 85vw;
+    max-height: 80vh;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 0 40px rgba(112, 214, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.lightbox-caption {
+    margin-top: 14px;
+    font-family: var(--font-cn-serif);
+    font-size: 1.1rem;
+    color: #fff;
+    text-shadow: 0 0 10px var(--accent-cyan);
+}
+
+.lightbox-close {
+    position: fixed;
+    top: 24px;
+    right: 28px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2005;
+}
+
+.lightbox-close:hover {
+    background: #ef4444;
+    border-color: #ef4444;
+    transform: rotate(90deg);
+}
+
+.lightbox-nav-btn {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2005;
+}
+
+.lightbox-nav-btn.prev { left: 24px; }
+.lightbox-nav-btn.next { right: 24px; }
+
+.lightbox-nav-btn:hover {
+    background: var(--accent-cyan);
+    color: var(--bg-deep);
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 20px var(--accent-glow);
+}
+
+/* =========================================================
+   4. 原声留声机 (OST Player)
    ========================================================= */
 .player-container {
     display: grid;
@@ -454,7 +788,6 @@ body {
     align-items: stretch;
 }
 
-/* 左侧：黑胶与控制器 */
 .player-left {
     display: flex;
     flex-direction: column;
@@ -788,52 +1121,6 @@ body {
     line-height: 1.6;
 }
 
-.lyric-line {
-    opacity: 0.35;
-    transition: all 0.35s ease;
-    cursor: pointer;
-    padding: 6px 12px;
-    border-radius: 6px;
-}
-
-.lyric-line:hover {
-    opacity: 0.7;
-    background: rgba(255, 255, 255, 0.03);
-}
-
-.lyric-line.active {
-    opacity: 1;
-    transform: scale(1.08);
-    background: rgba(112, 214, 255, 0.06);
-    border-radius: 10px;
-    padding: 10px 14px;
-}
-
-.lyric-jp {
-    font-family: var(--font-cn-serif);
-    font-size: 1.05rem;
-    color: #fff;
-    margin-bottom: 4px;
-    font-weight: 500;
-}
-
-.lyric-line.active .lyric-jp {
-    color: #ffffff;
-    text-shadow: 0 0 15px var(--accent-cyan);
-    font-weight: 700;
-}
-
-.lyric-cn {
-    font-family: var(--font-cn-serif);
-    font-size: 0.88rem;
-    color: var(--text-muted);
-}
-
-.lyric-line.active .lyric-cn {
-    color: var(--accent-cyan);
-    text-shadow: 0 0 8px rgba(112, 214, 255, 0.5);
-}
-
 /* 右侧：曲目播放列表 */
 .player-right {
     display: flex;
@@ -930,186 +1217,11 @@ body {
 }
 
 /* =========================================================
-   3. 少女档案 (Profile)
-   ========================================================= */
-.profile-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.6fr;
-    gap: 32px;
-}
-
-.profile-card {
-    padding: 36px 28px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-.profile-avatar-container {
-    position: relative;
-    margin-bottom: 28px;
-}
-
-.avatar-glow {
-    position: absolute;
-    inset: -15px;
-    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-    border-radius: 50%;
-    z-index: 0;
-    animation: pulse-glow 4s infinite ease-in-out;
-}
-
-.avatar-box {
-    position: relative;
-    z-index: 1;
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    border: 2px solid rgba(112, 214, 255, 0.4);
-    background: linear-gradient(135deg, #1e1b4b, #0f172a);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: inset 0 0 20px rgba(112, 214, 255, 0.2);
-}
-
-.avatar-art {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.avatar-kanji {
-    font-family: var(--font-cn-serif);
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: #fff;
-    text-shadow: 0 0 15px var(--accent-cyan);
-}
-
-.avatar-romaji {
-    font-family: var(--font-en-title);
-    font-size: 0.75rem;
-    letter-spacing: 3px;
-    color: var(--accent-cyan);
-}
-
-.avatar-constellation {
-    font-size: 0.65rem;
-    color: var(--accent-purple);
-    margin-top: 4px;
-    letter-spacing: 2px;
-}
-
-.profile-status {
-    margin-top: 14px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 0.8rem;
-    color: var(--accent-cyan);
-    background: rgba(112, 214, 255, 0.08);
-    padding: 4px 12px;
-    border-radius: 20px;
-    border: 1px solid rgba(112, 214, 255, 0.2);
-}
-
-.status-indicator {
-    width: 6px;
-    height: 6px;
-    background: #10b981;
-    border-radius: 50%;
-    box-shadow: 0 0 6px #10b981;
-}
-
-.profile-info-list {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    text-align: left;
-}
-
-.info-row {
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 10px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    font-size: 0.9rem;
-}
-
-.info-label {
-    color: var(--text-dim);
-}
-
-.info-val {
-    color: #e2e8f0;
-    font-weight: 500;
-    text-align: right;
-}
-
-.profile-story {
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.card-title {
-    font-family: var(--font-cn-serif);
-    font-size: 1.5rem;
-    color: #fff;
-    margin-bottom: 20px;
-    position: relative;
-    padding-left: 16px;
-}
-
-.card-title::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 15%;
-    height: 70%;
-    width: 4px;
-    background: var(--accent-cyan);
-    border-radius: 2px;
-    box-shadow: 0 0 8px var(--accent-cyan);
-}
-
-.story-p {
-    color: var(--text-muted);
-    font-size: 0.98rem;
-    line-height: 1.85;
-    margin-bottom: 18px;
-}
-
-.story-p strong {
-    color: #e2e8f0;
-}
-
-.traits-container {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 16px;
-}
-
-.trait-tag {
-    background: rgba(192, 132, 252, 0.1);
-    color: var(--accent-purple);
-    border: 1px solid rgba(192, 132, 252, 0.25);
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-}
-
-/* =========================================================
-   4. 物语篇章 (Timeline)
+   5. 物语篇章 (Timeline With Embedded CGs)
    ========================================================= */
 .timeline-container {
     position: relative;
-    max-width: 860px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 20px 0;
 }
@@ -1155,7 +1267,29 @@ body {
 }
 
 .timeline-content {
-    padding: 28px 32px;
+    padding: 24px;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 24px;
+    align-items: center;
+}
+
+.timeline-img-box {
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.timeline-cg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.timeline-content:hover .timeline-cg {
+    transform: scale(1.06);
 }
 
 .timeline-chapter {
@@ -1181,7 +1315,7 @@ body {
 }
 
 /* =========================================================
-   5. 名台词回廊 (Quotes Carousel)
+   6. 名台词回廊 (Quotes Carousel)
    ========================================================= */
 .quotes-carousel-wrapper {
     max-width: 900px;
@@ -1301,7 +1435,7 @@ body {
 }
 
 /* =========================================================
-   6. 星空信箱 (Letters to Sion)
+   7. 星空信箱 (Letters to Sion)
    ========================================================= */
 .messages-layout {
     display: grid;
@@ -1538,6 +1672,9 @@ body {
     }
     .profile-grid,
     .messages-layout {
+        grid-template-columns: 1fr;
+    }
+    .timeline-content {
         grid-template-columns: 1fr;
     }
     .timeline-container::before {
