@@ -602,13 +602,13 @@ function initHeroTypewriter() {
     const phrases = [
         {
             isChinese: false,
-            line1: "eden* —",
-            line2: "They Were Only Two, On The Planet."
+            line1: "eden* — They Were Only Two,",
+            line2: "On The Planet."
         },
         {
             isChinese: true,
-            line1: "“ 晚安，诗音。 ”",
-            line2: "“ 晚安，中二社。 ”"
+            line1: "晚安，诗音。",
+            line2: "晚安，中二社。"
         }
     ];
 
