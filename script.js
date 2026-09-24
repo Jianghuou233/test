@@ -203,7 +203,7 @@ function initCGLightbox() {
     let currentIndex = 0;
     const cgList = Array.from(galleryItems).map(item => ({
         src: item.dataset.src || item.querySelector('img').src,
-        caption: item.dataset.caption || item.querySelector('.gallery-caption').textContent
+        caption: item.dataset.caption || item.querySelector('.gallery-caption')?.textContent || ''
     }));
 
     function openLightbox(index) {
