@@ -742,7 +742,7 @@ body {
 .timeline-item {
     position: relative;
     padding-left: 80px;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
 }
 
 .timeline-item:last-child {
@@ -752,7 +752,8 @@ body {
 .timeline-node {
     position: absolute;
     left: 12px;
-    top: 24px;
+    top: 50%;
+    transform: translateY(-50%);
     width: 38px;
     height: 38px;
     border-radius: 50%;
@@ -767,57 +768,98 @@ body {
     justify-content: center;
     box-shadow: 0 0 15px var(--accent-glow);
     z-index: 2;
+    transition: all 0.35s ease;
+}
+
+.timeline-item:hover .timeline-node {
+    border-color: #fff;
+    background: var(--accent-cyan);
+    color: var(--bg-deep);
+    box-shadow: 0 0 20px var(--accent-cyan);
 }
 
 .timeline-content {
-    padding: 20px 24px;
+    padding: 16px 24px;
     display: grid;
-    grid-template-columns: 160px 1fr;
-    gap: 20px;
+    grid-template-columns: 200px 1fr;
+    gap: 24px;
     align-items: center;
+    border-radius: var(--radius-md);
+    cursor: default;
+    transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.timeline-content:hover {
+    border-color: var(--accent-cyan);
+    box-shadow: 0 8px 30px rgba(112, 214, 255, 0.22);
+    transform: translateX(8px);
 }
 
 .timeline-img-box {
-    width: 160px;
-    min-width: 160px;
-    max-width: 160px;
-    height: 100px;
+    width: 200px;
+    min-width: 200px;
+    max-width: 200px;
+    height: 112px;
     border-radius: var(--radius-sm);
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
 }
 
 .timeline-cg {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .timeline-content:hover .timeline-cg {
-    transform: scale(1.06);
+    transform: scale(1.08);
+}
+
+.timeline-text-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
 }
 
 .timeline-chapter {
     font-family: var(--font-en-title);
     font-size: 0.8rem;
-    letter-spacing: 2px;
+    letter-spacing: 2.5px;
     color: var(--accent-purple);
-    display: block;
-    margin-bottom: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.timeline-chapter::before {
+    content: '✦';
+    font-size: 0.68rem;
+    color: var(--accent-cyan);
+}
+
+.timeline-content:hover .timeline-chapter {
+    color: var(--accent-cyan);
 }
 
 .timeline-title {
     font-family: var(--font-cn-serif);
-    font-size: 1.2rem;
+    font-size: 1.35rem;
     color: #fff;
-    margin-bottom: 8px;
+    margin: 0;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
-.timeline-desc {
-    color: var(--text-muted);
-    font-size: 0.92rem;
-    line-height: 1.7;
+.timeline-content:hover .timeline-title {
+    color: #fff;
+    text-shadow: 0 0 16px rgba(112, 214, 255, 0.6);
 }
 
 /* =========================================================
@@ -1925,19 +1967,31 @@ body {
         grid-column: span 1;
     }
     .timeline-content {
-        grid-template-columns: 1fr;
+        grid-template-columns: 160px 1fr;
+        gap: 16px;
+        padding: 12px 18px;
+    }
+    .timeline-img-box {
+        width: 160px;
+        min-width: 160px;
+        max-width: 160px;
+        height: 90px;
+    }
+    .timeline-title {
+        font-size: 1.18rem;
     }
     .timeline-container::before {
         left: 20px;
     }
     .timeline-item {
-        padding-left: 60px;
+        padding-left: 56px;
+        margin-bottom: 18px;
     }
     .timeline-node {
         left: 2px;
-        width: 34px;
-        height: 34px;
-        font-size: 0.8rem;
+        width: 36px;
+        height: 36px;
+        font-size: 0.82rem;
     }
     .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -2006,6 +2060,20 @@ body {
     .floating-player-root {
         bottom: 16px;
         right: 16px;
+    }
+    .timeline-content {
+        grid-template-columns: 120px 1fr;
+        gap: 12px;
+        padding: 10px 14px;
+    }
+    .timeline-img-box {
+        width: 120px;
+        min-width: 120px;
+        max-width: 120px;
+        height: 70px;
+    }
+    .timeline-title {
+        font-size: 1.05rem;
     }
 }
 
