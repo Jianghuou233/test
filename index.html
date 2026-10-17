@@ -1,685 +1,969 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" class="no-js">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sion (シオン / 诗音) ✦ eden* 纪念站 · s1on.wtf</title>
-    <meta name="description" content="They Were Only Two, On The Planet. 视觉小说《eden*》女主角 Sion (シオン / 诗音) 专属纪念站与原声音乐留声机。">
-    <meta name="keywords" content="eden*, Sion, シオン, 诗音, minori, 中二社, 视觉小说, 榛名亮, 菲利克斯, Felix, 703研究所, little explorer, two of us, 天门, 原声音乐, CG画廊">
-    
-    <!-- Google Fonts 导入 -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Noto+Serif+SC:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="style.css?v=20260823_2333">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sion (シオン / 诗音) ✦ eden* 纪念站</title>
+  <meta name="description" content="Sion (シオン / 诗音) ✦ eden* 纪念站 —— 一颗名为「地球」的星球上，最后的恋爱物语。献给诗音、天门与 minori 的非官方沉浸式同人纪念企划。">
+  <meta name="theme-color" content="#05080e">
+  <meta name="color-scheme" content="dark">
+  <meta property="og:title" content="Sion (シオン / 诗音) ✦ eden* 纪念站">
+  <meta property="og:description" content="名为「地球」的星球上，最后的恋爱物语。">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23070d16'/%3E%3Cpath d='M32 7 38 26 57 32 38 38 32 57 26 38 7 32 26 26Z' fill='%23e6c693'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./style.css">
+  <script>document.documentElement.classList.replace('no-js', 'js');</script>
+  <script src="./script.js" defer></script>
 </head>
-<body>
-    <!-- 背景 Canvas 粒子与星空 -->
-    <canvas id="starfield-canvas"></canvas>
+<body data-phase="void">
 
-    <!-- 顶部导航条 -->
-    <header class="navbar">
-        <div class="nav-container">
-            <a href="#hero" class="brand">
-                <span class="brand-symbol">✦</span>
-                <span class="brand-text">SION<span class="brand-sub">.wtf</span></span>
+  <a class="skip-link" href="#main">跳至正文 / SKIP TO CONTENT</a>
+
+  <svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="icon-star" viewBox="0 0 24 24">
+      <path d="M12 1.6 14.95 9.05 22.4 12 14.95 14.95 12 22.4 9.05 14.95 1.6 12 9.05 9.05Z" fill="currentColor"/>
+    </symbol>
+    <symbol id="icon-play" viewBox="0 0 24 24">
+      <path d="M8.1 5.4 18.3 12 8.1 18.6Z" fill="currentColor"/>
+    </symbol>
+    <symbol id="icon-pause" viewBox="0 0 24 24">
+      <rect x="7" y="5.3" width="3.3" height="13.4" rx=".4" fill="currentColor"/>
+      <rect x="13.7" y="5.3" width="3.3" height="13.4" rx=".4" fill="currentColor"/>
+    </symbol>
+    <symbol id="icon-prev" viewBox="0 0 24 24">
+      <path d="M19 5.5v13L9.6 12Z" fill="currentColor"/>
+      <rect x="5" y="5.5" width="2" height="13" rx=".5" fill="currentColor"/>
+    </symbol>
+    <symbol id="icon-next" viewBox="0 0 24 24">
+      <path d="M5 5.5v13L14.4 12Z" fill="currentColor"/>
+      <rect x="17" y="5.5" width="2" height="13" rx=".5" fill="currentColor"/>
+    </symbol>
+    <symbol id="icon-volume" viewBox="0 0 24 24">
+      <path d="M4 9.2h3.4L12 5.4v13.2L7.4 14.8H4Z"/>
+      <path d="M15.6 8.4a5.1 5.1 0 0 1 0 7.2M18.3 5.7a8.9 8.9 0 0 1 0 12.6"/>
+    </symbol>
+    <symbol id="icon-mute" viewBox="0 0 24 24">
+      <path d="M4 9.2h3.4L12 5.4v13.2L7.4 14.8H4Z"/>
+      <path d="m16 9.5 6 5M22 9.5l-6 5"/>
+    </symbol>
+    <symbol id="icon-loop" viewBox="0 0 24 24">
+      <path d="M5.5 9.2A7 7 0 0 1 18.7 7l1.5 1.7"/>
+      <path d="M20.2 4.8v3.9h-3.9"/>
+      <path d="M18.5 14.8A7 7 0 0 1 5.3 17l-1.5-1.7"/>
+      <path d="M3.8 19.2v-3.9h3.9"/>
+    </symbol>
+    <symbol id="icon-list" viewBox="0 0 24 24">
+      <path d="M9 6.5h11M9 12h11M9 17.5h11"/>
+      <circle cx="4.5" cy="6.5" r=".9" fill="currentColor" stroke="none"/>
+      <circle cx="4.5" cy="12" r=".9" fill="currentColor" stroke="none"/>
+      <circle cx="4.5" cy="17.5" r=".9" fill="currentColor" stroke="none"/>
+    </symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24">
+      <path d="m5.5 5.5 13 13M18.5 5.5l-13 13"/>
+    </symbol>
+    <symbol id="icon-arrow-down" viewBox="0 0 24 24">
+      <path d="M12 4v15M6 13.3l6 6 6-6"/>
+    </symbol>
+    <symbol id="icon-arrow-up" viewBox="0 0 24 24">
+      <path d="M12 20V5M6 10.7l6-6 6 6"/>
+    </symbol>
+    <symbol id="icon-arrow-right" viewBox="0 0 24 24">
+      <path d="M4.5 12h15M13.4 6l6 6-6 6"/>
+    </symbol>
+    <symbol id="icon-chevron-down" viewBox="0 0 24 24">
+      <path d="m5.5 9 6.5 6.5L18.5 9"/>
+    </symbol>
+    <symbol id="icon-chevron-up" viewBox="0 0 24 24">
+      <path d="m5.5 15 6.5-6.5L18.5 15"/>
+    </symbol>
+    <symbol id="icon-wind" viewBox="0 0 24 24">
+      <path d="M3 8.5h10.5a3.2 3.2 0 1 0-3.2-3.2M3 13h15.5a3 3 0 1 1-3 3M3 17.5h7"/>
+    </symbol>
+    <symbol id="icon-restart" viewBox="0 0 24 24">
+      <path d="M5.4 9.6A7.2 7.2 0 1 1 4.8 14"/>
+      <path d="M5.4 4.1v5.5H.1"/>
+    </symbol>
+    <symbol id="icon-spark" viewBox="0 0 24 24">
+      <path d="M12 3.5v4M12 16.5v4M3.5 12h4M16.5 12h4M6 6l2.7 2.7M15.3 15.3 18 18M18 6l-2.7 2.7M8.7 15.3 6 18"/>
+    </symbol>
+  </svg>
+
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__inner">
+      <svg class="preloader__star"><use href="#icon-star"></use></svg>
+      <p class="preloader__name">Sion <span>✦</span> eden*</p>
+      <p class="preloader__caption">WAKING A MEMORY / 正在唤醒记忆</p>
+      <span class="preloader__rule"><i></i></span>
+      <span class="preloader__code">703 — LAST SKY ARCHIVE</span>
+    </div>
+  </div>
+
+  <div class="atmosphere" aria-hidden="true">
+    <div class="sky">
+      <div class="sky__layer sky__layer--void"></div>
+      <div class="sky__layer sky__layer--frost"></div>
+      <div class="sky__layer sky__layer--dawn"></div>
+      <div class="sky__layer sky__layer--noon"></div>
+      <div class="sky__layer sky__layer--gold"></div>
+      <div class="sky__layer sky__layer--dusk"></div>
+      <div class="sky__layer sky__layer--night"></div>
+      <div class="sky__glow"></div>
+    </div>
+    <canvas class="star-layer" id="star-canvas"></canvas>
+    <div class="film-grain"></div>
+    <div class="vignette"></div>
+  </div>
+
+  <canvas class="dust-layer" id="dust-canvas" aria-hidden="true"></canvas>
+  <div class="cursor-ring" id="cursor-ring" aria-hidden="true"><span></span></div>
+
+  <header class="site-header" id="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="#top" aria-label="回到首页：Sion (シオン / 诗音) ✦ eden* 纪念站">
+        <svg class="brand__mark" aria-hidden="true"><use href="#icon-star"></use></svg>
+        <span class="brand__text">
+          <span class="brand__primary">Sion</span>
+          <span class="brand__secondary"><span lang="ja">(シオン</span> / 诗音) <b>✦</b> eden* 纪念站</span>
+          <span class="brand__short" aria-hidden="true">✦ eden*</span>
+        </span>
+      </a>
+      <p class="site-header__note">A MEMORIAL ARCHIVE <span>/</span> 非官方同人企划</p>
+      <button class="header-sound" type="button" data-audio-open aria-label="打开声音档案，共 37 首曲目">
+        <span class="equalizer" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span class="header-sound__text">SOUNDS <b>37</b></span>
+      </button>
+    </div>
+    <div class="scroll-progress" aria-hidden="true"><span id="scroll-progress-bar"></span></div>
+  </header>
+
+  <nav class="chapter-rail" aria-label="章节导航">
+    <a href="#top" data-section-link="top" data-label="序" aria-label="序章：Prologue">
+      <span class="chapter-rail__num">00</span><span class="chapter-rail__label">序 <em>PROLOGUE</em></span>
+    </a>
+    <a href="#white-room" data-section-link="white-room" data-label="白い部屋" aria-label="第一章：白い部屋 / The White Room">
+      <span class="chapter-rail__num">01</span><span class="chapter-rail__label">白い部屋 <em>THE WHITE ROOM</em></span>
+    </a>
+    <a href="#dawn" data-section-link="dawn" data-label="夜明け" aria-label="第二章：夜明け / Breaking Dawn">
+      <span class="chapter-rail__num">02</span><span class="chapter-rail__label">夜明け <em>BREAKING DAWN</em></span>
+    </a>
+    <a href="#summer" data-section-link="summer" data-label="小さな夏" aria-label="第三章：小さな夏 / A Small Summer">
+      <span class="chapter-rail__num">03</span><span class="chapter-rail__label">小さな夏 <em>A SMALL SUMMER</em></span>
+    </a>
+    <a href="#field" data-section-link="field" data-label="風の野" aria-label="第四章：風の野 / The Wind Field">
+      <span class="chapter-rail__num">04</span><span class="chapter-rail__label">風の野 <em>THE WIND FIELD</em></span>
+    </a>
+    <a href="#finale" data-section-link="finale" data-label="終幕" aria-label="第五章：終幕 / The Last Sunset">
+      <span class="chapter-rail__num">05</span><span class="chapter-rail__label">終幕 <em>THE LAST SUNSET</em></span>
+    </a>
+    <a href="#sound" data-section-link="sound" data-label="星の音" aria-label="第六章：星の音 / Sound Among Stars">
+      <span class="chapter-rail__num">06</span><span class="chapter-rail__label">星の音 <em>SOUND AMONG STARS</em></span>
+    </a>
+  </nav>
+
+  <main id="main" tabindex="-1">
+
+    <!-- ─────────────────────────────  PROLOGUE  ───────────────────────────── -->
+    <section class="hero" id="top" data-phase="void" data-chapter="prologue" aria-labelledby="hero-title">
+      <div class="hero__backdrop" aria-hidden="true">
+        <img data-asset="hero.mobileSky" alt="" decoding="async">
+        <span class="hero__backdrop-veil"></span>
+      </div>
+
+      <div class="hero__orbit" aria-hidden="true">
+        <svg viewBox="0 0 900 900" fill="none">
+          <circle cx="450" cy="450" r="310"/>
+          <circle cx="450" cy="450" r="430"/>
+          <path d="M450 20v860M20 450h860"/>
+          <path d="M148 148 752 752M752 148 148 752"/>
+          <circle cx="631" cy="269" r="3"/>
+          <circle cx="283" cy="631" r="2"/>
+        </svg>
+      </div>
+
+      <div class="hero__inner">
+        <div class="hero__content">
+          <p class="eyebrow reveal" data-reveal="fade">
+            <span class="eyebrow__rule"></span>
+            AN UNOFFICIAL MEMORIAL
+            <span class="eyebrow__meta">01 / SEVEN</span>
+          </p>
+
+          <h1 class="hero__title" id="hero-title">
+            <span class="hero__title-main reveal" data-reveal="mask">Sion</span>
+            <span class="hero__title-sub reveal" data-reveal="fade"><span lang="ja">(シオン</span> / 诗音) <span class="hero__star">✦</span> eden* 纪念站</span>
+          </h1>
+
+          <p class="hero__jp reveal" data-reveal="fade" lang="ja">この星には、ふたりだけ。</p>
+
+          <p class="hero__tagline reveal" data-reveal="rise">They were only two,<br><em>on the planet.</em></p>
+          <p class="hero__lede reveal" data-reveal="rise">名为「地球」的星球上，最后的恋爱物语。<br>以及，一个只想再一次看见天空的女孩。</p>
+
+          <div class="hero__actions reveal" data-reveal="rise">
+            <a class="button button--line" href="#white-room" data-scroll-link>
+              <span>步入回忆</span>
+              <svg class="icon" aria-hidden="true"><use href="#icon-arrow-down"></use></svg>
             </a>
-            
-            <nav class="nav-links">
-                <a href="#profile" class="nav-item">少女档案</a>
-                <a href="#gallery" class="nav-item">忆之画廊</a>
-                <a href="#story" class="nav-item">物语回响</a>
-                <a href="#quotes" class="nav-item">名台词</a>
-                <a href="#dialogue" class="nav-item">夕阳终幕</a>
-                <a href="#farewell" class="nav-item">致敬终章</a>
-                <button class="nav-item highlight-nav nav-player-btn" id="nav-toggle-player-btn">✦ 原声音乐 (37首)</button>
-            </nav>
+            <button class="sound-start" type="button" data-play-initial>
+              <span class="sound-start__pulse" aria-hidden="true"><svg class="icon icon--solid"><use href="#icon-play"></use></svg></span>
+              <span>听见诗音 <small>PLAY “SION”</small></span>
+            </button>
+          </div>
 
-            <div class="nav-actions">
-                <button id="quick-play-btn" class="audio-btn" title="展开音乐浮窗">
-                    <span class="audio-icon" id="quick-audio-icon">▶</span>
-                    <span class="audio-text" id="quick-audio-title">Sion</span>
-                    <div class="sound-wave" id="sound-wave">
-                        <span></span><span></span><span></span><span></span>
-                    </div>
+          <div class="hero__meta reveal" data-reveal="fade">
+            <span><i class="status-dot"></i> minori <b>2001 — 2019</b></span>
+            <span>SION / シオン / 诗音</span>
+            <span>HEADPHONES RECOMMENDED</span>
+          </div>
+        </div>
+
+        <figure class="hero__figure reveal" data-reveal="portal" data-tilt>
+          <div class="hero__portal">
+            <img data-asset="hero.portrait" alt="头戴花冠、银白长发的诗音，站在蓝色天空与蝴蝶之间。" loading="eager" decoding="async">
+            <span class="hero__portal-wash" aria-hidden="true"></span>
+            <span class="hero__portal-line" aria-hidden="true"></span>
+            <span class="hero__portal-number" aria-hidden="true">ARCHIVE<br>001—703</span>
+            <span class="hero__portal-jp" aria-hidden="true" lang="ja">終わらない夏のように</span>
+            <span class="hero__portal-corner hero__portal-corner--tl" aria-hidden="true"></span>
+            <span class="hero__portal-corner hero__portal-corner--br" aria-hidden="true"></span>
+          </div>
+          <figcaption>
+            <span>THE GIRL WHO WANTED THE SKY</span>
+            <span>記憶観測記録 / 001</span>
+          </figcaption>
+        </figure>
+      </div>
+
+      <a class="scroll-cue" href="#white-room" data-scroll-link>
+        <span class="scroll-cue__line" aria-hidden="true"></span>
+        <span>SCROLL TO REMEMBER</span>
+      </a>
+
+      <div class="hero__coordinates" aria-hidden="true">
+        <span>N&nbsp;00°00′ / E&nbsp;00°00′</span>
+        <span>PLANET: EARTH — TERMINAL</span>
+      </div>
+    </section>
+
+    <section class="overture" aria-label="序诗">
+      <p class="overture__index" aria-hidden="true">PROLOGUE / 00</p>
+      <p class="overture__line" data-reveal="rise">在一切都将结束的星球上，<br>她想要的，只是一个<em>能看见天空</em>的房间。</p>
+      <span class="overture__star" aria-hidden="true">✦</span>
+    </section>
+
+    <!-- ─────────────────────────────  WHITE ROOM  ───────────────────────────── -->
+    <section class="chapter room" id="white-room" data-phase="frost" data-chapter="white-room" aria-labelledby="room-title">
+      <header class="chapter-heading">
+        <div class="chapter-heading__index">
+          <span>01</span>
+          <small>FILE / 703</small>
+        </div>
+        <div class="chapter-heading__title">
+          <p>CHAPTER ONE <span>第一章</span></p>
+          <h2 id="room-title"><span lang="ja">白い部屋</span><em>The White Room</em></h2>
+        </div>
+        <p class="chapter-heading__aside" lang="ja">空は、窓の向こうにだけあった。</p>
+      </header>
+
+      <div class="room__grid">
+        <div class="room__media">
+          <div class="room__sticky">
+            <figure class="room__main" data-parallax data-speed="0.05">
+              <img data-asset="room.meet" alt="夜色与壁灯之间，诗音在窗前第一次与亮相见。" loading="lazy" decoding="async">
+              <figcaption>
+                <span>OBSERVATION 01 / FIRST CONTACT</span>
+                <span>第七〇三号室</span>
+              </figcaption>
+            </figure>
+            <div class="room__readout" aria-hidden="true">
+              <span>LIGHT <b>ARTIFICIAL</b></span>
+              <span>AIR <b>RECYCLED</b></span>
+              <span>SKY <b>NONE</b></span>
+            </div>
+            <span class="room__huge-number" aria-hidden="true">703</span>
+          </div>
+        </div>
+
+        <div class="room__narrative">
+          <p class="section-kicker reveal" data-reveal="fade">ROOM 703 / 第七〇三号室</p>
+          <h3 class="section-heading reveal" data-reveal="rise">她被留在这里，<br>像一封还没有寄出的信。</h3>
+          <p class="body-copy reveal" data-reveal="rise">窗外永远是按照时刻表亮起的人工白昼。温度恒定，空气循环，连孤独都被调校得恰到好处。</p>
+          <p class="body-copy reveal" data-reveal="rise">一个被称作救世主的女孩，拥有的天空只有一扇窗那么大。直到那个笨拙的访客推开门，带来一小片没有被安排过的风。</p>
+
+          <blockquote class="room__quote reveal" data-reveal="rise">
+            <span class="room__quote-mark" aria-hidden="true">“</span>
+            <p>她从未见过真正的天空。<br>所以她不知道，自己为什么会梦见它。</p>
+          </blockquote>
+
+          <aside class="dossier glass reveal" data-reveal="rise" aria-label="703 号室档案">
+            <div class="dossier__head">
+              <span>SUBJECT ARCHIVE</span>
+              <span class="dossier__signal"><i></i> ALIVE</span>
+            </div>
+            <dl>
+              <div><dt>SUBJECT</dt><dd>SION / シオン</dd></div>
+              <div><dt>LOCATION</dt><dd>ROOM 703</dd></div>
+              <div><dt>WINDOW</dt><dd>ARTIFICIAL</dd></div>
+              <div><dt>WISH</dt><dd>THE REAL SKY</dd></div>
+            </dl>
+            <p class="dossier__foot">“如果世界终将结束，至少让我在结束之前，见一次真正的天空。”</p>
+          </aside>
+
+          <a class="arrow-link reveal" data-reveal="fade" href="#thaw" data-scroll-link>
+            <span>向下，推开那扇门</span>
+            <svg class="icon" aria-hidden="true"><use href="#icon-arrow-down"></use></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="room__archive">
+        <div class="room__archive-head">
+          <p class="section-kicker">FRAGMENTS FROM 703 / 碎片</p>
+          <p>有些记忆没有声音，只有光落在被子上时的重量。</p>
+        </div>
+        <div class="room__archive-grid">
+          <figure class="memory-card reveal" data-reveal="rise">
+            <span class="memory-card__index">01</span>
+            <img data-asset="room.bed" alt="诗音在幽蓝的房间里伏在床上，眼中含着泪。" loading="lazy" decoding="async">
+            <figcaption><span>NIGHT / 未明</span><p>她梦见自己，没有醒来的必要。</p></figcaption>
+          </figure>
+          <figure class="memory-card memory-card--offset reveal" data-reveal="rise">
+            <span class="memory-card__index">02</span>
+            <img data-asset="room.sleep" alt="诗音沉睡时，一只手轻轻握住了她。" loading="lazy" decoding="async">
+            <figcaption><span>SLEEP / 沉睡</span><p>有人握着她的手，一直到天亮。</p></figcaption>
+          </figure>
+          <figure class="memory-card reveal" data-reveal="rise">
+            <span class="memory-card__index">03</span>
+            <img data-asset="room.archive" alt="白房间外的走廊里，两位少女并肩而立。" loading="lazy" decoding="async">
+            <figcaption><span>THE OTHERS / 影子</span><p>被留在这座建筑里的，不止她一个人。</p></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────  THAW  ───────────────────────────── -->
+    <section class="thaw" id="thaw" data-phase="dawn" aria-labelledby="thaw-title">
+      <div class="thaw__sticky">
+        <div class="thaw__media">
+          <img data-asset="thaw.escape" alt="亮牵着诗音的手，一起冲向刺眼的白光。" loading="lazy" decoding="async">
+        </div>
+        <div class="thaw__frost" aria-hidden="true"></div>
+        <div class="thaw__lens" aria-hidden="true">
+          <span class="thaw__lens-star">✦</span>
+          <span class="thaw__lens-label">THE DOOR IS OPEN</span>
+        </div>
+
+        <div class="thaw__meta" aria-hidden="true">
+          <span>02 / TRANSITION</span>
+          <span>THAWING POINT</span>
+        </div>
+
+        <div class="thaw__copy thaw__copy--before">
+          <p class="section-kicker">THE DOOR / 門</p>
+          <h2 id="thaw-title">如果门从来没有<br>打开过……</h2>
+          <p>她是不是就会永远留在冬天里，<br>像一颗被放在玻璃罩中的星星。</p>
+        </div>
+
+        <div class="thaw__copy thaw__copy--after" aria-hidden="true">
+          <p class="section-kicker">THE FIRST WIND / 最初的风</p>
+          <h2>门开了。</h2>
+          <p>风比光更早抵达。<br>而她的手，终于握住了另一只手。</p>
+        </div>
+
+        <div class="thaw__progress" aria-hidden="true">
+          <span>— 12°C</span>
+          <i><b></b></i>
+          <span>THAW / 100</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────  DAWN  ───────────────────────────── -->
+    <section class="chapter dawn" id="dawn" data-phase="dawn" data-chapter="dawn" aria-labelledby="dawn-title">
+      <header class="chapter-heading">
+        <div class="chapter-heading__index">
+          <span>02</span>
+          <small>THE FIRST SKY</small>
+        </div>
+        <div class="chapter-heading__title">
+          <p>CHAPTER TWO <span>第二章</span></p>
+          <h2 id="dawn-title"><span lang="ja">夜明け</span><em>Breaking Dawn</em></h2>
+        </div>
+        <p class="chapter-heading__aside" lang="ja">はじめて見た空は、少しだけ泣いていた。</p>
+      </header>
+
+      <div class="dawn__stage">
+        <span class="dawn__giant" aria-hidden="true">BREAK</span>
+
+        <figure class="dawn__hero" data-parallax data-speed="0.04">
+          <img data-asset="dawn.closeup" alt="晨光中的诗音回眸，银发与红光交叠。" loading="lazy" decoding="async">
+          <figcaption>FIRST LIGHT / 02:14</figcaption>
+        </figure>
+
+        <div class="dawn__copy">
+          <p class="section-kicker reveal" data-reveal="fade">THE MOMENT THE WORLD OPENED</p>
+          <h3 class="section-heading reveal" data-reveal="rise">门开的一瞬间，<br>风比光更早抵达。</h3>
+          <p class="body-copy reveal" data-reveal="rise">她握住你的手，跑过漫长的走廊。白色的灯、白色的墙、被安排好的永恒，全部在身后变得很小。</p>
+          <p class="body-copy reveal" data-reveal="rise">然后是天空。真正的、没有边框的、会流动的天空。</p>
+
+          <ol class="dawn__notes">
+            <li class="reveal" data-reveal="rise"><span>01</span><p>她的手，比想象中更冷。</p></li>
+            <li class="reveal" data-reveal="rise"><span>02</span><p>门在身后合上，世界第一次变得辽阔。</p></li>
+            <li class="reveal" data-reveal="rise"><span>03</span><p>她没有说话。只是抬起头，看了很久很久。</p></li>
+          </ol>
+        </div>
+
+        <figure class="dawn__shard" data-parallax data-speed="0.12">
+          <img data-asset="dawn.light" alt="蓝色星尘与晨光中，诗音身后的光晕。" loading="lazy" decoding="async">
+          <figcaption>SHARD OF LIGHT / 光片</figcaption>
+        </figure>
+      </div>
+
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee__track">
+          <span>RUN — TOWARDS THE LIGHT — 走 — 光の方へ —</span>
+          <span>RUN — TOWARDS THE LIGHT — 走 — 光の方へ —</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────  SUMMER  ───────────────────────────── -->
+    <section class="chapter summer" id="summer" data-phase="noon" data-chapter="summer" aria-labelledby="summer-title">
+      <span class="summer__watermark" aria-hidden="true" lang="ja">夏</span>
+
+      <header class="chapter-heading">
+        <div class="chapter-heading__index">
+          <span>03</span>
+          <small>NO COUNTDOWN</small>
+        </div>
+        <div class="chapter-heading__title">
+          <p>CHAPTER THREE <span>第三章</span></p>
+          <h2 id="summer-title"><span lang="ja">小さな夏</span><em>A Small Summer</em></h2>
+        </div>
+        <p class="chapter-heading__aside" lang="ja">時計のない夏が、いちばん長かった。</p>
+      </header>
+
+      <div class="summer__intro">
+        <p class="section-kicker reveal" data-reveal="fade">SOMEWHERE NOT ON THE MAP / 地图之外</p>
+        <h3 class="section-heading reveal" data-reveal="rise">山丘上的日子<br>没有倒数。</h3>
+        <p class="summer__aside reveal" data-reveal="fade">风从草原尽头来。番茄在窗下变红，茶还很烫。<br>他们拥有的并不多：一间小屋，一整个夏天，和彼此。</p>
+      </div>
+
+      <div class="bento">
+        <figure class="tile tile--garden" data-reveal="rise">
+          <div class="tile__media"><img data-asset="summer.garden" alt="诗音站在菜园旁，回头望向镜头，身后是山与树。" loading="lazy" decoding="async"></div>
+          <span class="tile__number">01</span>
+          <figcaption>
+            <span class="tile__label">THE GARDEN / 菜园</span>
+            <p>她种下的第一颗番茄，红得很慢，也很认真。</p>
+          </figcaption>
+        </figure>
+
+        <figure class="tile tile--tea" data-reveal="rise">
+          <div class="tile__media"><img data-asset="summer.tea" alt="屋内暖光里，诗音双手捧着热茶，闭着眼睛微笑。" loading="lazy" decoding="async"></div>
+          <span class="tile__number">02</span>
+          <figcaption>
+            <span class="tile__label">TEA / 茶</span>
+            <p>茶凉得很慢。</p>
+          </figcaption>
+        </figure>
+
+        <div class="tile tile--quote" data-reveal="rise">
+          <span class="tile__label">AN UNCOUNTED DAY</span>
+          <p>“热的东西，要趁热喝。”</p>
+          <span class="tile__signature" lang="ja">—— シオン</span>
+          <span class="tile__ring" aria-hidden="true"></span>
+        </div>
+
+        <figure class="tile tile--tall" data-reveal="portal">
+          <div class="tile__media"><img data-asset="summer.tall" alt="巨大的蓝天与云下，诗音独自站在草坡上。" loading="lazy" decoding="async"></div>
+          <span class="tile__number">03</span>
+          <figcaption>
+            <span class="tile__label">THE SKY, AT LAST / 终于</span>
+            <p>天空终于没有被裁切。</p>
+          </figcaption>
+        </figure>
+
+        <figure class="tile tile--cabin" data-reveal="rise">
+          <div class="tile__media"><img data-asset="summer.cabin" alt="诗音站在山间小屋前，背后是露台与树林。" loading="lazy" decoding="async"></div>
+          <span class="tile__number">04</span>
+          <figcaption>
+            <span class="tile__label">A HOUSE, NOT A CAGE / 小屋</span>
+            <p>这一次，门没有上锁。</p>
+          </figcaption>
+        </figure>
+
+        <figure class="tile tile--lake" data-reveal="rise">
+          <div class="tile__media"><img data-asset="summer.lake" alt="诗音闭着眼，站在雪山与湖泊前的阳光里。" loading="lazy" decoding="async"></div>
+          <span class="tile__number">05</span>
+          <figcaption>
+            <span class="tile__label">STILL WATER / 湖</span>
+            <p>风停下来的时候，连湖也在听她呼吸。</p>
+          </figcaption>
+        </figure>
+
+        <figure class="tile tile--sky" data-reveal="rise">
+          <div class="tile__media"><img data-asset="summer.sky" alt="积雨云与蓝天之间，诗音被风吹动长发。" loading="lazy" decoding="async"></div>
+          <span class="tile__number">06</span>
+          <figcaption>
+            <span class="tile__label">FOREVER, PROBABLY / 大概永远</span>
+            <p>如果时间愿意在这里打个盹就好了。</p>
+          </figcaption>
+        </figure>
+
+        <figure class="tile tile--reach" data-reveal="rise">
+          <div class="tile__media"><img data-asset="summer.reach" alt="诗音躺在草地里，向天空伸出手。" loading="lazy" decoding="async"></div>
+          <span class="tile__number">07</span>
+          <figcaption>
+            <span class="tile__label">TO REACH / 伸手</span>
+            <p>她伸手，不是为了抓住什么，只是想让风经过。</p>
+          </figcaption>
+        </figure>
+
+        <figure class="tile tile--meadow" data-reveal="rise">
+          <div class="tile__media"><img data-asset="summer.meadow" alt="雪山脚下的草甸，诗音微笑着回头。" loading="lazy" decoding="async"></div>
+          <span class="tile__number">08</span>
+          <figcaption>
+            <span class="tile__label">LITTLE THINGS / 小事</span>
+            <p>草叶、阳光、脚步声。她开始喜欢很小的事情。</p>
+          </figcaption>
+        </figure>
+      </div>
+
+      <p class="summer__outro" data-reveal="fade">那是她一生中，最像“普通”的一段日子。<br><span lang="ja">だから、いちばん泣きたくなるほど、しあわせだった。</span></p>
+    </section>
+
+    <!-- ─────────────────────────────  WIND FIELD  ───────────────────────────── -->
+    <section class="chapter field" id="field" data-phase="gold" data-chapter="field" aria-labelledby="field-title">
+      <div class="field__pin">
+        <div class="field__stage">
+          <figure class="field__background">
+            <img data-asset="field.wide" alt="黄昏中，亮与诗音并肩站在山丘上，望向远方的云海。" loading="lazy" decoding="async">
+          </figure>
+          <div class="field__veil" aria-hidden="true"></div>
+
+          <header class="field__header">
+            <span>04 / 風の野</span>
+            <span>WHERE THE WIND REMEMBERS</span>
+          </header>
+
+          <div class="field__copy">
+            <p class="section-kicker reveal" data-reveal="fade">BEFORE THE LAST SUNSET</p>
+            <h2 id="field-title" class="reveal" data-reveal="rise">如果自由有形状，<br><em>大概是蒲公英<br>掠过指尖的样子。</em></h2>
+            <p class="field__lede reveal" data-reveal="rise">风把整个夏天吹向远方。<br>她站在光里，第一次没有想起“结束”这个词。</p>
+            <button class="wind-button reveal" data-reveal="fade" type="button" data-wind>
+              <span class="wind-button__icon"><svg class="icon"><use href="#icon-wind"></use></svg></span>
+              <span class="wind-button__text">起风<small>RELEASE THE WIND</small></span>
+              <span class="wind-button__ripple" aria-hidden="true"></span>
+            </button>
+          </div>
+
+          <figure class="field__portrait" data-parallax data-speed="0.1">
+            <img data-asset="field.portrait" alt="风吹乱银发，诗音在云与光之间回望。" loading="lazy" decoding="async">
+            <figcaption lang="ja">風が、彼女の名前を呼んだ。</figcaption>
+          </figure>
+
+          <p class="field__footnote">SCROLL — 让这个黄昏再长一点 <span aria-hidden="true">✦</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────  FINALE  ───────────────────────────── -->
+    <section class="chapter finale" id="finale" data-phase="dusk" data-chapter="finale" aria-labelledby="finale-title">
+      <header class="chapter-heading">
+        <div class="chapter-heading__index">
+          <span>05</span>
+          <small>THE LAST SCENE</small>
+        </div>
+        <div class="chapter-heading__title">
+          <p>CHAPTER FIVE <span>第五章</span></p>
+          <h2 id="finale-title"><span lang="ja">終幕</span><em>The Last Sunset</em></h2>
+        </div>
+        <p class="chapter-heading__aside" lang="ja">さいごの夕暮れは、とても静かだった。</p>
+      </header>
+
+      <div class="finale__intro">
+        <p class="section-kicker reveal" data-reveal="fade">A DIALOGUE AT THE END OF THE WORLD</p>
+        <h3 class="section-heading reveal" data-reveal="rise">最后一个黄昏，<br>风把最后一句对白吹得很轻。</h3>
+        <p class="finale__intro-note reveal" data-reveal="fade">这是一个可以亲手推进的终幕。<br>建议戴上耳机，留一点时间给光。</p>
+      </div>
+
+      <div class="theater" id="theater" data-theater>
+        <div class="theater__scenes" aria-hidden="true">
+          <figure class="theater__scene is-visible" data-scene="0">
+            <img data-asset="finale.dusk" alt="黄昏里，亮与诗音并肩坐在岩石上，望向远方的原野。" loading="lazy" decoding="async">
+          </figure>
+          <figure class="theater__scene" data-scene="1">
+            <img data-asset="finale.sleep" alt="夕照里，诗音闭着眼，像陷入了很深的睡眠。" loading="lazy" decoding="async">
+          </figure>
+          <figure class="theater__scene" data-scene="2">
+            <img data-asset="finale.night" alt="月光与星空下，亮向诗音伸出手。" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        <div class="theater__grade" aria-hidden="true"></div>
+        <div class="theater__letterbox theater__letterbox--top" aria-hidden="true"></div>
+        <div class="theater__letterbox theater__letterbox--bottom" aria-hidden="true"></div>
+
+        <div class="theater__hud" data-theater-hud hidden>
+          <span class="theater__hud-label">LAST SCENE / 終幕</span>
+          <span class="theater__hud-time">THE LAST SUNSET — 18:47</span>
+          <span class="theater__hud-index" data-scene-index>SCENE 01 / 03</span>
+        </div>
+
+        <div class="theater__start" data-theater-start>
+          <p class="theater__start-kicker">THE LAST SUNSET</p>
+          <h3>最后一个黄昏</h3>
+          <p>山丘上，风把最后一句对白吹得很轻。</p>
+          <button class="button button--gold" type="button" data-theater-begin>
+            <span>开始终幕</span>
+            <svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+          </button>
+          <span class="theater__start-hint">CLICK TO BEGIN / 点击开始</span>
+        </div>
+
+        <div class="theater__play" data-theater-play hidden>
+          <div class="dialogue glass">
+            <div class="dialogue__head">
+              <div class="dialogue__speaker-wrap">
+                <span class="dialogue__speaker" data-speaker>旁白</span>
+                <span class="dialogue__speaker-jp" data-speaker-jp lang="ja">語り</span>
+              </div>
+              <span class="dialogue__counter" data-dialogue-counter>01 — 34</span>
+            </div>
+
+            <p class="dialogue__text">
+              <span data-typed-text></span>
+              <span class="dialogue__caret" data-caret aria-hidden="true"></span>
+              <span class="sr-only" aria-live="polite" aria-atomic="true" data-line-live></span>
+            </p>
+
+            <p class="dialogue__translation" lang="ja" data-line-jp></p>
+
+            <div class="dialogue__foot">
+              <div class="dialogue__dots" aria-hidden="true" data-dialogue-dots></div>
+              <div class="dialogue__actions">
+                <button class="ghost-button" type="button" data-theater-auto aria-pressed="false">
+                  <span class="ghost-button__dot"></span>自动
                 </button>
-            </div>
-        </div>
-    </header>
-
-    <!-- 主体内容 -->
-    <main>
-        <!-- 1. Hero 序章 -->
-        <section id="hero" class="hero-section">
-            <div class="hero-content">
-                <div class="hero-badge">
-                    <span class="badge-dot"></span>
-                    <span>minori · eden* (2009) 纪念主页</span>
-                </div>
-                
-                <h1 class="hero-title" id="hero-title">
-                    <span class="hero-title-line line-1" id="hero-line-1">eden*</span>
-                    <span class="hero-title-line line-2 highlight" id="hero-line-2">They Were Only Two, On The Planet.</span>
-                    <span class="hero-cursor" id="hero-cursor">✦</span>
-                </h1>
-                
-                <p class="hero-subtitle">
-                    「名为『地球』的星球上最后的恋爱物语」
-                </p>
-
-                <div class="hero-quote-box">
-                    <p class="typewriter-text" id="typewriter">
-                        「亮……外面的世界，原来是这么宽广、这么美丽的啊。」
-                    </p>
-                </div>
-
-                <div class="hero-cta-group">
-                    <button class="btn btn-primary" id="hero-listen-btn">
-                        <span>✦ 聆听《eden*》原声</span>
-                        <svg class="btn-arrow" viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"/></svg>
-                    </button>
-                    <a href="#gallery" class="btn btn-glass">
-                        <span>忆之画廊 (19 CG)</span>
-                    </a>
-                    <a href="#profile" class="btn btn-glass">
-                        <span>少女档案</span>
-                    </a>
-                </div>
-            </div>
-
-            <div class="hero-scroll-hint">
-                <span>SCROLL DOWN</span>
-                <div class="scroll-line"></div>
-            </div>
-        </section>
-
-        <!-- 2. 少女档案 · Profile -->
-        <section id="profile" class="section">
-            <div class="section-header">
-                <span class="section-tag">CHARACTER DOSSIER</span>
-                <h2 class="section-title">诗音 (Sion) · 少女档案</h2>
-                <div class="section-line"></div>
-            </div>
-
-            <div class="profile-single-container">
-                <div class="profile-card glass-panel">
-                    <div class="profile-avatar-container">
-                        <div class="avatar-glow"></div>
-                        <div class="avatar-box">
-                            <img src="images/avatar.webp" alt="Sion 诗音" class="avatar-img">
-                        </div>
-                    </div>
-
-                    <h3 class="profile-name">Sion <span class="profile-subname">(シオン / 诗音)</span></h3>
-                    
-                    <div class="profile-status">
-                        <span class="status-indicator"></span>
-                        <span>Felix No.01 · 最强的菲利克斯</span>
-                    </div>
-
-                    <div class="profile-info-grid">
-                        <div class="info-card">
-                            <span class="info-label">种族 / 属性</span>
-                            <span class="info-val">Felix（新人类 / 基因救世者）</span>
-                        </div>
-                        <div class="info-card">
-                            <span class="info-label">曾幽禁地</span>
-                            <span class="info-val">703研究所 (封闭温室)</span>
-                        </div>
-                        <div class="info-card">
-                            <span class="info-label">外貌特征</span>
-                            <span class="info-val">银白如雪长发 · 赤红双眸</span>
-                        </div>
-                        <div class="info-card">
-                            <span class="info-label">象征之物</span>
-                            <span class="info-val">蒲公英 (Dandelion) 与 自由微风</span>
-                        </div>
-                        <div class="info-card info-card-full">
-                            <span class="info-label">心愿</span>
-                            <span class="info-val">「亲眼看看外面的天空、海洋与微风，与重要之人相守至世界终焉」</span>
-                        </div>
-                    </div>
-
-                    <div class="traits-container">
-                        <span class="trait-tag">高洁智慧</span>
-                        <span class="trait-tag">纯真善良</span>
-                        <span class="trait-tag">向往自由</span>
-                        <span class="trait-tag">星空守望者</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 3. 忆之画廊 · CG Gallery -->
-        <section id="gallery" class="section">
-            <div class="section-header">
-                <span class="section-tag">MEMORIES & ILLUSTRATIONS</span>
-                <h2 class="section-title">✦ 忆之画廊 · 终焉之星的光影记忆</h2>
-                <div class="section-line"></div>
-                <p class="section-desc">收录《eden*》官方精选高清 CG，点击任意画面可开启全屏沉浸式灯箱浏览。</p>
-            </div>
-
-            <div class="gallery-wrapper">
-                <div class="gallery-grid" id="gallery-grid">
-                    <div class="gallery-item glass-panel" data-src="images/cg/cg_01.webp" data-caption="温室中的相视 · 703研究所的初见">
-                        <img src="images/cg/cg_01.webp" alt="eden* CG 01" loading="lazy">
-                    </div>
-                    <div class="gallery-item glass-panel" data-src="images/cg/cg_02.webp" data-caption="澄澈的双眸 · 诗音的凝望">
-                        <img src="images/cg/cg_02.webp" alt="eden* CG 02" loading="lazy">
-                    </div>
-                    <div class="gallery-item glass-panel" data-src="images/cg/cg_03.webp" data-caption="白色温室的日常 · 数据的牢笼">
-                        <img src="images/cg/cg_03.webp" alt="eden* CG 03" loading="lazy">
-                    </div>
-                    <div class="gallery-item glass-panel" data-src="images/cg/cg_04.webp" data-caption="静谧时光 · 守望者的陪伴">
-                        <img src="images/cg/cg_04.webp" alt="eden* CG 04" loading="lazy">
-                    </div>
-                    <div class="gallery-item glass-panel" data-src="images/cg/cg_05.webp" data-caption="守护的誓言 · 战友与姊妹">
-                        <img src="images/cg/cg_05.webp" alt="eden* CG 05" loading="lazy">
-                    </div>
-                    <div class="gallery-item glass-panel" data-src="images/cg/cg_06.webp" data-caption="破晓出逃 · 冲出研究所">
-                        <img src="images/cg/cg_06.webp" alt="eden* CG 06" loading="lazy">
-                    </div>
-                    <div class="gallery-item glass-panel" data-src="images/cg/cg_07.webp" data-caption="旷野之风 · 第一次感受大自然">
-                        <img src="images/cg/cg_07.webp" alt="eden* CG 07" loading="lazy">
-                    </div>
-                    <div class="gallery-item glass-panel" data-src="images/cg/cg_08.webp" data-caption="红茶的甘醇 · 山丘小屋的午后">
-                        <img src="images/cg/cg_08.webp" alt="eden* CG 08" loading="lazy">
-                    </div>
-                    <div class="gallery-item glass-panel extra-cg hidden" data-src="images/cg/cg_09.webp" data-caption="黄昏暮光 · 执子之手">
-                        <img src="images/cg/cg_09.webp" alt="eden* CG 09" loading="lazy">
-                    </div>
-                    <div class="gallery-item glass-panel extra-cg hidden" data-src="images/cg/cg_10.webp" data-caption="深情相拥 · 唯有彼此的世界">
-                        <img src="images/cg/cg_10.webp" alt="eden* CG 10" loading="lazy">
-                    </div>
-                    <div class="gallery-item glass-panel extra-cg hidden" data-src="images/cg/cg_11.webp" data-caption="蒲公英盛开的山丘 · 纯白的浪漫">
-                        <img src="images/cg/cg_11.webp" alt="eden* CG 11" loading="lazy">
-                    </div>
-                    <div class="gallery-item glass-panel extra-cg hidden" data-src="images/cg/cg_12.webp" data-caption="睡颜如诗 · 最后的安宁">
-                        <img src="images/cg/cg_12.webp" alt="eden* CG 12" loading="lazy">
-                    </div>
-                    <div class="gallery-item glass-panel extra-cg hidden" data-src="images/cg/cg_13.webp" data-caption="星空低语 · 世界终焉的约定">
-                        <img src="images/cg/cg_13.webp" alt="eden* CG 13" loading="lazy">
-                    </div>
-                    <div class="gallery-item glass-panel extra-cg hidden" data-src="images/cg/cg_14.webp" data-caption="温柔以待 · 亮与诗音">
-                        <img src="images/cg/cg_14.webp" alt="eden* CG 14" loading="lazy">
-                    </div>
-                    <div class="gallery-item glass-panel extra-cg hidden" data-src="images/cg/cg_15.webp" data-caption="晨曦微光 · 新的清晨">
-                        <img src="images/cg/cg_15.webp" alt="eden* CG 15" loading="lazy">
-                    </div>
-                    <div class="gallery-item glass-panel extra-cg hidden" data-src="images/cg/cg_16.webp" data-caption="星落之刻 · 直至世界的终焉">
-                        <img src="images/cg/cg_16.webp" alt="eden* CG 16" loading="lazy">
-                    </div>
-                    <div class="gallery-item glass-panel extra-cg hidden" data-src="images/cg/cg_17.webp" data-caption="白羽之风 · 飞向永恒的苍穹">
-                        <img src="images/cg/cg_17.webp" alt="eden* CG 17" loading="lazy">
-                    </div>
-                    <div class="gallery-item glass-panel extra-cg hidden" data-src="images/cg/cg_18.webp" data-caption="纯白婚纱与花环 · 属于两人的婚礼">
-                        <img src="images/cg/cg_18.webp" alt="eden* CG 18" loading="lazy">
-                    </div>
-                    <div class="gallery-item glass-panel extra-cg hidden" data-src="images/cg/cg_19.webp" data-caption="They Were Only Two, On The Planet.">
-                        <img src="images/cg/cg_19.webp" alt="eden* CG 19" loading="lazy">
-                    </div>
-                </div>
-
-                <div class="gallery-toggle-box">
-                    <button class="btn btn-glass gallery-toggle-btn" id="gallery-toggle-btn">
-                        <span id="toggle-btn-text">✦ 展开查看全部 19 张回忆 CG ✦</span>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. 物语篇章 · Story Timeline -->
-        <section id="story" class="section">
-            <div class="section-header">
-                <span class="section-tag">CHRONICLES OF EDEN</span>
-                <h2 class="section-title">终焉与誓约的物语</h2>
-                <div class="section-line"></div>
-            </div>
-
-            <div class="timeline-container">
-                <div class="timeline-item">
-                    <div class="timeline-node">01</div>
-                    <div class="timeline-content glass-panel">
-                        <div class="timeline-img-box">
-                            <img src="images/cg/chapter1_meet.webp" alt="Chapter 1" class="timeline-cg" loading="lazy">
-                        </div>
-                        <div class="timeline-text-box">
-                            <span class="timeline-chapter">Chapter I</span>
-                            <h3 class="timeline-title">牢笼里的救世主</h3>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-node">02</div>
-                    <div class="timeline-content glass-panel">
-                        <div class="timeline-img-box">
-                            <img src="images/cg/chapter2_escape.webp" alt="Chapter 2" class="timeline-cg" loading="lazy">
-                        </div>
-                        <div class="timeline-text-box">
-                            <span class="timeline-chapter">Chapter II</span>
-                            <h3 class="timeline-title">通往无悔的未来</h3>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-node">03</div>
-                    <div class="timeline-content glass-panel">
-                        <div class="timeline-img-box">
-                            <img src="images/cg/cg_16.webp" alt="Chapter 3" class="timeline-cg" loading="lazy">
-                        </div>
-                        <div class="timeline-text-box">
-                            <span class="timeline-chapter">Chapter III</span>
-                            <h3 class="timeline-title">山丘小屋与花之海</h3>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-node">04</div>
-                    <div class="timeline-content glass-panel">
-                        <div class="timeline-img-box">
-                            <img src="images/cg/cg_11.webp" alt="Chapter 4" class="timeline-cg" loading="lazy">
-                        </div>
-                        <div class="timeline-text-box">
-                            <span class="timeline-chapter">Chapter IV</span>
-                            <h3 class="timeline-title">地球最后的恋爱物语的落幕</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. 名台词回廊 · Memorable Quotes -->
-        <section id="quotes" class="section">
-            <div class="section-header">
-                <span class="section-tag">ECHOES IN STARLIGHT</span>
-                <h2 class="section-title">星光低语 · 名台词回廊</h2>
-                <div class="section-line"></div>
-            </div>
-
-            <div class="quotes-carousel-wrapper glass-panel">
-                <div class="quotes-carousel" id="quotes-container">
-                    <div class="quote-slide active">
-                        <div class="quote-symbol">“</div>
-                        <p class="quote-jp">世界は、終わろうとしていた。でも、私たちはここにいた。</p>
-                        <p class="quote-cn">世界即将走向终结。但是，我们曾在这里，不曾离开。</p>
-                        <span class="quote-author">——《eden*》题记</span>
-                    </div>
-
-                    <div class="quote-slide">
-                        <div class="quote-symbol">“</div>
-                        <p class="quote-jp">亮、外の世界は……こんなに広くて、綺麗だったんだね。</p>
-                        <p class="quote-cn">亮，外面的世界……原来是这么宽广、这么美丽啊。</p>
-                        <span class="quote-author">—— 诗音 (シオン)</span>
-                    </div>
-
-                    <div class="quote-slide">
-                        <div class="quote-symbol">“</div>
-                        <p class="quote-jp">ありがとう、亮。私を見つけてくれて、連れ出してくれて。</p>
-                        <p class="quote-cn">谢谢你，亮。谢谢你找到了我，把我带到了这个真实的世界。</p>
-                        <span class="quote-author">—— 诗音 (シオン)</span>
-                    </div>
-
-                    <div class="quote-slide">
-                        <div class="quote-symbol">“</div>
-                        <p class="quote-jp">私たちは、この星で二人きりだった。それだけで、十分だった。</p>
-                        <p class="quote-cn">在那颗即将沉睡的星球上，我们只有彼此。仅仅是这样，就已经足够了。</p>
-                        <span class="quote-author">—— 榛名亮 & 诗音</span>
-                    </div>
-                </div>
-
-                <div class="quotes-controls">
-                    <button class="quote-nav-btn prev" id="quote-prev" aria-label="上一句">‹</button>
-                    <div class="quote-dots" id="quote-dots"></div>
-                    <button class="quote-nav-btn next" id="quote-next" aria-label="下一句">›</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- 6. 夕阳终幕 · 永恒的约定 (Final Moments Dialogue) -->
-        <section id="dialogue" class="section">
-            <div class="section-header">
-                <span class="section-tag">THE FINAL SUNSET</span>
-                <h2 class="section-title">✦ 夕阳下的终幕 · 永恒的约定</h2>
-                <div class="section-line"></div>
-                <p class="section-desc">夕阳西下，地球生命的最后时刻，亮与诗音在山丘小屋前最后的轻声对话。</p>
-            </div>
-
-            <div class="dialogue-theater glass-panel">
-                <div class="dialogue-cg-box gallery-item" data-src="images/cg/sion_sleep_sunset.webp" data-caption="夕阳下的终幕 · 如果能再一次醒来的话，两人一起……">
-                    <img src="images/cg/sion_sleep_sunset.webp" alt="夕阳下的终幕" class="dialogue-cg-img" loading="lazy">
-                    <div class="dialogue-cg-overlay">
-                        <span class="dialogue-cg-tag">✦ 最后一幕 · 诗音的安睡</span>
-                        <p class="dialogue-cg-quote">「如果……如果，能再一次醒来的话……两人……一起……」</p>
-                    </div>
-                </div>
-
-                <div class="dialogue-stream-container">
-                    <div class="dialogue-stream-header">
-                        <span class="stream-title">✦ 终焉物语 · 对话全记录</span>
-                        <span class="stream-hint">上下滑动阅读完整尾声 📜</span>
-                    </div>
-
-                    <div class="dialogue-stream-body">
-                        <div class="dialogue-row ryo">
-                            <span class="dialogue-speaker">【 亮 】</span>
-                            <div class="dialogue-bubble">「已经快晚上了。风都有点冷了……」</div>
-                        </div>
-
-                        <div class="dialogue-row sion">
-                            <span class="dialogue-speaker">【 诗音 】</span>
-                            <div class="dialogue-bubble">「我想稍微在这里再呆一会……」</div>
-                        </div>
-
-                        <div class="dialogue-row ryo">
-                            <span class="dialogue-speaker">【 亮 】</span>
-                            <div class="dialogue-bubble">「啊，可以哦。如果困了的话睡觉也没关系哦，我会好好的把你背回家的」</div>
-                        </div>
-
-                        <div class="dialogue-row sion">
-                            <span class="dialogue-speaker">【 诗音 】</span>
-                            <div class="dialogue-bubble">「谢谢。不过，已经没那个必要了……」</div>
-                        </div>
-
-                        <div class="dialogue-row ryo">
-                            <span class="dialogue-speaker">【 亮 】</span>
-                            <div class="dialogue-bubble">「……怎么了？」</div>
-                        </div>
-
-                        <div class="dialogue-row narration">
-                            <div class="dialogue-narration">想走着回去吗。但是，那种体力不允许吧。</div>
-                        </div>
-
-                        <div class="dialogue-row sion">
-                            <span class="dialogue-speaker">【 诗音 】</span>
-                            <div class="dialogue-bubble">「我已经，差不多必须要走了……马上……要睡了……深深的……睡……」</div>
-                        </div>
-
-                        <div class="dialogue-row ryo">
-                            <span class="dialogue-speaker">【 亮 】</span>
-                            <div class="dialogue-bubble">「是……吗……」</div>
-                        </div>
-
-                        <div class="dialogue-row narration">
-                            <div class="dialogue-narration">就算不听下去，我也明白了诗音说的意思。她，明白了。自己的事情，她比任何人都清楚的明白。</div>
-                        </div>
-
-                        <div class="dialogue-row sion">
-                            <span class="dialogue-speaker">【 诗音 】</span>
-                            <div class="dialogue-bubble">「对不起……要把亮……一个人丢下……」</div>
-                        </div>
-
-                        <div class="dialogue-row ryo">
-                            <span class="dialogue-speaker">【 亮 】</span>
-                            <div class="dialogue-bubble">「我绝对会遵守……和你的约定。因为我正是为此……留在这里……」</div>
-                        </div>
-
-                        <div class="dialogue-row narration">
-                            <div class="dialogue-narration">诗音微弱地微笑着，从口袋里取出装有戒指的小盒子。</div>
-                        </div>
-
-                        <div class="dialogue-row ryo">
-                            <span class="dialogue-speaker">【 亮 】</span>
-                            <div class="dialogue-bubble">「你一直带着吗」</div>
-                        </div>
-
-                        <div class="dialogue-row sion">
-                            <span class="dialogue-speaker">【 诗音 】</span>
-                            <div class="dialogue-bubble">「嗯，总有……这种预感……」</div>
-                        </div>
-
-                        <div class="dialogue-row ryo">
-                            <span class="dialogue-speaker">【 亮 】</span>
-                            <div class="dialogue-bubble">「这也一起……？」</div>
-                        </div>
-
-                        <div class="dialogue-row narration">
-                            <div class="dialogue-narration">诗音沉默地点头，递出小盒子。我点着头收下。</div>
-                        </div>
-
-                        <div class="dialogue-row sion">
-                            <span class="dialogue-speaker">【 诗音 】</span>
-                            <div class="dialogue-bubble">「谢谢你，亮……真的，谢谢你……」</div>
-                        </div>
-
-                        <div class="dialogue-row narration">
-                            <div class="dialogue-narration">又是“对不起”和“谢谢”一类的。但是，我想听的不是这个。我想看的，不是这种悲伤的笑容……</div>
-                        </div>
-
-                        <div class="dialogue-row sion">
-                            <span class="dialogue-speaker">【 诗音 】</span>
-                            <div class="dialogue-bubble">「啊……已经……不能再这样说话了……」</div>
-                        </div>
-
-                        <div class="dialogue-row ryo">
-                            <span class="dialogue-speaker">【 亮 】</span>
-                            <div class="dialogue-bubble">「什么都可以……说吧。让我……多听一点你的声音……」</div>
-                        </div>
-
-                        <div class="dialogue-row sion">
-                            <span class="dialogue-speaker">【 诗音 】</span>
-                            <div class="dialogue-bubble">「嗯……亮……我也……我也想……和亮多说……不想做梦……只要和亮在一起……就算谁都不在，只要有亮……」</div>
-                        </div>
-
-                        <div class="dialogue-row narration">
-                            <div class="dialogue-narration">她的泪水无法停住。什么都做不到 —— 除了拭去她的泪水，什么都做不到。</div>
-                        </div>
-
-                        <div class="dialogue-row sion">
-                            <span class="dialogue-speaker">【 诗音 】</span>
-                            <div class="dialogue-bubble">「我讨厌……这种最后……」</div>
-                        </div>
-
-                        <div class="dialogue-row ryo">
-                            <span class="dialogue-speaker">【 亮 】</span>
-                            <div class="dialogue-bubble">「我在这里，诗音不是也还在这里吗」</div>
-                        </div>
-
-                        <div class="dialogue-row sion">
-                            <span class="dialogue-speaker">【 诗音 】</span>
-                            <div class="dialogue-bubble">「永远……在亮的身边……」</div>
-                        </div>
-
-                        <div class="dialogue-row narration">
-                            <div class="dialogue-narration">丝丝细语随风消散，毫无踪迹。在夕阳下，万物即将消失……</div>
-                        </div>
-
-                        <div class="dialogue-row sion">
-                            <span class="dialogue-speaker">【 诗音 】</span>
-                            <div class="dialogue-bubble">「煎鸡蛋，做不出来了……对不起……我的任性……对不起……不能陪伴你到最后……对不起……」</div>
-                        </div>
-
-                        <div class="dialogue-row ryo">
-                            <span class="dialogue-speaker">【 亮 】</span>
-                            <div class="dialogue-bubble">「可以了。可以了，诗音……」</div>
-                        </div>
-
-                        <div class="dialogue-row narration">
-                            <div class="dialogue-narration">每次听到这种颤抖的声音，就觉得心里有什么在崩溃。从她身上消失的生命之光，同时也在一点点进入我的心里。就算如此，我还是对她微笑。</div>
-                        </div>
-
-                        <div class="dialogue-row ryo">
-                            <span class="dialogue-speaker">【 亮 】</span>
-                            <div class="dialogue-bubble">「我会陪着你的，永远，在诗音身边」</div>
-                        </div>
-
-                        <div class="dialogue-row sion">
-                            <span class="dialogue-speaker">【 诗音 】</span>
-                            <div class="dialogue-bubble">「嗯……我也……我的心，绝对不会离开亮。永远，在亮身边……」</div>
-                        </div>
-
-                        <div class="dialogue-row ryo">
-                            <span class="dialogue-speaker">【 亮 】</span>
-                            <div class="dialogue-bubble">「嗯……」</div>
-                        </div>
-
-                        <div class="dialogue-row narration">
-                            <div class="dialogue-narration">是啊，已经没有任何需要道歉的事情了。因为在这个乐园里，我们单独两人的时间 —— 会永远继续。</div>
-                        </div>
-
-                        <div class="dialogue-row sion last-wish">
-                            <span class="dialogue-speaker">【 诗音 】</span>
-                            <div class="dialogue-bubble">「如果……如果，能再一次醒来的话……两人……一起……」</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 7. 致敬终章 · 晚安诗音 晚安中二社 -->
-        <section id="farewell" class="section">
-            <div class="farewell-card glass-panel">
-                <div class="farewell-glow"></div>
-                <div class="farewell-star">✦</div>
-                
-                <h2 class="farewell-title">
-                    <span class="farewell-title-line">“ 晚安，诗音。 ”</span>
-                    <span class="farewell-title-line highlight">“ 晚安，中二社。 ”</span>
-                </h2>
-                
-                <div class="farewell-divider">
-                    <span class="divider-line"></span>
-                    <span class="divider-symbol">✦</span>
-                    <span class="divider-line"></span>
-                </div>
-                
-                <div class="farewell-content">
-                    <p class="farewell-jp-quote">「世界が終わるその瞬間まで、私たちは確かにここにいた。」</p>
-                    <p class="farewell-cn-prose">
-                        2009 年，《eden*》将这段关于末日、誓约与自由的绝美物语刻进了星空。<br>
-                        感谢 minori（中二社）为我们描绘过那颗只有两个人的终焉之星。
-                    </p>
-                </div>
-
-                <div class="farewell-badge-list">
-                    <span class="farewell-badge">✦ minori (2001 - 2019)</span>
-                    <span class="farewell-badge">✦ eden* (2009)</span>
-                    <span class="farewell-badge">✦ 天門 (Tenmon)</span>
-                    <span class="farewell-badge">✦ Sion (シオン)</span>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- ✦ 右下角悬浮毛玻璃原声播放器 (Floating Frosted Player) ✦ -->
-    <aside class="floating-player-root" id="floating-player">
-        <!-- 展开态：完整的毛玻璃音乐浮窗 -->
-        <div class="floating-panel glass-panel" id="floating-panel">
-            <div class="panel-topbar">
-                <div class="panel-title-box">
-                    <span class="brand-symbol">✦</span>
-                    <span class="panel-heading">Asterisk OST (37)</span>
-                </div>
-                <div class="panel-actions">
-                    <button class="panel-icon-btn" id="floating-minimize-btn" title="收起浮窗">✕</button>
-                </div>
-            </div>
-
-            <!-- 唱片机与曲目信息 -->
-            <div class="panel-main-info">
-                <div class="floating-vinyl-wrapper">
-                    <div class="floating-vinyl" id="floating-vinyl">
-                        <img src="images/album_cover.webp" alt="Asterisk OST Cover" class="floating-cover-img">
-                        <div class="floating-grooves"></div>
-                    </div>
-                </div>
-                <div class="floating-meta">
-                    <h4 class="floating-title" id="floating-title">Sion</h4>
-                    <p class="floating-artist" id="floating-artist">天門 · Asterisk OST</p>
-                    <span class="floating-tag" id="floating-tag">✦ 诗音主题曲 · 纯音乐</span>
-                </div>
-            </div>
-
-            <!-- 进度条 -->
-            <div class="floating-progress-container">
-                <div class="floating-progress-bar" id="floating-progress-bar">
-                    <div class="floating-progress-fill" id="floating-progress-fill"></div>
-                </div>
-                <div class="floating-time-row">
-                    <span id="floating-current-time">00:00</span>
-                    <span id="floating-total-duration">02:43</span>
-                </div>
-            </div>
-
-            <!-- 播放控制按键 -->
-            <div class="floating-controls">
-                <button class="ctrl-icon-btn" id="floating-loop-btn" title="切换循环模式">
-                    <span id="floating-loop-icon">🔁</span>
+                <button class="dialogue__next" type="button" data-theater-next>
+                  <span data-next-label>下一句</span>
+                  <svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
                 </button>
-                <button class="ctrl-icon-btn" id="floating-prev-btn" title="上一首">⏮</button>
-                <button class="ctrl-icon-btn play-circle-btn" id="floating-play-btn" title="播放 / 暂停">
-                    <span id="floating-play-icon">▶</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="theater__final" data-theater-end hidden>
+          <p class="theater__final-jp" lang="ja">おやすみ、シオン。</p>
+          <h3>晚安，诗音。</h3>
+          <div class="theater__final-rule" aria-hidden="true"><span>✦</span></div>
+          <p class="theater__final-quote">They were only two,<br><em>on the planet.</em></p>
+          <div class="theater__final-actions">
+            <button class="ghost-button ghost-button--gold" type="button" data-theater-replay>
+              <svg class="icon" aria-hidden="true"><use href="#icon-restart"></use></svg>重播终幕
+            </button>
+            <a class="button button--line" href="#sound" data-scroll-link>前往星之音 <svg class="icon" aria-hidden="true"><use href="#icon-arrow-down"></use></svg></a>
+          </div>
+        </div>
+
+        <span class="theater__corner theater__corner--tl" aria-hidden="true"></span>
+        <span class="theater__corner theater__corner--tr" aria-hidden="true"></span>
+        <span class="theater__corner theater__corner--bl" aria-hidden="true"></span>
+        <span class="theater__corner theater__corner--br" aria-hidden="true"></span>
+      </div>
+
+      <p class="theater__disclaimer">终幕对白引自《eden*》原作最终场景（中文译文），版权归 minori 所有，此处仅用于非商业纪念。<br>“如果，能再一次醒来的话……两人……一起……” —— 献给所有记得这个黄昏的人。</p>
+    </section>
+
+    <!-- ─────────────────────────────  SOUND  ───────────────────────────── -->
+    <section class="chapter sound" id="sound" data-phase="night" data-chapter="sound" aria-labelledby="sound-title">
+      <div class="sound__ambience" aria-hidden="true">
+        <img data-asset="sound.nightA" alt="" loading="lazy" decoding="async">
+        <img data-asset="sound.nightB" alt="" loading="lazy" decoding="async">
+      </div>
+
+      <header class="chapter-heading">
+        <div class="chapter-heading__index">
+          <span>06</span>
+          <small>37 TRACKS</small>
+        </div>
+        <div class="chapter-heading__title">
+          <p>CHAPTER SIX <span>第六章</span></p>
+          <h2 id="sound-title"><span lang="ja">星の音</span><em>Sound Among Stars</em></h2>
+        </div>
+        <p class="chapter-heading__aside" lang="ja">さよならの代わりに、音楽が残った。</p>
+      </header>
+
+      <div class="sound__layout">
+        <div class="turntable" data-reveal="fade">
+          <div class="turntable__aura" aria-hidden="true"></div>
+          <div class="turntable__orbit" aria-hidden="true">
+            <span>EDEN* ORIGINAL SOUNDTRACK</span>
+            <i></i>
+            <span>TENMON / 天門</span>
+          </div>
+
+          <button class="vinyl" type="button" data-audio-toggle aria-label="播放或暂停：Sion">
+            <span class="vinyl__grain" aria-hidden="true"></span>
+            <img class="vinyl__cover" data-asset="sound.cover" alt="花冠、蝴蝶与蓝天的诗音专辑封面。" loading="lazy" decoding="async">
+            <span class="vinyl__hole" aria-hidden="true"></span>
+            <span class="vinyl__pressed" aria-hidden="true">EDEN*<br><b>703</b></span>
+          </button>
+
+          <div class="tonearm" aria-hidden="true">
+            <span class="tonearm__pivot"></span>
+            <span class="tonearm__arm"></span>
+            <span class="tonearm__head"></span>
+          </div>
+
+          <div class="turntable__caption">
+            <span>THE RECORD ROOM</span>
+            <span>33 ⅓ RPM — MEMORY ONLY</span>
+          </div>
+        </div>
+
+        <div class="sound__content">
+          <p class="section-kicker reveal" data-reveal="fade">MUSIC BY TENMON / 天门</p>
+          <h3 class="section-heading reveal" data-reveal="rise">没有歌词的旋律，<br>替我们留在原地。</h3>
+          <p class="body-copy reveal" data-reveal="rise">当这颗行星走向终末，天门的钢琴替所有说不出口的告别留下了声音。三十七首原声，像三十七束没有熄灭的光。</p>
+          <p class="sound__quote reveal" data-reveal="fade" lang="ja">音は、いちばん長い手紙だった。</p>
+
+          <div class="player glass reveal" data-reveal="rise" aria-label="eden* 原声播放器">
+            <div class="player__now">
+              <span class="player__state"><i class="status-dot"></i> NOW PLAYING</span>
+              <span class="player__source">LOCAL ARCHIVE / OST</span>
+            </div>
+
+            <div class="player__title-row">
+              <p class="player__track" data-audio-title>Sion</p>
+              <span class="player__count" data-audio-number>01 / 37</span>
+            </div>
+
+            <div class="player__timeline">
+              <input class="range range--progress" type="range" min="0" max="100" value="0" step="0.1" data-audio-seek aria-label="播放进度">
+              <div class="player__time-row">
+                <span data-audio-current>00:00</span>
+                <span data-audio-duration>00:00</span>
+              </div>
+            </div>
+
+            <div class="player__controls">
+              <button class="icon-button" type="button" data-audio-prev aria-label="上一首">
+                <svg class="icon icon--solid" aria-hidden="true"><use href="#icon-prev"></use></svg>
+              </button>
+              <button class="play-button" type="button" data-audio-toggle aria-label="播放或暂停">
+                <svg class="icon icon--solid play-button__play" aria-hidden="true"><use href="#icon-play"></use></svg>
+                <svg class="icon icon--solid play-button__pause" aria-hidden="true"><use href="#icon-pause"></use></svg>
+              </button>
+              <button class="icon-button" type="button" data-audio-next aria-label="下一首">
+                <svg class="icon icon--solid" aria-hidden="true"><use href="#icon-next"></use></svg>
+              </button>
+
+              <span class="player__control-divider" aria-hidden="true"></span>
+
+              <button class="icon-button loop-button" type="button" data-audio-loop aria-label="循环模式：列表循环">
+                <svg class="icon" aria-hidden="true"><use href="#icon-loop"></use></svg>
+                <span class="loop-button__mark" aria-hidden="true">ALL</span>
+              </button>
+
+              <div class="volume">
+                <button class="icon-button" type="button" data-audio-mute aria-label="静音" aria-pressed="false">
+                  <svg class="icon" aria-hidden="true"><use href="#icon-volume"></use></svg>
                 </button>
-                <button class="ctrl-icon-btn" id="floating-next-btn" title="下一首">⏭</button>
-                <div class="floating-volume-box">
-                    <span id="floating-volume-icon">🔊</span>
-                    <input type="range" class="mini-volume-slider" id="floating-volume-slider" min="0" max="1" step="0.01" value="0.8">
-                </div>
+                <input class="range range--volume" type="range" min="0" max="1" step="0.01" value="0.62" data-audio-volume aria-label="音量">
+              </div>
             </div>
 
-            <!-- 曲目抽屉列表 -->
-            <div class="floating-playlist-header">
-                <span>✦ 原声曲目目录</span>
+            <div class="player__sub">
+              <button class="arrow-link arrow-link--small" type="button" data-audio-open>
+                <span>打开 37 首曲目档案</span>
+                <svg class="icon" aria-hidden="true"><use href="#icon-list"></use></svg>
+              </button>
+              <span class="player__credit">天門 / TENMON · 2009</span>
             </div>
-            <div class="floating-playlist" id="floating-playlist">
-                <!-- 由 JS 动态注入 37 首曲目 -->
-            </div>
-        </div>
+            <p class="player__status" data-audio-status aria-live="polite"></p>
+          </div>
 
-        <!-- 收起态：右下角极简毛玻璃音乐胶囊 (Mini Capsule) -->
-        <div class="floating-capsule glass-panel" id="floating-capsule" title="点击展开音乐播放器">
-            <div class="capsule-vinyl" id="capsule-vinyl">
-                <img src="images/album_cover.webp" alt="Asterisk OST" class="capsule-cover-img">
+          <div class="sound__featured reveal" data-reveal="fade">
+            <span class="mini-label">RECOMMENDED LISTENING / 推荐聆听</span>
+            <div class="sound__chips">
+              <button type="button" data-play-track="Sion.mp3"><span>01</span>Sion</button>
+              <button type="button" data-play-track="Eternal_sleep.mp3"><span>02</span>Eternal sleep</button>
+              <button type="button" data-play-track="To_the_new_world.mp3"><span>03</span>To the new world</button>
             </div>
-            <div class="capsule-info">
-                <span class="capsule-title" id="capsule-title">Sion</span>
-                <span class="capsule-sub" id="capsule-sub">天門 · 37 OST</span>
-            </div>
-            <button class="capsule-action-btn play-btn" id="capsule-play-btn" title="播放/暂停">▶</button>
-            <button class="capsule-action-btn expand-btn" id="capsule-expand-btn" title="展开面板">⛶</button>
+          </div>
         </div>
-    </aside>
+      </div>
 
-    <!-- 全屏 CG 灯箱 Modal (Lightbox) -->
-    <div class="lightbox-modal" id="lightbox-modal">
-        <div class="lightbox-backdrop" id="lightbox-backdrop"></div>
-        <div class="lightbox-content">
-            <button class="lightbox-close" id="lightbox-close" title="关闭 (Esc)">✕</button>
-            <button class="lightbox-nav-btn prev" id="lightbox-prev" title="上一张 (←)">‹</button>
-            <div class="lightbox-img-wrapper">
-                <img src="" alt="Full CG" id="lightbox-img">
-                <div class="lightbox-caption" id="lightbox-caption"></div>
-            </div>
-            <button class="lightbox-nav-btn next" id="lightbox-next" title="下一张 (→)">›</button>
-        </div>
+      <p class="sound__footnote">全部音源来自本地素材目录 <code>audio/</code> · 点击唱片或播放按钮开始<br>No autoplay. Sound is a choice, like staying.</p>
+    </section>
+
+    <!-- ─────────────────────────────  EPILOGUE  ───────────────────────────── -->
+    <section class="epilogue" id="epilogue" aria-labelledby="epilogue-title">
+      <p class="epilogue__kicker">EPILOGUE / 尾聲</p>
+      <h2 class="epilogue__title" id="epilogue-title">They Were Only Two,<br><em>On The Planet.</em></h2>
+
+      <div class="epilogue__seal" aria-hidden="true">
+        <span class="epilogue__seal-ring"></span>
+        <img data-asset="sound.seal" alt="">
+        <span class="epilogue__seal-star">✦</span>
+      </div>
+
+      <div class="epilogue__content">
+        <p>故事的最后一页没有“终”。<br>只有一座山丘，一阵风，和两个靠得很近的名字。</p>
+        <p lang="ja">そして、この星には、ふたりだけ。</p>
+      </div>
+
+      <button class="leave-light" type="button" data-leave-light>
+        <span class="leave-light__icon" aria-hidden="true">✦</span>
+        <span class="leave-light__text">点亮一颗星 <small>LEAVE A LIGHT</small></span>
+        <span class="leave-light__ripple" aria-hidden="true"></span>
+      </button>
+      <p class="leave-light__status" data-light-status aria-live="polite"></p>
+
+      <div class="epilogue__minori">
+        <span class="epilogue__minori-star">✦</span>
+        <p>minori <b>2001 — 2019</b></p>
+        <p>Thank you for the sky.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__top">
+      <a class="footer-brand" href="#top" aria-label="Sion (シオン / 诗音) ✦ eden* 纪念站">
+        <span>Sion</span>
+        <small>(シオン / 诗音) ✦ eden* 纪念站</small>
+      </a>
+      <p class="site-footer__quote">“They were only two, on the planet.”</p>
+      <a class="footer-top" href="#top">回到最初 <svg class="icon" aria-hidden="true"><use href="#icon-arrow-up"></use></svg></a>
     </div>
 
-    <!-- 页脚 -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-brand">
-                <span class="footer-logo">✦ SION.WTF</span>
-                <p class="footer-motto">“愿你在此，直至世界的终焉。”</p>
-            </div>
+    <div class="site-footer__middle">
+      <p>SION MEMORIAL ARCHIVE / 非公式追悼企画</p>
+      <nav aria-label="页脚章节导航">
+        <a href="#white-room" data-scroll-link>白い部屋</a>
+        <a href="#dawn" data-scroll-link>夜明け</a>
+        <a href="#summer" data-scroll-link>小さな夏</a>
+        <a href="#field" data-scroll-link>風の野</a>
+        <a href="#finale" data-scroll-link>終幕</a>
+        <a href="#sound" data-scroll-link>星の音</a>
+      </nav>
+      <p>HEADPHONES / SILENCE / ONE MORE SUNSET</p>
+    </div>
 
-            <div class="footer-links">
-                <span class="footer-text">Tribute to <strong>minori</strong> & 《eden*》 (2009)</span>
-                <span class="footer-divider">•</span>
-                <span class="footer-text">Created for <strong>Sion (シオン / 诗音)</strong></span>
-            </div>
-            
-            <div class="footer-sub">
-                <span>Music by <strong>Tenmon (天门)</strong> &bull; Hosted on GitHub Pages</span>
-                <span class="footer-divider">•</span>
-                <span class="footer-creator">Made by <a href="https://me.s1on.wtf" target="_blank" rel="noopener noreferrer" class="creator-link">Jianghuou233</a></span>
-            </div>
+    <div class="site-footer__fineprint">
+      <p>This is an unofficial, non-commercial fan tribute. <b>eden*</b> and all images, characters, music and dialogue belong to minori and their respective rights holders. The finale lines are quoted from the original final scene (Chinese translation) for memorial purposes.</p>
+      <p>没有奇迹了，但有星。 <span aria-hidden="true">✦</span></p>
+      <p class="site-footer__monogram" aria-hidden="true">S ✦ E</p>
+    </div>
+  </footer>
+
+  <!-- Floating player -->
+  <aside class="sound-dock" data-sound-dock aria-label="悬浮音乐播放器">
+    <div class="sound-dock__progress" aria-hidden="true"><i data-dock-progress></i></div>
+
+    <button class="sound-dock__disc" type="button" data-audio-toggle aria-label="播放或暂停">
+      <img data-asset="sound.cover" alt="" loading="lazy" decoding="async">
+      <span class="sound-dock__disc-ring" aria-hidden="true"></span>
+      <svg class="icon icon--solid sound-dock__play" aria-hidden="true"><use href="#icon-play"></use></svg>
+      <svg class="icon icon--solid sound-dock__pause" aria-hidden="true"><use href="#icon-pause"></use></svg>
+    </button>
+
+    <div class="sound-dock__meta">
+      <span class="sound-dock__eyebrow"><i></i> NOW PLAYING</span>
+      <button class="sound-dock__title" type="button" data-audio-open><span data-audio-title>Sion</span></button>
+    </div>
+
+    <div class="sound-dock__actions">
+      <button class="icon-button icon-button--small" type="button" data-audio-prev aria-label="上一首">
+        <svg class="icon icon--solid" aria-hidden="true"><use href="#icon-prev"></use></svg>
+      </button>
+      <button class="icon-button icon-button--small" type="button" data-audio-next aria-label="下一首">
+        <svg class="icon icon--solid" aria-hidden="true"><use href="#icon-next"></use></svg>
+      </button>
+      <button class="icon-button icon-button--small" type="button" data-audio-open aria-label="打开全部曲目">
+        <svg class="icon" aria-hidden="true"><use href="#icon-list"></use></svg>
+      </button>
+    </div>
+
+    <button class="sound-dock__collapse" type="button" data-dock-collapse aria-label="收起播放器">
+      <svg class="icon" aria-hidden="true"><use href="#icon-chevron-down"></use></svg>
+    </button>
+  </aside>
+
+  <!-- Sound archive -->
+  <dialog class="archive" id="sound-archive" aria-labelledby="archive-title">
+    <div class="archive__panel">
+      <header class="archive__header">
+        <div>
+          <p class="mini-label">THE RECORD ROOM / 音之档案</p>
+          <h2 id="archive-title">37 <em>tracks</em></h2>
         </div>
-    </footer>
+        <button class="icon-button archive__close" type="button" data-archive-close aria-label="关闭曲目档案">
+          <svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg>
+        </button>
+      </header>
 
-    <script src="script.js?v=20260823_2333"></script>
+      <div class="archive__now">
+        <img class="archive__cover" data-asset="sound.cover" alt="" loading="lazy" decoding="async">
+        <div class="archive__now-main">
+          <span class="archive__now-label">NOW PLAYING</span>
+          <p class="archive__track" data-audio-title>Sion</p>
+          <p class="archive__meta"><span data-audio-number>01 / 37</span> · 天門 / Tenmon</p>
+
+          <input class="range range--progress" type="range" min="0" max="100" value="0" step="0.1" data-audio-seek aria-label="播放进度">
+          <div class="archive__time-row">
+            <span data-audio-current>00:00</span>
+            <span data-audio-duration>00:00</span>
+          </div>
+
+          <div class="archive__controls">
+            <button class="icon-button" type="button" data-audio-prev aria-label="上一首">
+              <svg class="icon icon--solid" aria-hidden="true"><use href="#icon-prev"></use></svg>
+            </button>
+            <button class="play-button play-button--small" type="button" data-audio-toggle aria-label="播放或暂停">
+              <svg class="icon icon--solid play-button__play" aria-hidden="true"><use href="#icon-play"></use></svg>
+              <svg class="icon icon--solid play-button__pause" aria-hidden="true"><use href="#icon-pause"></use></svg>
+            </button>
+            <button class="icon-button" type="button" data-audio-next aria-label="下一首">
+              <svg class="icon icon--solid" aria-hidden="true"><use href="#icon-next"></use></svg>
+            </button>
+            <button class="icon-button loop-button" type="button" data-audio-loop aria-label="循环模式：列表循环">
+              <svg class="icon" aria-hidden="true"><use href="#icon-loop"></use></svg>
+              <span class="loop-button__mark" aria-hidden="true">ALL</span>
+            </button>
+            <div class="volume">
+              <button class="icon-button" type="button" data-audio-mute aria-label="静音" aria-pressed="false">
+                <svg class="icon" aria-hidden="true"><use href="#icon-volume"></use></svg>
+              </button>
+              <input class="range range--volume" type="range" min="0" max="1" step="0.01" value="0.62" data-audio-volume aria-label="音量">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="archive__status" data-audio-status aria-live="polite"></p>
+
+      <div class="archive__list-wrap">
+        <div class="archive__list-head">
+          <span>ALL TRACKS</span>
+          <span>OST / 37</span>
+        </div>
+        <ol class="tracklist" data-track-list></ol>
+      </div>
+
+      <p class="archive__note">原声属于天门与 minori。此处仅作为非商业同人纪念播放。<br><span lang="ja">音は、いつの日もここにある。</span></p>
+    </div>
+  </dialog>
+
+  <noscript>
+    <div class="noscript">
+      <p>本站的动态影像、原声播放与终幕演出需要启用 JavaScript。正文依然可以阅读。</p>
+    </div>
+  </noscript>
+
+  <audio id="site-audio" preload="metadata"></audio>
 </body>
 </html>
