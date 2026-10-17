@@ -721,6 +721,10 @@ const SITE_CONFIG = {
         return;
       }
       const rect = thawSection.getBoundingClientRect();
+      // Skip the write while the section is far away: --thaw feeds a full-screen
+      // backdrop blur, and recomputing it every frame for an off-screen node is
+      // pure style recalc.
+      if (rect.bottom < -200 || rect.top > window.innerHeight + 200) return;
       const travel = Math.max(1, thawSection.offsetHeight - window.innerHeight);
       const progress = clamp(-rect.top / travel, 0, 1);
       thawSection.style.setProperty("--thaw", progress.toFixed(4));
